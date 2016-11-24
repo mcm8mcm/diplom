@@ -1,16 +1,16 @@
 <?php
 class Controller{
-	private $register;
+        protected $register;
 	
 	public function __construct($register){
-		$this->register = $register;
+            $this->register = $register;
 	}
 	
 	public function __get($key){
-		$this->register->get($key);
+            return $this->register->get($key);
 	}
 	
 	public function __set($key, $value){
-		return $this->register->set($key, $value);
+            $this->register->set($key, $value);
 	}
 }

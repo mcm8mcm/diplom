@@ -9,7 +9,6 @@ class Document {
     
     const ID_RESERV = '66E9ADD3-AB4C-404F-9EA8-6830E4DD201B';
     
-    private $regestry;
     private $title = 'NO TITLE';
     private $metas = array();
     private $styles = array();
@@ -18,8 +17,7 @@ class Document {
     private $body = array();
     private $std_template;
     
-    public function __construct($registry) {
-        $this->regestry = $registry;
+    public function __construct() {
         ob_start();
         include_once __DIR__.DS.'/std_header.html';
         $this->std_template = ob_get_contents();
@@ -35,20 +33,21 @@ class Document {
     }
     
     public function render() {
-        $output = $this->std_template;
-        $tmp_buf = '';        
+        $output = $this->std_template;        
         $output = str_replace(self::ID_TITLE, $this->title, $output);
 
+        $tmp_buf = '<!-- meta -->'; 
         if($this->metas){ 
+            $tmp_buf = '';
             foreach ($this->metas as $meta){
                 $tmp_buf .= '<meta '.$meta.'>' .PHP_EOL; 
             }
             
             $tmp_buf = trim($tmp_buf);
-                    
-            $output = str_replace(self::ID_META, $tmp_buf, $output);
         }
+        $output = str_replace(self::ID_META, $tmp_buf, $output);
         
+        $tmp_buf = '<!-- styles -->';
         if($this->styles){ 
             $tmp_buf = '';
             foreach ($this->styles as $style){
@@ -56,21 +55,21 @@ class Document {
             }
             
             $tmp_buf = trim($tmp_buf);
-                    
-            $output = str_replace(self::ID_STYLES, $tmp_buf, $output);
         }
+        $output = str_replace(self::ID_STYLES, $tmp_buf, $output);
         
+        $tmp_buf = '<!-- scripts -->';
         if($this->scripts){ 
             $tmp_buf = '';
             foreach ($this->scripts as $script){
                 $tmp_buf .= $script.PHP_EOL; 
             }
             
-            $tmp_buf = trim($tmp_buf);
-                    
-            $output = str_replace(self::ID_SCRIPTS, $tmp_buf, $output);
+            $tmp_buf = trim($tmp_buf);                    
         }
+        $output = str_replace(self::ID_SCRIPTS, $tmp_buf, $output);
         
+        $tmp_buf = '<!-- body -->';
         if($this->body){ 
             $tmp_buf = '';
             foreach ($this->body as $body_chunk){
@@ -78,9 +77,8 @@ class Document {
             }
             
             $tmp_buf = trim($tmp_buf);
-                    
-            $output = str_replace(self::ID_BODY, $tmp_buf, $output);
         }
+        $output = str_replace(self::ID_BODY, $tmp_buf, $output);
         
         return $output;
     }

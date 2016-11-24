@@ -2,7 +2,27 @@
 require_once './config.php';
 
 require_once './init.php';
+require_once DIR_LIB.'document/document.php';
 
 $register = new Register();
+
 $loader = new Loader($register);
 $register->set('load', $loader);
+
+$request = new Request();
+$register->set('request', $request);
+
+$response = new Response();
+$register->set('response', $response);
+
+$session = new Session();
+$register->set('session', $session);
+
+$document = new Document();
+$register->set('document', $document);
+
+$loader->controller($request->server['REQUEST_URI']);
+
+        
+
+//var_export($register);

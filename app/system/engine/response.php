@@ -2,9 +2,10 @@
 class Response{
     private $cookies = array();
     private $headers = array();
+    private $output;
     
     public function __construct() {
-        
+        $output = '';
     }
     
     public function addHeader($header) {
@@ -15,7 +16,11 @@ class Response{
         $this->cookies[$key] = $value;
     }
     
-    public function flush($output){
+    public function setOutput($output) {
+        $this->output = $output;
+    }
+    
+    public function flush(){
         if(!headers_sent()){
             foreach ($this->headers as $header) {
                 header($header);
@@ -26,6 +31,6 @@ class Response{
             }
         }
         
-        echo $output;
+        echo $this->output;
     }
 }

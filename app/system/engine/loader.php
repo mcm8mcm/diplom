@@ -1,9 +1,10 @@
 <?php
-class Loader {
-	private $registry;
-	
-	public function __construct($registry){
-		$this->registry = $registry;
+class Loader {	
+    private $register;
+
+
+        public function __construct($register){
+            $this->register = $register;
 	}
 	
 	private function upperUnderscore($source) {
@@ -32,12 +33,12 @@ class Loader {
 			$file = $class_path . '.php';
 			
 			if (is_file ( $file )) {
-				$class .= upperUnderscore ( $curr_elem );
+				$class .= $this->upperUnderscore ( $curr_elem );
 				include_once ($file);
-				$controller = new $class ();
+				$controller = new $class ($this->register);
 				break;
 			} else {
-				$class .= upperUnderscore ( $curr_elem );
+				$class .= $this->upperUnderscore ( $curr_elem );
 			}
 		}
 		
