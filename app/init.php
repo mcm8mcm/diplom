@@ -15,4 +15,7 @@ require_once ENGINE_PATH.'model.php';
 require_once ENGINE_PATH.'session.php';
 require_once ENGINE_PATH.'response.php';
 require_once ENGINE_PATH.'request.php';
+require_once ENGINE_PATH.'language.php';
+require_once ENGINE_PATH.'db.php';
+
 

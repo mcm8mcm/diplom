@@ -99,6 +99,8 @@ class Loader {
 		return view;
 	}
 	
-
+        public function language($path) {
+            $this->register->get('language')->load($path);
+        }
 }
 

@@ -4,24 +4,34 @@ class DB {
     
     public function __construct($host, $login, $password, $database, $port='3306') {
 	
-        $this->$connection = mysqli_connect($host, $user, $password, (int)$port);       
+        $this->connection = mysqli_connect($host.':'.$port, $login, $password, $database);       
         
-        if(!$this->$connection){
+        if(!$this->connection){
             throw new Exception('Could not connect to db server');
         }
         
-        $res = mysqli_select_db($this->$connection, $database);
-        
-        if(!$res){
-            throw new Exception('Could not connect to database '.$database);            
-        }
-        
-        mysqli_query("SET NAMES 'utf8'", $this->$connection);
-        mysqli_query("SET CHARACTER SET utf8", $this->$connection);
+        mysqli_query($this->connection, "SET NAMES 'utf8'");
+        mysqli_query($this->connection, "SET CHARACTER SET utf8");
     }
     
     public function sql($query) {
+        $res = mysqli_query($this->connection, $query);
+        $res_array = array('row' => array(), 'rows' => array(), 'rows_count' => 0);
+        if($res){
+                if($res instanceof mysqli_result){
+                    while($tmp = mysqli_fetch_assoc($res)){
+                        $res_array['rows'][] = $tmp;
+                    }
+                    $res_array['rows_count'] = count($res_array['rows']);
+                    if($res_array['rows_count']){
+                        $res_array['row'] = $res_array['rows'][0];
+                    }
+                }            
+        } else {
+            throw new Exception(mysqli_error ( $this->connection ));
+        }
         
+        return $res_array;
     }
     
     public function escape($sql) {
@@ -29,8 +39,8 @@ class DB {
     }
     
     public function __destruct() {
-        if($this->$connection){
-            mysqli_close($this->$connection);
+        if($this->connection){
+            mysqli_close($this->connection);
         }
     }
 }

@@ -21,8 +21,13 @@ $register->set('session', $session);
 $document = new Document();
 $register->set('document', $document);
 
+$db = new DB(DB_HOST, DB_LOGIN, DB_PASSWORD, DB_BASE);
+$register->set('db', $db);
+
+$language = new Language(DIR_LANG);
+$register->set('language', $language);
+
 $loader->controller($request->server['REQUEST_URI']);
 
-        
 
 //var_export($register);
