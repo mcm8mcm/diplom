@@ -70,19 +70,19 @@ class Loader {
 	}
 	
 	public function model($model,  $data = array()){
-		$file = strtolower(str_ireplace('\\', '/', DIR_APPLICATION . 'model/'.$model.'.php'));
-		$class = 'Model_'.upperUnderscore($model);
-		if(is_file($file)){
-			require_once($file);
-			$this->registry->set('model_'. str_replace('/', '_', $model), new $class($this->register));
+		$file = str_replace('\\', '/', DIR_APPLICATION).strtolower('model/'.$model.'.php');
+		$class = 'Model'.$this->upperUnderscore($model);
+                if(is_file($file)){
+                    require_once($file);
+                    $this->register->set('model_'. str_replace('/', '_', $model), new $class($this->register));
 		}else {
-			throw new Exception('Could not load model ' . $model);
-			exit();
+                    throw new Exception('Could not load model ' . $model);
+                    exit();
 		}
 	}
 	
 	public function view($view,  $data = array()){
-		$file = strtolower(str_ireplace('\\', '/', DIR_APPLICATION . 'view/'.$model.'.tpl'));
+		$file = str_replace('\\', '/', DIR_APPLICATION).strtolower('view/'.$view.'.tpl');
 		$res = '';
 		
 		if(is_file($file)){
@@ -96,7 +96,7 @@ class Loader {
 			exit();
 		}
 		
-		return view;
+		return $res;
 	}
 	
         public function language($path) {

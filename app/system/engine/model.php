@@ -7,10 +7,10 @@ class Model{
 	}
 	
 	public function __get($key){
-		$this->register->get($key);
+		return $this->register->get($key);
 	}
 	
 	public function __set($key, $value){
-		return $this->register->set($key, $value);
+		$this->register->set($key, $value);
 	}
 }
