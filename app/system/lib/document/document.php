@@ -22,6 +22,13 @@ class Document {
         include_once __DIR__.DS.'/std_header.html';
         $this->std_template = ob_get_contents();
         ob_end_clean();
+        
+        //include by default
+        $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/bootstrap-3.3.5/css/bootstrap.min.css">';
+        $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/bootstrap-3.3.5/css/bootstrap-theme.min.css">';
+        $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/font-awesome-4.7.0/css/font-awesome.min.css">'; 
+        $this->scripts[] = '<script src="'.ICLUDE_URL.'/bootstrap-3.3.5/3.1.1/jquery.min.js"></script>';
+        $this->scripts[] = '<script src="'.ICLUDE_URL.'/bootstrap-3.3.5/js/bootstrap.min.js"></script>';
     }
     
     public function setTitle($title) {
@@ -33,6 +40,8 @@ class Document {
     }
     
     public function render() {
+        
+        
         $output = $this->std_template;        
         $output = str_replace(self::ID_TITLE, $this->title, $output);
 
@@ -48,12 +57,12 @@ class Document {
         $output = str_replace(self::ID_META, $tmp_buf, $output);
         
         $tmp_buf = '<!-- styles -->';
+        
         if($this->styles){ 
             $tmp_buf = '';
             foreach ($this->styles as $style){
                 $tmp_buf .= $style.PHP_EOL; 
             }
-            
             $tmp_buf = trim($tmp_buf);
         }
         $output = str_replace(self::ID_STYLES, $tmp_buf, $output);
@@ -79,7 +88,7 @@ class Document {
             $tmp_buf = trim($tmp_buf);
         }
         $output = str_replace(self::ID_BODY, $tmp_buf, $output);
-        
+                
         return $output;
     }
 }

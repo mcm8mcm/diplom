@@ -10,6 +10,7 @@ class ControllerTest extends Controller{
         $data = array();
         $data['preved'] = $user['row']['email'];
         $res = $this->load->view('user', $data);
+        $res .= '<i class="fa fa-key">Preved</i>';
         $this->document->addBody($res);
         $this->response->setOutput($this->document->render());
         $this->response->flush();
