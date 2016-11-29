@@ -33,4 +33,9 @@ class Response{
         
         echo $this->output;
     }
+    
+    public function redirect($url){
+        header('Location: ' . $url);
+        exit();
+    }
 }
