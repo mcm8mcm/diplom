@@ -11,6 +11,9 @@ class ControllerTest extends Controller{
         $data['preved'] = $user['row']['email'];
         $res = $this->load->view('user', $data);
         $res .= '<i class="fa fa-key">Preved</i>';
+        $header = $this->load->controller('common/header');
+        
+        $this->document->addBody($header);        
         $this->document->addBody($res);
         $this->response->setOutput($this->document->render());
         $this->response->flush();
