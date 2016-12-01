@@ -12,9 +12,15 @@ class ControllerTest extends Controller{
         $res = $this->load->view('user', $data);
         $res .= '<i class="fa fa-key">Preved</i>';
         $header = $this->load->controller('common/header');
+        $this->document->addBody($header); 
         
-        $this->document->addBody($header);        
-        $this->document->addBody($res);
+        $body = '<div class="container container-fluid container-hi">' . $res . '</div>';
+        $this->document->addBody($body);
+        
+        $footer = $this->load->controller('common/footer');
+        $this->document->addBody($footer); 
+        
+        
         $this->response->setOutput($this->document->render());
         $this->response->flush();
     }

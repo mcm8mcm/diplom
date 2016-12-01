@@ -38,4 +38,8 @@ class Response{
         header('Location: ' . $url);
         exit();
     }
+    
+    public function url($path, $params) {
+        return SITE_URL.$path.$params;
+    }
 }
