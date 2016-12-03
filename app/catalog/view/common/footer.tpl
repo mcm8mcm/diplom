@@ -1,5 +1,5 @@
 <footer>
-        <div class="row def-color-bg-light">
+        <div class="row bg-grad-vert">
             <div class="col-lg-3" id="contacts">
                 <ul>
                     <li>Preved</li>
@@ -22,12 +22,11 @@
                 <ul>
                     <li>Preved4</li>
                 </ul>
-            </div>            
-        </div>
-        
-        <div class="row def-color-bg-dark">
-            <div class="coyright-footer">
+            </div>  
+            
+            <div class="coyright-footer" style="clear: both;">
                 <h4>(C) Morozov M.S.</h4>
             </div>
-        </div>    
+        </div>
+        
 </footer>

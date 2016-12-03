@@ -1,3 +1,23 @@
+:root{
+    --corp-color : #F5C542;    
+}
+
+
+.bg-grad-vert{
+    background-image: url(img/cwhgkbnu-grad-vert.png);
+    background-position: left top;
+    background-repeat: repeat-x;
+    background-size: contain;
+}
+
+.bg-grad-hor{
+    background-image: url(img/cwhgkbnu-grad-hor.png);
+    background-position: left top;
+    background-repeat: repeat-y;
+    background-size: contain;
+}
+
+
 .def-color-bg{
     background: -moz-linear-gradient(top, #619d97 0%, #42847e 50%, #28736c 51%, #29776f 100%);
     background: -webkit-gradient(left top, left bottom, color-stop(0%, #619d97), color-stop(50%, #42847e), color-stop(51%, 		#28736c), color-stop(100%, #29776f));
@@ -35,21 +55,20 @@
 }
 
 .navbar-default .navbar-brand{
-    color: black;
+    color: var(--corp-color);
     font-weight: bold;
 }
 
 .navbar-default .navbar-nav > li > a{
-    color: black;
+    color: var(--corp-color);
 }
 
 .coyright-footer{
     text-align: left;
-    text: black;
+    color: var(--corp-color);
     padding-top: 10px;
     padding-left: 25px;
     padding-bottom: 10px;
-    border-top: 1px solid #619d97;
 }
 
 .container-hi{

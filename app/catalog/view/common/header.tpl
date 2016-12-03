@@ -10,7 +10,7 @@
             <a class="navbar-brand">My site</a>
         </div>
         
-        <div class="collapse navbar-collapse def-color-bg" id="menu-target">
+        <div class="collapse navbar-collapse bg-grad-vert" id="menu-target">
             <ul class="nav navbar-nav">
                 <li><a>First</a></li>
                 <li><a>Secod</a></li>
