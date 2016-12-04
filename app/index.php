@@ -27,6 +27,9 @@ $register->set('db', $db);
 $language = new Language(DIR_LANG);
 $register->set('language', $language);
 
+$user = new User($register);
+$register->set('user', $user);
+
 $loader->controller($request->server['REQUEST_URI']);
 
 
