@@ -24,13 +24,34 @@ $register->set('document', $document);
 $db = new DB(DB_HOST, DB_LOGIN, DB_PASSWORD, DB_BASE);
 $register->set('db', $db);
 
-$language = new Language(DIR_LANG);
-$register->set('language', $language);
-
 $user = new User($register);
 $register->set('user', $user);
 
+$conf = new AppConfig($db);
+$register->set('config', $conf);
+
+$lang = 'english';
+$from_user = FALSE;
+
+if($user->isLoggedIn()){
+   $lang = $conf->getOption('lang', 'user', $user->getID());
+   if($lang){
+      $from_user = TRUE; 
+   }
+   
+}
+
+if(!$from_user){
+   $res = $conf->getOption('lang', 'all', 'default');
+   echo $res;
+   if($res){
+       $lang = $res;
+   }    
+}
+
+exit();
+
+$language = new Language(DIR_LANG.$lang);
+$register->set('language', $language);
+
 $loader->controller($request->server['REQUEST_URI']);
-
-
-//var_export($register);

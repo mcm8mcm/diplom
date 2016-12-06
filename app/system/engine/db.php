@@ -38,8 +38,8 @@ class DB {
         return mysqli_real_escape_string($this->connection, $sql);
     }
     
-    public function rowsAffected($param) {
-        return mysqli_affected_rows($connect);
+    public function rowsAffected() {
+        return mysqli_affected_rows($this->connection);
     } 
     
     public function __destruct() {
