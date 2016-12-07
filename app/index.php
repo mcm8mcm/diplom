@@ -2,6 +2,9 @@
 require_once './config.php';
 
 require_once './init.php';
+
+
+require_once DIR_VENDOR.'raveren'.DS.'kint'.DS.'Kint.class.php';
 require_once DIR_LIB.'document/document.php';
 
 $register = new Register();
@@ -32,6 +35,8 @@ $register->set('config', $conf);
 
 $lang = 'english';
 $from_user = FALSE;
+
+//dd($register);
 
 if($user->isLoggedIn()){
    $lang = $conf->getOption('lang', 'user', $user->getID());
