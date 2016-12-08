@@ -3,6 +3,7 @@ class User {
     private $login = '';
     private $name = '';    
     private $user_id = '';
+    private $language = '';    
     
     public function __construct($register) {
         $tmp_user_id = '-1';
@@ -25,6 +26,7 @@ class User {
             $this->login = $res['row']['login'];
             $this->name = $res['row']['first_name'].' '.$res['row']['patronymic'].' '.$res['row']['last_name'];
             $this->id = $res['row']['id'];
+            $this->language = $res['row']['language'];
         }
     }
     
@@ -40,6 +42,7 @@ class User {
             $this->login = $res['row']['login'];
             $this->name = $res['row']['first_name'].' '.$res['row']['patronymic'].' '.$res['row']['last_name'];
             $this->id = $res['row']['id'];
+            $this->language = $res['row']['language'];
             
             if(!isset($register->get('session')->data['user'])){
                 $register->get('session')->data['user'] = array();
@@ -59,6 +62,7 @@ class User {
         $this->login = '';
         $this->name = '';
         $this->user_id = '';
+        $this->language = '';
     }
     
     public function isLoggedIn() {
@@ -75,6 +79,22 @@ class User {
 
     public function getID() {
         return $this->user_id;
+    }
+    
+    public function getLang() {
+        return $this->language;
+    }
+    
+    public function setLang($lang, $register) {
+        if($this->language !== $lang){
+            if($this->isLoggedIn()){
+                $sql = "UPDATE TABLE `users` SET `language` = '" . $lang . "' WHERE `id` = $this->user_id";
+                $register->get('db')->sql($sql);
+                if($register->get('db')->rowsAffected()){
+                    $this->language = $lang;
+                }
+            }
+        }
     }
     
 }
