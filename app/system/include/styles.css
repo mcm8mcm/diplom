@@ -1,5 +1,7 @@
 :root{
     --corp-color : #F5C542;    
+    --corp-color-bg-light : #619d97;
+    --corp-color-bg-dark : #619d97;    
 }
 
 
@@ -73,4 +75,14 @@
 
 .container-hi{
     min-height: 1024px;
+}
+
+footer {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+}
+
+.well {
+    background: var(--corp-color-bg-light);
 }

@@ -54,9 +54,6 @@ if (isset($_GET['set_lang'])) {
 
 $user = new User($register);
 
-//$conf = new AppConfig($db);
-//$register->set('config', $conf);
-
 if($user->isLoggedIn()){
    if($set_new_lang){
        $user->setLang($lang, $register);
@@ -71,5 +68,11 @@ $register->set('user', $user);
 
 $language = new Language(DIR_LANG.$lang);
 $register->set('language', $language);
+
+if($request->server['REQUEST_URI'] === '/'){
+    $request->server['REQUEST_URI'] = $request->server['REQUEST_URI'] . 'home';
+}
+
+//ddd($request->server['REQUEST_URI']);
 
 $loader->controller($request->server['REQUEST_URI']);

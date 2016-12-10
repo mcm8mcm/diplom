@@ -8,7 +8,7 @@ class Language {
     }
     
     public function load($path) {
-        $file = $this->dir_lang.$path.'.php';
+        $file = $this->dir_lang.DS.$path.'.php';
         if(is_file($file)){
             $_ = array();
             include($file);
@@ -19,8 +19,6 @@ class Language {
     }
     
     public function get($key) {
-        if(isset($this->data[$key])){
-            return $this->data[$key];
-        }
+        return isset($this->data[$key]) ? $this->data[$key] : '';
     }
 }
