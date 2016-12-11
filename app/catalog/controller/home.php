@@ -4,8 +4,12 @@ class ControllerHome extends Controller{
         $this->load->language('home');
         $header = $this->load->controller('common/header');
         
-        $data['greeting'] = $this->language->get('greeting');
-        $body = $this->load->view('home', $data);
+        $body = '';
+        if(!$this->user->isLoggedIn()){
+           $body = $this->load->controller('home_unregistred');
+        }
+        
+        //$this->load->view('home', $data);
         
         $footer = $this->load->controller('common/footer');
         

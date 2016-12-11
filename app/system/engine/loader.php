@@ -31,8 +31,11 @@ class Loader {
 			array_shift ( $path_elem );
 			$class_path .= '/' . $curr_elem;
 			$file = $class_path . '.php';
-			
-			if (is_file ( $file )) {
+                        //var_dump($file);
+                        //echo '<br>';
+			//var_dump(is_file ( $file ));
+			//echo '<br>';
+                        if (is_file ( $file )) {
 				$class .= $this->upperUnderscore ( $curr_elem );
 				include_once ($file);
 				$controller = new $class ($this->register);

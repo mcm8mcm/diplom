@@ -39,7 +39,7 @@ class Response{
         exit();
     }
     
-    public function url($path, $params) {
+    public function url($path, $params='') {
         return SITE_URL.$path.$params;
     }
 }
