@@ -1,22 +1,5 @@
 <footer>
-        <div class="row bg-grad-vert">
-            <div class="col-lg-3" id="contacts">
-                <ul>
-                    <li>Preved</li>
-                    <li>Preved1</li>
-                    <li>Preved2</li>
-                    <li>Preved3</li>                    
-                </ul>
-            </div>
-            
-            <div class="col-lg-3" id="contacts">
-                <ul>
-                    <li>Preved4</li>
-                    <li>Preved5</li>
-                    <li>Preved6</li>
-                    <li>Preved7</li>
-                </ul>
-            </div>
+        <div class="bg-grad-vert">
 
             <div class="col-lg-3" id="contacts">
                 <ul>

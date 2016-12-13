@@ -4,6 +4,15 @@
     --corp-color-bg-dark : #619d97;    
 }
 
+.color-corp-soft{
+    color: var(--corp-color);
+    opacity: 0.75;
+}
+
+.bg-color-corp-soft{
+    background: var(--corp-color-bg-light);
+    opacity: 0.85;
+}
 
 .bg-grad-vert{
     background-image: url(img/cwhgkbnu-grad-vert.png);
@@ -85,4 +94,14 @@ footer {
 
 .well {
     background: var(--corp-color-bg-light);
+}
+
+div.btn-group{
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+div.btn-group a{
+    margin-left: 10px;
+    margin-right: 10px;
 }
