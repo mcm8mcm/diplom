@@ -9,8 +9,6 @@ class ControllerHome extends Controller{
            $body = $this->load->controller('home_unregistred');
         }
         
-        //$this->load->view('home', $data);
-        
         $footer = $this->load->controller('common/footer');
         
         $this->document->setTitle($this->language->get('title'));

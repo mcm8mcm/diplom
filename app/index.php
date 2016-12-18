@@ -74,5 +74,4 @@ if($request->server['REQUEST_URI'] === '/'){
 }
 
 //ddd($request->server['REQUEST_URI']);
-
 $loader->controller($request->server['REQUEST_URI']);

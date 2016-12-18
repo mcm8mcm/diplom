@@ -9,9 +9,17 @@
     opacity: 0.75;
 }
 
+.color-corp{
+    color: var(--corp-color);
+}
+
 .bg-color-corp-soft{
     background: var(--corp-color-bg-light);
     opacity: 0.85;
+}
+
+.bg-color-corp{
+    background: var(--corp-color-bg-light);
 }
 
 .bg-grad-vert{
@@ -104,4 +112,11 @@ div.btn-group{
 div.btn-group a{
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.required:before{
+    content: "*";
+    color: red;
+    font-size: 1.5em;
+    padding-right: 5px;
 }
