@@ -13,6 +13,18 @@
         <div class="form-group">
             <label for="last_name" class="color-corp required"><?=$fn_last_name?></label>
             <input type="text" class="form-control" id="last_name" name="first_name" placeholder="<?=$fn_last_name?>">
-        </div>     
+        </div>  
+
+        <div class="form-group">
+            <label for="address" class="color-corp required"><?=$fn_address?></label>
+            <input type="text" class="form-control" id="last_name" name="address" placeholder="<?=$fn_address?>">
+        </div>  
+        
+        <div class="form-group">
+            <label for="email" class="color-corp required"><?=$fn_email?></label>
+            <input type="text" class="form-control" id="last_name" name="email" placeholder="<?=$fn_email?>">
+        </div>  
+        
+        
     </form>
 </div> 

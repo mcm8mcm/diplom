@@ -3,10 +3,13 @@ class ControllerAuthSignup extends Controller{
     public function index() {
         $data = array();
         $this->load->language('auth/signup');
- 
         $data['fn_first_name'] = $this->language->get('fn_first_name');
         $data['fn_patronymic'] = $this->language->get('fn_patronymic');
         $data['fn_last_name'] =  $this->language->get('fn_last_name');
+        $data['fn_address'] =  $this->language->get('fn_address');
+        $data['fn_email'] =  $this->language->get('fn_email');
+        $data['bn_sign_up'] =  $this->language->get('bn_sign_up');
+        $data['bn_cancel'] =  $this->language->get('bn_cancel');
         $data['reg_action'] = $this->response->url('auth/signup/signup');
         
         $header = $this->load->controller('common/header');
