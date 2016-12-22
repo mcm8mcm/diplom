@@ -7,8 +7,8 @@ class Loader {
             $this->register = $register;
 	}
 	
-	private function upperUnderscore($source) {
-		$elems = explode ( '_', $source );
+	private function upperUnderscore($source, $delim_char='_') {
+		$elems = explode ( $delim_char, $source );
 		$toret = '';
 		foreach ( $elems as $element ) {
 			$toret .= ucfirst ( $element );
@@ -19,22 +19,24 @@ class Loader {
 	
 	public function controller($route, $data = array()) {
 		$class_path = DIR_APPLICATION . 'controller';
+                $route = trim( explode('?', $route)[0] );
+                $route = str_replace('\\', '/', $route);
+                if(substr($route, strlen($route) - 1, 1) === '/'){
+                    $route = substr($route, 0, strlen($route) - 1);
+                }
+                
 		$file = '';
 		$class = 'Controller';
 		$controller = null;
 		$action = '';
 		$args = array (); // Will replace $data if exists
 		$path_elem = explode ( '/', str_replace ( '\\', '/', $route ) );
-		
 		while ( $path_elem ) {
 			$curr_elem = current ( $path_elem );
 			array_shift ( $path_elem );
 			$class_path .= '/' . $curr_elem;
 			$file = $class_path . '.php';
-                        //var_dump($file);
-                        //echo '<br>';
-			//var_dump(is_file ( $file ));
-			//echo '<br>';
+
                         if (is_file ( $file )) {
 				$class .= $this->upperUnderscore ( $curr_elem );
 				include_once ($file);
@@ -75,6 +77,8 @@ class Loader {
 	public function model($model,  $data = array()){
 		$file = str_replace('\\', '/', DIR_APPLICATION).strtolower('model/'.$model.'.php');
 		$class = 'Model'.$this->upperUnderscore($model);
+                $class = $this->upperUnderscore($class, '/');
+                
                 if(is_file($file)){
                     require_once($file);
                     $this->register->set('model_'. str_replace('/', '_', $model), new $class($this->register));

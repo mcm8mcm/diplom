@@ -2,29 +2,29 @@
     <form id="reg_form" name="reg_form" action="<?=$reg_action?>">
         <div class="form-group">
             <label for="first_name" class="color-corp required"><?=$fn_first_name?></label>
-            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="<?=$fn_first_name?>">
+            <input type="text" class="form-control" id="first_name" name="first_name" placeholder="<?=$fn_first_name?>" required="1">
         </div>
 
         <div class="form-group">
             <label for="patronymic" class="color-corp required"><?=$fn_patronymic?></label>
-            <input type="text" class="form-control" id="patronymic" name="patronymic" placeholder="<?=$fn_patronymic?>">
+            <input type="text" class="form-control" id="patronymic" name="patronymic" placeholder="<?=$fn_patronymic?>" required="1">
         </div>
 
         <div class="form-group">
             <label for="last_name" class="color-corp required"><?=$fn_last_name?></label>
-            <input type="text" class="form-control" id="last_name" name="first_name" placeholder="<?=$fn_last_name?>">
+            <input type="text" class="form-control" id="last_name" name="last_name" placeholder="<?=$fn_last_name?>" required="1">
         </div>  
 
         <div class="form-group">
             <label for="address" class="color-corp required"><?=$fn_address?></label>
-            <input type="text" class="form-control" id="last_name" name="address" placeholder="<?=$fn_address?>">
+            <input type="text" class="form-control" id="address" name="address" placeholder="<?=$fn_address?>" required="1">
         </div>  
         
         <div class="form-group">
             <label for="email" class="color-corp required"><?=$fn_email?></label>
-            <input type="text" class="form-control" id="last_name" name="email" placeholder="<?=$fn_email?>">
+            <input type="text" class="form-control" id="last_name" name="email" placeholder="<?=$fn_email?>" required="1">
         </div>  
         
-        
+        <input type="submit" class="btn btn-success" form="reg_form" value="<?=$bn_sign_up?>" /> <a class="btn btn-danger" href="<?=$cancel_action?>"><?=$bn_cancel?></a>
     </form>
 </div> 

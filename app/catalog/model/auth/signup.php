@@ -1,4 +1,4 @@
 <?php
-class ModelSignup extends Model {
+class ModelAuthSignup extends Model {
     
 }

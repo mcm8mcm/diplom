@@ -11,6 +11,7 @@ class ControllerAuthSignup extends Controller{
         $data['bn_sign_up'] =  $this->language->get('bn_sign_up');
         $data['bn_cancel'] =  $this->language->get('bn_cancel');
         $data['reg_action'] = $this->response->url('auth/signup/signup');
+        $data['cancel_action'] = $this->response->url('home');        
         
         $header = $this->load->controller('common/header');
         $signup_form = $this->load->view('auth/signup', $data);        
@@ -26,6 +27,8 @@ class ControllerAuthSignup extends Controller{
     }
     
     public function signup() {
+        $this->load->model('auth/signup');
+        ddd($this->model_auth_signup);
         throw new Exception('Not emplemented yet');
     }
 }
