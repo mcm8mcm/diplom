@@ -1,3 +1,4 @@
+<div class="content-container">
 <div class="well bg-color-corp-soft col-lg-offset-2 col-lg-8" style="text-align: center">
     <h2 class="color-corp-soft"><?=$greeting?></h2>
     <h3 class="color-corp-soft"><?=$options?></h3>
@@ -6,4 +7,5 @@
         <a class="btn btn-info" href="<?=$ref_signin_cust?>"><?=$option2?></a>
         <a class="btn btn-info" href="<?=$ref_signin_master?>"><?=$option3?></a>   
     </div>
+</div>
 </div>

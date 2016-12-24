@@ -10,6 +10,10 @@ class ControllerAuthSignup extends Controller{
         $data['fn_email'] =  $this->language->get('fn_email');
         $data['bn_sign_up'] =  $this->language->get('bn_sign_up');
         $data['bn_cancel'] =  $this->language->get('bn_cancel');
+        $data['fn_login'] =  $this->language->get('fn_login');
+        $data['fn_password'] =  $this->language->get('fn_password');
+        $data['fn_password1'] =  $this->language->get('fn_password1');
+        
         $data['reg_action'] = $this->response->url('auth/signup/signup');
         $data['cancel_action'] = $this->response->url('home');        
         

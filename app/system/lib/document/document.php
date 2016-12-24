@@ -31,6 +31,7 @@ class Document {
         $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/styles.css">';         
         $this->scripts[] = '<script src="'.ICLUDE_URL.'/jquery-3.1.1.min.js"></script>';
         $this->scripts[] = '<script src="'.ICLUDE_URL.'/bootstrap-3.3.5/js/bootstrap.min.js"></script>';
+        $this->scripts[] = '<script src="'.ICLUDE_URL.'/service_scripts.js"></script>';
     }
     
     public function setTitle($title) {

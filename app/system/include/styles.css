@@ -4,6 +4,10 @@
     --corp-color-bg-dark : #619d97;    
 }
 
+body{
+    height: 100%;
+}
+
 .color-corp-soft{
     color: var(--corp-color);
     opacity: 0.75;
@@ -95,9 +99,10 @@
 }
 
 footer {
-    position: absolute;
-    top: 100%;
+    /* position: absolute;
+    top: 100%; */
     width: 100%;
+    clear: both;
 }
 
 .well {
@@ -119,4 +124,16 @@ div.btn-group a{
     color: red;
     font-size: 1.5em;
     padding-right: 5px;
+}
+
+.content-container{
+    min-height: 760px;
+    height: 100%;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    clear: both;
+}
+
+.async-pwd{
+    border: 2px solid red;
 }
