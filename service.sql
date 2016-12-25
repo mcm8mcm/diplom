@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 06, 2016 at 11:18 
+-- Generation Time: Dec 25, 2016 at 09:50 
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.24
 
@@ -19,6 +19,29 @@ SET time_zone = "+00:00";
 --
 -- Database: `service`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `languages`
+--
+
+CREATE TABLE `languages` (
+  `name` varchar(32) NOT NULL,
+  `short_name` varchar(3) DEFAULT NULL,
+  `currency` varchar(3) DEFAULT NULL,
+  `flag` varchar(128) DEFAULT NULL,
+  `active` int(1) DEFAULT '0'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `languages`
+--
+
+INSERT INTO `languages` (`name`, `short_name`, `currency`, `flag`, `active`) VALUES
+('english', 'eng', 'USD', 'system/include/img/flags/us.png', 1),
+('russian', 'rus', 'RUB', 'system/include/img/flags/ru.png', 0),
+('ukrainian', 'ukr', 'UAH', 'system/include/img/flags/ua.png', 0);
 
 -- --------------------------------------------------------
 
@@ -55,15 +78,17 @@ CREATE TABLE `users` (
   `email` varchar(64) DEFAULT NULL,
   `group` int(11) NOT NULL,
   `active` smallint(1) DEFAULT NULL,
-  `session_id` varchar(45) NOT NULL DEFAULT ''
+  `session_id` varchar(45) NOT NULL DEFAULT '',
+  `language` varchar(32) NOT NULL DEFAULT '',
+  `reg_expired` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `first_name`, `patronymic`, `last_name`, `login`, `password`, `pwd`, `email`, `group`, `active`, `session_id`) VALUES
-(1, 'Morozov', 'Mikhail', 'Sergeevich', 'mcm', 'edf6f38dec4d68e43d05aaba6a6586bc', '784512', 'mcm_@mail.ru', 1, 1, '');
+INSERT INTO `users` (`id`, `first_name`, `patronymic`, `last_name`, `login`, `password`, `pwd`, `email`, `group`, `active`, `session_id`, `language`, `reg_expired`) VALUES
+(1, 'Morozov', 'Mikhail', 'Sergeevich', 'mcm', 'edf6f38dec4d68e43d05aaba6a6586bc', '784512', 'mcm_@mail.ru', 1, 1, '', '', '2016-12-25 22:10:33');
 
 -- --------------------------------------------------------
 
@@ -88,6 +113,12 @@ INSERT INTO `user_group` (`id`, `name`) VALUES
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `languages`
+--
+ALTER TABLE `languages`
+  ADD PRIMARY KEY (`name`);
 
 --
 -- Indexes for table `options`
