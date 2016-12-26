@@ -1,5 +1,5 @@
 <?php
-class ControllerMasteroffice {
+class ControllerMasteroffice extends Controller{
     public function index() {
         
     }

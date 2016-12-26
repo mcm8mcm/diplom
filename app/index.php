@@ -50,6 +50,10 @@ if (isset($_GET['set_lang'])) {
             $language['active'] = '1';
         }
     }
+    //address get from bufer
+    if(isset($session->data['link'])){
+        $request->server['REQUEST_URI'] = $session->data['link'];
+    }    
 }
 
 $user = new User($register);
@@ -72,6 +76,7 @@ $register->set('language', $language);
 if($request->server['REQUEST_URI'] === '/'){
     $request->server['REQUEST_URI'] = $request->server['REQUEST_URI'] . 'home';
 }
+$session->data['link'] = $request->server['REQUEST_URI'];
 
 //ddd($request->server['REQUEST_URI']);
 $loader->controller($request->server['REQUEST_URI']);
