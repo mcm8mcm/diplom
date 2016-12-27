@@ -39,5 +39,8 @@ class ControllerCommonMenu extends Controller {
         $item = array('active'=> 0);
         $menu[] = $item;               
         
+        $data['menu'] = $menu;
+        
+        return $this->load->view('common/menu', $menu);
     }
 }

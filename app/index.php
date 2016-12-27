@@ -27,7 +27,7 @@ $register->set('document', $document);
 $db = new DB(DB_HOST, DB_LOGIN, DB_PASSWORD, DB_BASE);
 $register->set('db', $db);
 
-$sql = "SELECT * FROM `languages`";
+$sql = "SELECT * FROM `". DB_PREFIX ."languages`";
 $languages = $db->sql($sql)['rows'];
 
 $register->set('languages', $languages);

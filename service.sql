@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Dec 25, 2016 at 09:50 
+-- Generation Time: Dec 27, 2016 at 10:55 
 -- Server version: 10.1.19-MariaDB
 -- PHP Version: 5.6.24
 
@@ -42,6 +42,27 @@ INSERT INTO `languages` (`name`, `short_name`, `currency`, `flag`, `active`) VAL
 ('english', 'eng', 'USD', 'system/include/img/flags/us.png', 1),
 ('russian', 'rus', 'RUB', 'system/include/img/flags/ru.png', 0),
 ('ukrainian', 'ukr', 'UAH', 'system/include/img/flags/ua.png', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `news`
+--
+
+CREATE TABLE `news` (
+  `id` bigint(6) NOT NULL,
+  `title` varchar(64) NOT NULL DEFAULT 'UNTITLED',
+  `article` tinytext NOT NULL,
+  `added` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `news`
+--
+
+INSERT INTO `news` (`id`, `title`, `article`, `added`) VALUES
+(0, 'First article', '<h1>This is first test article</h1>', '2016-12-27 22:56:32'),
+(1, 'Вторая статья', '<h1>Это вторая тестовая статья</h1>', '2016-12-27 22:58:16');
 
 -- --------------------------------------------------------
 
@@ -119,6 +140,13 @@ INSERT INTO `user_group` (`id`, `name`) VALUES
 --
 ALTER TABLE `languages`
   ADD PRIMARY KEY (`name`);
+
+--
+-- Indexes for table `news`
+--
+ALTER TABLE `news`
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `id_UNIQUE` (`id`);
 
 --
 -- Indexes for table `options`
