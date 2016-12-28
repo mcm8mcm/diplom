@@ -28,6 +28,7 @@ class DB {
                     }
                 }            
         } else {
+            echo($query);
             throw new Exception(mysqli_error ( $this->connection ));
         }
         

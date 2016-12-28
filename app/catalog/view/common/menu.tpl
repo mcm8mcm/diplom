@@ -4,6 +4,7 @@
       <a class="navbar-brand" href="#">LANG_CHOOSER</a>
     </div>
     <ul class="nav navbar-nav">
+        <?php //ddd($menu); ?>
         <?php foreach($menu as $item) { ?>
             <li <?php echo($item['active'] == 0 ? 'class="active"' : ""); ?>><a href="<?=$item['link'];?>"><?=$item['caption'];?></a></li>
         <?php } ?>
