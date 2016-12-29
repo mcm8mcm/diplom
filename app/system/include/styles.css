@@ -75,7 +75,9 @@ body{
 }
 
 .container-hi{
-    min-height: 1024px;
+    min-height: 768px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 footer {
@@ -116,4 +118,12 @@ div.btn-group a{
 
 .async-pwd{
     border: 2px solid red;
+}
+
+.navbar{
+    margin-bottom: 0px;
+}
+
+.article{
+    margin: 5px;
 }

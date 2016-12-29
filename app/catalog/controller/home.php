@@ -2,11 +2,12 @@
 class ControllerHome extends Controller{
     public function index() {
         $this->load->language('home');
-        $header = $this->load->controller('common/header');
         
-        $sidebar = $this->load->controller('common/sidebar');        
+        $sidebar = $this->load->controller('common/sidebar');
+        $menu = $this->load->controller('common/menu');        
+        $header = $this->load->controller('common/header',$menu);
+        
         $footer = $this->load->controller('common/footer');
-        $menu = $this->load->controller('common/menu');
         
         $data['header'] = $header;
         $data['menu'] = $menu;

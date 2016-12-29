@@ -8,6 +8,7 @@
                 <span class="icon-bar"></span>                
             </button>
             <a class="navbar-brand">My site</a>
+            <?=$menu;?>
         </div>
         
     </div>
