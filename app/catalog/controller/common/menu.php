@@ -30,6 +30,7 @@ class ControllerCommonMenu extends Controller {
         $menu[] = $item;               
         
         $data['menu'] = $menu;
+        $data['langmenu'] = $this->load->controller('common/langmenu');
         
         return $this->load->view('common/menu', $data);
     }

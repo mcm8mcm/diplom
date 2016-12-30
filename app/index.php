@@ -40,22 +40,6 @@ foreach ($languages as $language) {
     }
 }
 
-$set_new_lang = FALSE;
-if (isset($_GET['set_lang'])) {
-    $lang = $_GET['set_lang'];
-    $set_new_lang = TRUE;
-    foreach ($languages as $language) {
-        $language['active'] = '0';
-        if ($language['name'] === $lang) {
-            $language['active'] = '1';
-        }
-    }
-    //address get from bufer
-    if(isset($session->data['link'])){
-        $request->server['REQUEST_URI'] = $session->data['link'];
-    }    
-}
-
 $user = new User($register);
 
 if($user->isLoggedIn()){
@@ -66,6 +50,28 @@ if($user->isLoggedIn()){
            $lang = $user->getLang();//User has highest priority
        }
    }   
+}//But user has right to change language
+
+
+$set_new_lang = FALSE;
+if (isset($_GET['set_lang'])) {
+    $lang = $_GET['set_lang'];
+    $set_new_lang = TRUE;
+    foreach ($languages as $index=>$language) {
+        $languages[$index]['active'] = '0';
+        if ($language['name'] === $lang) {
+            $languages[$index]['active'] = '1';
+        }
+    }
+    //address get from bufer
+    if(isset($session->data['link'])){
+        $request->server['REQUEST_URI'] = $session->data['link'];
+    } 
+    
+    $sql = "UPDATE `".DB_PREFIX."languages` SET `active` = 0 WHERE `active` = 1";
+    $db->sql($sql);
+    $sql = "UPDATE `".DB_PREFIX."languages` SET `active` = 1 WHERE `name` = '".$lang."'";
+    $db->sql($sql); 
 }
 
 $register->set('user', $user);
@@ -77,6 +83,5 @@ if($request->server['REQUEST_URI'] === '/'){
     $request->server['REQUEST_URI'] = $request->server['REQUEST_URI'] . 'home';
 }
 $session->data['link'] = $request->server['REQUEST_URI'];
-
-//ddd($request->server['REQUEST_URI']);
+$session->data['languages'] = $languages;
 $loader->controller($request->server['REQUEST_URI']);
