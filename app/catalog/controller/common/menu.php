@@ -4,33 +4,34 @@ class ControllerCommonMenu extends Controller {
         $this->load->language('common/menu');
         $menu = array();
 
+        $link = strtoupper($this->request->server['REQUEST_URI']);
+        
         $item = array('caption'=> $this->language->get('home'),
         'link'=> $this->response->url('home'),
-        'active'=> 0);
+        'active'=> strstr($link, 'HOME') === FALSE ? 0 : 1);
         $menu[] = $item;
 
         $item = array('caption'=> $this->language->get('about'),
         'link'=> $this->response->url('about'),
-        'active'=> 0);
+        'active'=> strstr($link, 'ABOUT') === FALSE ? 0 : 1);
         $menu[] = $item;       
         
         $item = array('caption'=> $this->language->get('customers'),
         'link'=> $this->response->url('customeroffice'),
-        'active'=> 0);
+        'active'=> strstr($link, 'CUSTOMEROFFICE') === FALSE ? 0 : 1);
         $menu[] = $item;       
 
         $item = array('caption'=> $this->language->get('masters'),
         'link'=> $this->response->url('masteroffice'),
-        'active'=> 0);
+        'active'=> strstr($link, 'MASTEROFFICE') === FALSE ? 0 : 1);
         $menu[] = $item;               
       
         $item = array('caption'=> $this->language->get('support'),
         'link'=> $this->response->url('support'),
-        'active'=> 0);
+        'active'=> strstr($link, 'SUPPORT') === FALSE ? 0 : 1);
         $menu[] = $item;               
         
         $data['menu'] = $menu;
-        //$data['langmenu'] = $this->load->controller('common/langmenu');
         
         return $this->load->view('common/menu', $data);
     }
