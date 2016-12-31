@@ -127,3 +127,18 @@ div.btn-group a{
 .article{
     margin: 5px;
 }
+
+div.btn-group.langmenu{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: var(--corp-color);
+}
+
+div.btn-group.langmenu{
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.flag-marging{
+    margin-right: 5px;
+}
