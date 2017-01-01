@@ -142,3 +142,11 @@ div.btn-group.langmenu{
 .flag-marging{
     margin-right: 5px;
 }
+
+.standart-margin{
+    margin-top: 20px;
+}
+
+.big-line{
+    line-height: 200%
+}

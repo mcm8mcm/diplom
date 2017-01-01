@@ -13,8 +13,8 @@ class ControllerHome extends Controller{
         $data['menu'] = $menu;
         $data['sidebar'] = $sidebar;
         $data['footer'] = $footer;
-        $content = '<H1>'.$this->language->get('greeting').'</H1>'.PHP_EOL;
-        $content .= $this->language->get('short_about').PHP_EOL;
+
+        $content = $this->language->get('shortly_about');
         $data['content'] = $content;
         
         

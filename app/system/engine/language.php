@@ -17,6 +17,7 @@ class Language {
         if(is_file($file)){
             $_ = array();
             include($file);
+                        
             $this->data = array_merge($this->data, $_);
         }else{
             throw new Exception("Could not load language module ".$file);
