@@ -18,6 +18,7 @@ class Loader {
 	}
 	
 	public function controller($route, $data = array()) {
+            //echo $route.'<br>';
 		$class_path = DIR_APPLICATION . 'controller';
                 $route = trim( explode('?', $route)[0] );
                 $route = str_replace('\\', '/', $route);
@@ -69,7 +70,9 @@ class Loader {
 					$controller,
 					$action 
 			), $data );
-		}
+		} else {
+                    return $this->controller('home/error404', array());
+                }
 		
 		return $result;
 	}

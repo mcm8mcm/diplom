@@ -52,7 +52,6 @@ if($user->isLoggedIn()){
    }   
 }//But user has right to change language
 
-
 $set_new_lang = FALSE;
 if (isset($_GET['set_lang'])) {
     $lang = $_GET['set_lang'];
@@ -64,9 +63,9 @@ if (isset($_GET['set_lang'])) {
         }
     }
     //address get from bufer
-    if(isset($session->data['link'])){
-        $request->server['REQUEST_URI'] = $session->data['link'];
-    } 
+   // if(isset($session->data['link'])){
+   //     $request->server['REQUEST_URI'];// = $session->data['link'];
+   // } 
     
     $sql = "UPDATE `".DB_PREFIX."languages` SET `active` = 0 WHERE `active` = 1";
     $db->sql($sql);
@@ -82,6 +81,8 @@ $register->set('language', $language);
 if($request->server['REQUEST_URI'] === '/'){
     $request->server['REQUEST_URI'] = $request->server['REQUEST_URI'] . 'home';
 }
-$session->data['link'] = $request->server['REQUEST_URI'];
+
+$session->data['link'] = explode('?', $request->server['REQUEST_URI'])[0];
 $session->data['languages'] = $languages;
+
 $loader->controller($request->server['REQUEST_URI']);

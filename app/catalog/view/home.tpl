@@ -1,5 +1,4 @@
 <?=$header;?>
-<?//=$menu;?>
 <div class="container-fluid container-hi">
     <div class="row">
 
@@ -8,8 +7,7 @@
         </div> 
 
         <div class="col-lg-8">
-            <h1><?=$greeting;?></h1>
-            <?=$short_about;?>
+            <?=$content;?>
         </div> 
 
     </div>
