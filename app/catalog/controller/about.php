@@ -16,7 +16,9 @@ class ControllerAbout extends Controller{
 
         $content = $this->language->get('about_us');
         
-        $data['content'] = $content;
+        $prices = $this->load->controller('prices');
+        
+        $data['content'] = $content.PHP_EOL.$prices;
              
         $body = $this->load->view('about', $data);
         

@@ -84,5 +84,10 @@ if($request->server['REQUEST_URI'] === '/'){
 
 $session->data['link'] = explode('?', $request->server['REQUEST_URI'])[0];
 $session->data['languages'] = $languages;
+foreach ($session->data['languages'] as $value) {
+    if($value['active'] === '1'){
+        $session->data['language'] = $value['name'];
+    }
+}
 
 $loader->controller($request->server['REQUEST_URI']);

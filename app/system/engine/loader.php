@@ -98,7 +98,7 @@ class Loader {
 		if(is_file($file)){
 			extract($data);
 			ob_start();
-			require_once($file);
+			require($file);
 			$res = ob_get_contents();
 			ob_end_clean();
 		}else{

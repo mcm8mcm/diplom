@@ -15,6 +15,7 @@ define('ENGINE_PATH', SYSTEM_PATH.DS.'engine'.DS);
 define('DEFAULT_CONTROLLER', 'index');
 define('DEFAULT_CONTROLLER_NOT_FOUND', '404');
 define('DEFAULT_ACTION', 'index');
+define('DIR_DOWNLOAD', APP_PATH.DS.'download'.DS);
 //DB
 define('DB_HOST', 'localhost');
 define('DB_PORT', '3306');
