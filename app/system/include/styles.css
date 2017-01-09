@@ -150,3 +150,29 @@ div.btn-group.langmenu{
 .big-line{
     line-height: 200%
 }
+
+.price-table{
+    width: 100%;
+}
+
+.price-table>tbody>tr>td{
+    border: 1px solid #d6e9c6;
+    padding: 5px;
+}
+
+.price-table>tbody>tr>td.price{
+    text-align: right;
+}
+
+.price-table>tbody>tr:nth-child(even){
+    background: #dff0d8;
+}
+
+.price-table>thead>tr>th{
+    border: 1px solid #d6e9c6;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    background: #dff0d8;
+    color: #3c763d;
+}

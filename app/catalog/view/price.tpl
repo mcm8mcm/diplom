@@ -4,7 +4,7 @@
     </div>
     
     <div class="panel-body">
-        <table>
+        <table class="price-table">
             <thead>
                 <tr>
                     <th><?=$col_nom; ?></th>
@@ -17,7 +17,7 @@
                 <tr>
                     <td><?=$line[0]; ?></td>
                     <td><?=$line[1]; ?></td>
-                    <td><?=$line[2]; ?></td>
+                    <td class="price"><?=$line[2]; ?></td>
                 </tr>
                 <?php } ?>
             </tbody>
