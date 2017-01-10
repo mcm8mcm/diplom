@@ -176,3 +176,11 @@ div.btn-group.langmenu{
     background: #dff0d8;
     color: #3c763d;
 }
+
+.gliph-margin{
+    margin-right: 5px;
+}
+
+.success-bg{
+    background: #d6e9c6;
+}
