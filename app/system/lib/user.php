@@ -7,6 +7,7 @@ class User {
     
     public function __construct($register) {
         $tmp_user_id = '-1';
+       
         if(isset($register->get('session')->data['user'])){
             if(isset($register->get('session')->data['user']['id'])){
                $tmp_user_id = $register->get('session')->data['user']['id'];

@@ -3,7 +3,6 @@ require_once './config.php';
 
 require_once './init.php';
 
-
 require_once DIR_VENDOR.'raveren'.DS.'kint'.DS.'Kint.class.php';
 require_once DIR_LIB.'document/document.php';
 
@@ -20,6 +19,10 @@ $register->set('response', $response);
 
 $session = new Session();
 $register->set('session', $session);
+
+//if(count($session->data['user'])){
+//    ddd($session);
+//}
 
 $document = new Document();
 $register->set('document', $document);
@@ -40,9 +43,10 @@ foreach ($languages as $language) {
     }
 }
 
-$user = new User($register);
+$user = $session->data['user'];
 
-if($user->isLoggedIn()){
+/*
+if(count($user)){
    if($set_new_lang){
        $user->setLang($lang, $register);
    } else {
@@ -51,6 +55,7 @@ if($user->isLoggedIn()){
        }
    }   
 }//But user has right to change language
+*/
 
 $set_new_lang = FALSE;
 if (isset($_GET['set_lang'])) {
@@ -62,18 +67,14 @@ if (isset($_GET['set_lang'])) {
             $languages[$index]['active'] = '1';
         }
     }
-    //address get from bufer
-   // if(isset($session->data['link'])){
-   //     $request->server['REQUEST_URI'];// = $session->data['link'];
-   // } 
-    
+   
     $sql = "UPDATE `".DB_PREFIX."languages` SET `active` = 0 WHERE `active` = 1";
     $db->sql($sql);
     $sql = "UPDATE `".DB_PREFIX."languages` SET `active` = 1 WHERE `name` = '".$lang."'";
     $db->sql($sql); 
 }
 
-$register->set('user', $user);
+//$register->set('user', $user);
 
 $language = new Language(DIR_LANG.$lang);
 $register->set('language', $language);

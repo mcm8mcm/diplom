@@ -35,11 +35,11 @@ class ControllerCustomeroffice extends Controller {
     }
 
     public function index() {
-        if(empty($this->session->data['user'])){
+        if(!count($this->session->data['user'])){
             $this->login();
             return;
         }        
-
+        //ddd($this->session->data['user']);
         $this->load->language('home');
         
         $sidebar = $this->load->controller('common/sidebar');
