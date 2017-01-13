@@ -5,11 +5,7 @@ class ControllerAuthLogin  extends Controller{
         $redirect_addr = $this->request->post['redirect'];
         $login = $this->request->post['username'];
         $password = $this->request->post['password'];
-        if($type === 'customer'){
-            $this->customer($login, $password);
-        } else {
-            $this->master($login, $password);
-        }
+        $this->user->login($login,$password);  
         $this->response->redirect($redirect_addr);
     }
     

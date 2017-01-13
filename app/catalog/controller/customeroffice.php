@@ -17,9 +17,13 @@ class ControllerCustomeroffice extends Controller {
         $form_data['login_title'] = $this->language->get('login_title');
         $form_data['password_title'] = $this->language->get('password_title');
         $form_data['redirect'] = $this->response->url('customeroffice');
-        $form_data['user_type'] = 'customer';
         $form_data['action'] = $this->response->url('auth/login');
         $form_data['submit_title'] = $this->language->get('submit_title');
+        $form_data['warning'] = '';
+        if(isset($this->session->data['login_fail'])){
+            unset($this->session->data['login_fail']);
+            $form_data['warning'] = $this->language->get('warning');
+        }
         
         $content = $this->load->view('auth/login', $form_data);
         $data['content'] = $content;
@@ -35,11 +39,11 @@ class ControllerCustomeroffice extends Controller {
     }
 
     public function index() {
-        if(!count($this->session->data['user'])){
+        if(!$this->user->isLoggedIn()){
             $this->login();
             return;
         }        
-        //ddd($this->session->data['user']);
+        
         $this->load->language('home');
         
         $sidebar = $this->load->controller('common/sidebar');

@@ -9,6 +9,12 @@
             </div>
             
             <?=$menu;?>
-        </div>       
+
+            <?php if(!empty($user)) { ?>
+                <div class="navbar-brand pull-right">         
+                    <?=$user; ?>
+                </div>
+            <?php } ?>        
+        </div>  
     </div>   
 </nav>

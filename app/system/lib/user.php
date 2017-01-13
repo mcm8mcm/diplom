@@ -3,67 +3,65 @@ class User {
     private $login = '';
     private $name = '';    
     private $user_id = '';
-    private $language = '';    
+    private $language = '';  
+    private $group = '';
+    private $db;
+    private $session;
     
     public function __construct($register) {
         $tmp_user_id = '-1';
-       
-        if(isset($register->get('session')->data['user'])){
-            if(isset($register->get('session')->data['user']['id'])){
-               $tmp_user_id = $register->get('session')->data['user']['id'];
+        $this->db = $register->get('db');
+        $this->session = $register->get('session');
+        
+        $ses_id = $this->session->getID();
+        if(!empty($ses_id)){
+            $sql = "SELECT * FROM `".DB_PREFIX."users` WHERE `session_id` = '".$ses_id."'";
+            $res = $this->db->sql($sql);
+            if($res['rows_count']){
+                $this->login = $res['row']['login'];
+                $this->name = $res['row']['first_name'].' '.$res['row']['last_name'];
+                $this->user_id = $res['row']['id'];
+                $this->language = $res['row']['language']; 
+                $this->group = $res['row']['group']; 
             }
-            unset($register->get('session')->data['user']);
-        }
-            
-        $register->get('session')->data['user'] = array();
-        
-        //Check if this user still active and legally logged in.
-        $tmp_sess_id = $register->get('session')->getId();
-        $sql = "SELECT * FROM `users` WHERE `id` = $tmp_user_id AND `session_id` = '$tmp_sess_id' AND `active` = 1";
-        
-        $res = $register->get('db')->sql($sql);
-        if($res['rows_count'] == 1){;
-            $register->get('session')->data['user']['id'] = $res['row']['id'];
-            $this->login = $res['row']['login'];
-            $this->name = $res['row']['first_name'].' '.$res['row']['patronymic'].' '.$res['row']['last_name'];
-            $this->id = $res['row']['id'];
-            $this->language = $res['row']['language'];
         }
     }
     
-    public function login($register, $user_id = '', $login = '', $password = '') {
-        if(!empty($user_id)){
-           $sql = "SELECT * FROM `users` WHERE `id` = $user_id AND `active` = 1";    
-        } else {
-           $sql = "SELECT * FROM `users` WHERE UPPER(`login`) = '" . strtoupper($login). "'AND `password` = '" . md5($password) . "'  AND `active` = 1";  
+    public function login($login, $password) {
+        $login = $this->db->escape($login);
+        $password = $this->db->escape($password);
+        $login = strtoupper($login);
+        $password = md5($password);
+        $sql = "SELECT * FROM `".DB_PREFIX."users` WHERE (UPPER(`login`) = '".$login."' OR "
+                . "UPPER(`email`) = '".$login."') AND `password` = '".$password."' AND `active` = 1";
+        $res = $this->db->sql($sql);
+        if(!$res['rows_count']){
+            $this->session->data['login_fail'] = 1;
+            return;
         }
         
-        $res = $register->get('db')->sql($sql);
-        if($res['rows_count'] == 1){
-            $this->login = $res['row']['login'];
-            $this->name = $res['row']['first_name'].' '.$res['row']['patronymic'].' '.$res['row']['last_name'];
-            $this->id = $res['row']['id'];
-            $this->language = $res['row']['language'];
-            
-            if(!isset($register->get('session')->data['user'])){
-                $register->get('session')->data['user'] = array();
-            }
-            
-            $tmp_sess_id = $register->get('session')->getId();
-            $register->get('session')->data['user']['id'] = $res['row']['id']; 
-            $sql = "UPDATE `users` set `session_id` = '$tmp_sess_id' where id = " . $register->get('session')->data['user']['id'];
-            $register->get('db')->sql($sql);
-            return true;
-        }
+        $this->login = $res['row']['login'];
+        $this->name = $res['row']['first_name'].' '.$res['row']['last_name'];
+        $this->user_id = $res['row']['id'];
+        $this->language = $res['row']['language'];
+        $this->group = $res['row']['group'];
         
-        return false;
+        $sql = "UPDATE `".DB_PREFIX."users` SET `session_id`='".$this->session->getID()."' WHERE `id` = ".$this->user_id;
+        $this->db->sql($sql);  
+        
     }
     
-    public function logout($user_id) {
+    public function logout() {
+        if(!empty($this->user_id)){
+            $sql = "UPDATE `".DB_PREFIX."users` SET `session_id`='' WHERE `id` = ".$this->user_id;
+            $this->db->sql($sql);
+        }
+        
         $this->login = '';
         $this->name = '';
         $this->user_id = '';
         $this->language = '';
+        $this->group = "";
     }
     
     public function isLoggedIn() {
@@ -86,12 +84,24 @@ class User {
         return $this->language;
     }
     
-    public function setLang($lang, $register) {
+    public function isAdmin() {
+        return $this->group === '1';
+    }
+    
+    public function isMaster() {
+        return $this->group === '2';
+    }
+    
+    public function isCustomer() {
+        return $this->group === '3';
+    }
+    
+    public function setLang($lang) {
         if($this->language !== $lang){
             if($this->isLoggedIn()){
-                $sql = "UPDATE TABLE `users` SET `language` = '" . $lang . "' WHERE `id` = $this->user_id";
-                $register->get('db')->sql($sql);
-                if($register->get('db')->rowsAffected()){
+                $sql = "UPDATE `".DB_PREFIX."users` SET `language` = '" . $lang . "' WHERE `id` = ".$this->user_id;
+                $this->db->sql($sql);
+                if($this->db->rowsAffected()){
                     $this->language = $lang;
                 }
             }

@@ -2,6 +2,12 @@
     <div class="panel panel-success">
         <div class="panel-heading">
             <h1 class="panel-title"><i class="fa fa-lock gliph-margin"></i><?=$form_title?></h1>
+            <?php if($warning !== '') { ?>
+            <div class="alert alert-warning fade in">
+                <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <?=$warning?>
+            </div>
+            <?php } ?>
         </div>
 
         <div class="panel-body">
@@ -25,7 +31,6 @@
                     <button type="submit" class="btn btn-primary"><i class="fa fa-key"></i><?=$submit_title;?></button>
                 </div> 
                 <input type="hidden" name="redirect" value="<?=$redirect?>">
-                <input type="hidden" name="user_type" value="<?=$user_type?>">
             </form>
         </div>
     </div>

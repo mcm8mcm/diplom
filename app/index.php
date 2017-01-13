@@ -20,10 +20,6 @@ $register->set('response', $response);
 $session = new Session();
 $register->set('session', $session);
 
-//if(count($session->data['user'])){
-//    ddd($session);
-//}
-
 $document = new Document();
 $register->set('document', $document);
 
@@ -43,12 +39,13 @@ foreach ($languages as $language) {
     }
 }
 
-$user = $session->data['user'];
+$user = new User($register);
+$register->set('user', $user);
 
 /*
-if(count($user)){
+if($user->isLoggedIn()){
    if($set_new_lang){
-       $user->setLang($lang, $register);
+       $user->setLang($lang);
    } else {
        if(!empty($user->getLang())){
            $lang = $user->getLang();//User has highest priority
@@ -57,10 +54,10 @@ if(count($user)){
 }//But user has right to change language
 */
 
-$set_new_lang = FALSE;
+
 if (isset($_GET['set_lang'])) {
     $lang = $_GET['set_lang'];
-    $set_new_lang = TRUE;
+    
     foreach ($languages as $index=>$language) {
         $languages[$index]['active'] = '0';
         if ($language['name'] === $lang) {
@@ -72,9 +69,10 @@ if (isset($_GET['set_lang'])) {
     $db->sql($sql);
     $sql = "UPDATE `".DB_PREFIX."languages` SET `active` = 1 WHERE `name` = '".$lang."'";
     $db->sql($sql); 
+    if($user->isLoggedIn()){
+        $user->setLang($lang);
+    }
 }
-
-//$register->set('user', $user);
 
 $language = new Language(DIR_LANG.$lang);
 $register->set('language', $language);
