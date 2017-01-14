@@ -11,8 +11,15 @@
             <?=$menu;?>
 
             <?php if(!empty($user)) { ?>
+                <div class="navbar-brand pull-right logout-btn">
+                    <form name="logout_form" id="logout_form" method="post" enctype="multipart/form-data" action="<?=$action_logout?>">
+                        <button type="submit" form="logout_form" class="btn btn-success" style="clear: both;"><i class="fa fa-sign-out"></i><?=$exit_caption;?></button>
+                        <input type="hidden" name="redirect" value="<?=$redirect?>">
+                    </form>
+                </div>        
+
                 <div class="navbar-brand pull-right">         
-                    <?=$user; ?>
+                        <?=$user; ?>
                 </div>
             <?php } ?>        
         </div>  
