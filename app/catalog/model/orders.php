@@ -1,5 +1,5 @@
 <?php
-class ModelOreders extends Model{
+class ModelOrders extends Model{
     public function getOrderd($customer_id) {
         
     }

@@ -62,8 +62,10 @@ class ControllerCustomeroffice extends Controller {
         $cust_menu[] = array('item_caption'=>$this->language->get('option_closed_orders'), 'cative'=>FALSE, 'link'=> $this->response->url('customeroffice/closed',''));
         $cust_menu[] = array('item_caption'=>$this->language->get('option_support'), 'cative'=>FALSE, 'link'=> $this->response->url('customeroffice/support',''));
         
-        $this->load->model('orders');
-        $customer_data = $this->model_orders->getCurrentData();
+        $this->load->model('userdata');
+        $customer_data = $this->model_userdata->getUserData();
+        
+        ddd($customer_data);
         
         $content = $this->language->get('shortly_about');
         $data['content'] = $content;

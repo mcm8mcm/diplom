@@ -11,16 +11,33 @@ class ModelUserdata extends Model {
                 .'LEFT JOIN `'.DB_PREFIX.'users` as `auth` ON `log`.`post_author` = `auth`.`id` '
                 .'LEFT JOIN `'.DB_PREFIX.'users` as `reciv` ON `log`.`post_reciver` = `reciv`.`id` '
                 .'WHERE `log`.`oreder_id` = '.$task_id
-                .'ORDER BY `log`.`id`, `log`.`parent_post`, `log`.`post_stamp`';
+                .' ORDER BY `log`.`id`, `log`.`parent_post`, `log`.`post_stamp`';
         $res = $this->db->sql($sql);
         if(!$res['rows_count']){
             return NULL;
         }
         
         $logs = array();
-        foreach ($res as $task) {
-            HERE
+        foreach ($res['rows'] as $task) {
+            $curr_log = array();
+            $curr_log['id'] = $task['id'];          
+            $curr_log['date'] = $task['post_stamp'];
+            $curr_log['author'] = $task['auth_first_name'].' '.$task['auth_last_name'];
+            $curr_log['reciver'] = $task['reciv_first_name'].' '.$task['reciv_last_name'];
+            $curr_log['parent_id'] = $task['parent_post'];  
+            $curr_log['title'] = $task['post_title'];
+            $curr_log['post'] = $task['post_content'];
+            $curr_log['subposts'] = array();
+            if($curr_log['parent_id'] === '0'){
+                //Post by it's own
+                $logs[$curr_log['id']] = $curr_log;
+            }else{
+                $logs[$curr_log['parent_id']]['subposts'] = $curr_log;
+            }
+            
+            
         }
+        return $logs;
     }
     
     private function getCustomerData() {
@@ -32,7 +49,7 @@ class ModelUserdata extends Model {
             .'LEFT JOIN `service`.`'.DB_PREFIX.'device` as dev '
             .'ON tsk.device_id = dev.id '
             .'WHERE tsk.customer_id = '.$this->user->getID();
-        $res = $this->db-sql($sql);
+        $res = $this->db->sql($sql);
         
         if($res['rows_count'] == 0){
             //it's very strange
@@ -43,20 +60,20 @@ class ModelUserdata extends Model {
             $task = array();
             $device = array();
             
-            $device['id'] = $res['device_id'];
-            $device['serial'] = $res['serial'];
-            $device['type'] = $res['devicetype'];
-            $device['brand'] = $res['brand'];
-            $device['model'] = $res['model'];
+            $device['id'] = $curr_row['device_id'];
+            $device['serial'] = $curr_row['serial'];
+            $device['type'] = $curr_row['devicetype'];
+            $device['brand'] = $curr_row['brand'];
+            $device['model'] = $curr_row['model'];
             
-            $task['id'] = $res['idorder'];
-            $task['start'] = $res['start_date'];
-            $task['finish'] = $res['close_date'];
+            $task['id'] = $curr_row['idorder'];
+            $task['start'] = $curr_row['start_date'];
+            $task['finish'] = $curr_row['close_date'];
             $task['device'] = $device;
-            $task['cond'] = $res['device_condition'];
-            $task['complaint'] = $res['complaint'];
-            $task['complect'] = $res['completeness'];
-            $task['id'] = $res['id'];
+            $task['cond'] = $curr_row['device_condition'];
+            $task['complaint'] = $curr_row['complaint'];
+            $task['complect'] = $curr_row['completeness'];
+            $task['id'] = $curr_row['id'];
             
             $tasks[] = $task;
         }
@@ -65,6 +82,8 @@ class ModelUserdata extends Model {
             $log = $this->getLog($task['id']);
             $tasks[$index]['log'] = $log;
         }
+        
+        return $tasks;
     }
     
     private function getMasterData() {
@@ -77,11 +96,11 @@ class ModelUserdata extends Model {
         }
         
         if($this->user->isCustomer()){
-            return getCustomerData();
+            return $this->getCustomerData();
         }
         
         if($this->user->isMaster()){
-            return getMasterData();
+            return $this->getMasterData();
         }
         
     }
