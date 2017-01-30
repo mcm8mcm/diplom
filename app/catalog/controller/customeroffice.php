@@ -57,6 +57,8 @@ class ControllerCustomeroffice extends Controller {
 
         //Make menu
         $this->load->language('customeroffice');
+        $this->load->language('common/common');
+        
         $cust_menu = array();
         $cust_menu[] = array('item_caption'=>$this->language->get('option_orders_in_progress'), 'cative'=>FALSE, 'link'=> $this->response->url('customeroffice/inprogress',''));
         $cust_menu[] = array('item_caption'=>$this->language->get('option_closed_orders'), 'cative'=>FALSE, 'link'=> $this->response->url('customeroffice/closed',''));
