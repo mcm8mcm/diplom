@@ -1,5 +1,8 @@
 <?php
 class ControllerCustomeroffice extends Controller {
+    
+    private $curr_action = '';
+    
     private function login() {
         $this->load->language('auth/customer_login');
         $sidebar = '';
@@ -67,12 +70,20 @@ class ControllerCustomeroffice extends Controller {
         $this->load->model('userdata');
         $customer_data = $this->model_userdata->getUserData();
         
-        ddd($customer_data);
+        $customer_data['counter'] = $this->counter($customer_data);
         
-        $content = $this->language->get('shortly_about');
+        $tmp_data = array();
+        $tmp_data['inprogress_link'] = $customer_data['counter']['active'] != 0 ? $this->response->url('customeroffice/inprogress') : $this->response->url('customeroffice');
+        $tmp_data['closed_link'] = $customer_data['counter']['closed'] != 0 ? $this->response->url('customeroffice/closed') : $this->response->url('customeroffice');
+        $tmp_data['inprogress'] = $this->language->get('option_orders_in_progress');
+        $tmp_data['closed'] = $this->language->get('option_closed_orders');
+        $tmp_data['active_count'] = $customer_data['counter']['active'];
+        $tmp_data['closed_count'] = $customer_data['counter']['closed'];
+        //ddd($customer_data);
+        
+        $content = $this->load->view('customerofficecontent',$tmp_data);
         $data['content'] = $content;
-        
-        
+               
         $body = $this->load->view('home', $data);
         
         $this->document->setTitle($this->language->get('title'));
@@ -82,13 +93,26 @@ class ControllerCustomeroffice extends Controller {
         $this->response->flush();          
     }
     
-
-    public function inprogress() {
+    private function counter($tasks) {
+        $ret = array('active'=>0,'closed'=>0);
         
+        foreach ($tasks as $task) {
+            if($task['finish'] === NULL){
+                $ret['active'] += 1;
+            } else {
+                $ret['closed'] += 1;
+            }
+        }
+        
+        return $ret;
+    }
+    
+    public function inprogress() {
+        $this->curr_action = 'inprogress';
     }
 
     public function closed() {
-        
+        $this->curr_action = 'closed';
     }
 
     public function support() {
