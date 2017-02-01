@@ -3,6 +3,14 @@ class ControllerCustomeroffice extends Controller {
     
     private $curr_action = '';
     
+    private function getLogItem($data) {
+        
+    }
+    
+    private function getTasks($closed, $data){
+        
+    }
+    
     private function login() {
         $this->load->language('auth/customer_login');
         $sidebar = '';
@@ -79,7 +87,18 @@ class ControllerCustomeroffice extends Controller {
         $tmp_data['closed'] = $this->language->get('option_closed_orders');
         $tmp_data['active_count'] = $customer_data['counter']['active'];
         $tmp_data['closed_count'] = $customer_data['counter']['closed'];
-        //ddd($customer_data);
+        
+        if($this->curr_action == ''){
+            $tmp_data['content'] = $this->language->get('choose_prompt');
+        }elseif ($this->curr_action == 'active') {
+            $tmp_data['content'] = getTasks($closed = FALSE, $customer_data);
+        }elseif ($this->curr_action == 'close') {
+            $tmp_data['content'] = getTasks($closed = TRUE, $customer_data);
+        }
+        
+        if($tmp_data['active_count'] == 0 && $tmp_data['closed_count'] == 0){
+            $tmp_data['content'] = $this->language->get('no_content');
+        }
         
         $content = $this->load->view('customerofficecontent',$tmp_data);
         $data['content'] = $content;
@@ -109,10 +128,12 @@ class ControllerCustomeroffice extends Controller {
     
     public function inprogress() {
         $this->curr_action = 'inprogress';
+        $this->index();
     }
 
     public function closed() {
         $this->curr_action = 'closed';
+        $this->index();
     }
 
     public function support() {

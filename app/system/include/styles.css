@@ -80,6 +80,10 @@ body{
     margin-top: 20px;
 }
 
+.def-margin{
+    margin-top: 20px;
+}
+
 footer {
     /* position: absolute;
     top: 100%; */
