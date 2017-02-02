@@ -8,7 +8,21 @@ class ControllerCustomeroffice extends Controller {
     }
     
     private function getTasks($closed, $data){
-        
+        $content = '';
+        foreach($data as $key=>$task){
+            if($key === 'counter') break;
+            $data = array();
+            $create_date = date_create_from_format('Y-m-d', $task['start']);
+            $data['title'] = $this->language->get('caption_task_title').$task['id'].$this->language->get('caption_task_date').$create_date->format('d.m.Y');
+            $data['device_title'] = $this->language->get('caption_device');
+            $data['params'][] = array($this->language->get('device_type'), $task['device']['type']);
+            $data['params'][] = array($this->language->get('device_brand'), $task['device']['brand']);
+            $data['params'][] = array($this->language->get('device_model'), $task['device']['model']);
+            $data['params'][] = array($this->language->get('device_serial'), $task['device']['serial']);
+            $data['log'] = '';
+            $content = $this->load->view('task', $data).PHP_EOL;
+        }
+        return $content;
     }
     
     private function login() {
@@ -90,10 +104,10 @@ class ControllerCustomeroffice extends Controller {
         
         if($this->curr_action == ''){
             $tmp_data['content'] = $this->language->get('choose_prompt');
-        }elseif ($this->curr_action == 'active') {
-            $tmp_data['content'] = getTasks($closed = FALSE, $customer_data);
-        }elseif ($this->curr_action == 'close') {
-            $tmp_data['content'] = getTasks($closed = TRUE, $customer_data);
+        }elseif ($this->curr_action == 'inprogress') {
+            $tmp_data['content'] = $this->getTasks($closed = FALSE, $customer_data);
+        }elseif ($this->curr_action == 'closed') {
+            $tmp_data['content'] = $this->getTasks($closed = TRUE, $customer_data);
         }
         
         if($tmp_data['active_count'] == 0 && $tmp_data['closed_count'] == 0){

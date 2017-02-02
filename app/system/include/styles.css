@@ -194,3 +194,27 @@ div.btn-group.langmenu{
     padding-top: 10px;
     margin-bottom: 0px;
 }
+
+.tab-task-head{
+    width: 100%;
+}
+
+.task-head{
+    border:1px solid #255625;
+}
+
+.task-head-spanned{
+    text-align: center;
+    font-weight: bold;
+}
+
+.task-option-value{
+    
+}
+
+.task-params{
+    padding-left: 5px;
+    font-size: smaller;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
