@@ -10,7 +10,11 @@ class ControllerCommonHeader extends Controller {
             $data['user'] = $this->language->get('logged_user_name').$this->user->getName();
             $data['exit_caption'] = $this->language->get('exit_caption');
             $data['action_logout'] = $this->response->url('auth/logout');
-            $data['redirect'] = $this->request->server['HTTP_REFERER'];
+            if(isset($this->request->server['HTTP_REFERER'])){
+                $data['redirect'] = $this->request->server['HTTP_REFERER'];
+            }else{
+                $data['redirect'] = $this->request->server['REQUEST_URI'];
+            }
         }
         $header = $this->load->view('common/header', $data);
         return $header;

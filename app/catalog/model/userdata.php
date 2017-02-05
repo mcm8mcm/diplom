@@ -32,7 +32,7 @@ class ModelUserdata extends Model {
                 //Post by it's own
                 $logs[$curr_log['id']] = $curr_log;
             }else{
-                $logs[$curr_log['parent_id']]['subposts'] = $curr_log;
+                $logs[$curr_log['parent_id']]['subposts'][] = $curr_log;
             }
             
             

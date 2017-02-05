@@ -3,8 +3,31 @@ class ControllerCustomeroffice extends Controller {
     
     private $curr_action = '';
     
-    private function getLogItem($data) {
-        
+    private function getLogItem($log) {
+        $posts = '';
+        foreach ($log as $curr_log){
+            $str_month = $this->language->get('month_3');
+            $curr_date = date_create_from_format('Y-m-d H:i:s', $curr_log['date']);
+            $data = array();
+            $data['id'] = $curr_log['id'];
+            $data['day_nom'] = date_format($curr_date, 'm');
+            $data['month_nam'] = $str_month[date_format($curr_date, 'm')];
+            $data['full_year'] = date_format($curr_date, 'Y');
+            $data['from'] = $curr_log['author'];
+            $data['to'] = $curr_log['reciver'];
+            $data['post_title'] = $curr_log['title'];
+            $data['post_content'] = $curr_log['post'];
+            $data['caption_from'] = $this->language->get('caption_from');
+            $data['caption_to'] = $this->language->get('caption_to');
+            $data['caption_title'] = $this->language->get('caption_title');
+            $data['subposts'] = '';
+            if(count($curr_log['subposts'])){
+                $data['subposts'] = $this->getLogItem($curr_log['subposts']);
+            }
+            $posts .= $this->load->view('log_post', $data); 
+            
+        }
+        return $posts;
     }
     
     private function getTasks($closed, $data){
@@ -19,7 +42,8 @@ class ControllerCustomeroffice extends Controller {
             $data['params'][] = array($this->language->get('device_brand'), $task['device']['brand']);
             $data['params'][] = array($this->language->get('device_model'), $task['device']['model']);
             $data['params'][] = array($this->language->get('device_serial'), $task['device']['serial']);
-            $data['log'] = '';
+            $data['caption_task_log'] = $this->language->get('caption_task_log');
+            $data['log'] = $this->getLogItem($task['log']);
             $content = $this->load->view('task', $data).PHP_EOL;
         }
         return $content;

@@ -218,3 +218,78 @@ div.btn-group.langmenu{
     padding-top: 3px;
     padding-bottom: 3px;
 }
+
+.date-title{
+    font-family: "Arial Narrow";
+    font-size: 11pt;
+    font-weight: bolder;
+    text-align: center;
+}
+
+.log-title{
+    clear: both;
+    overflow: auto;
+    margin-bottom: 2px; 
+    border-bottom: 1px solid #3c763d;
+    border-top: 1px solid #3c763d;    
+}
+
+.date-holder{
+    float: left;
+    /*border: 1px solid black;*/
+    width: 40px;
+    height: 50px;
+    border-right: 1px solid #3c763d;
+    border-left: 1px solid #3c763d;
+}
+
+.post-title{
+    float: left;
+    /*border: 1px solid black;*/
+    height: 50px;
+}
+
+.log-title-label{
+    font-family: "Arial Narrow";
+    font-size: 11pt;
+    font-weight: bolder;
+    text-align: left;
+    margin-left: 3px;
+    margin-right: 3px; 
+    width: 30px;
+}
+
+.log-caption-label{
+    font-family: "Arial Narrow";
+    font-weight: 200;
+    font-size: 11pt;
+    text-align: left;
+    margin-left: 10px;
+}
+
+.log-title-block{
+    line-height: 0.15;
+}
+
+.log-content{
+    font-size: 12pt;
+    font-weight: 200;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.log-add{
+    float: right;
+    width: 30px;
+    height: 50px;
+    font-size: 24pt;
+    text-align: center;
+    border-right: 1px solid #3c763d;
+    border-left: 1px solid #3c763d;
+}
+
+.log-add-a:hover{
+    text-decoration: none;
+    cursor: pointer;
+}

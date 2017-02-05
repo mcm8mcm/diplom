@@ -19,7 +19,17 @@
     </div>
     
     <div class="panel-body">
-        <?=$log?>
+        <div class="panel panel-success">
+            <div class="panel-heading task-head-spanned">
+                <h4><?=$caption_task_log;?></h4>
+            </div>
+            
+            <div class="panel-body">
+                <?=$log?>
+            </div>
+        </div>
+            
+        
     </div>
 </div>
     
