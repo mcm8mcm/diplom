@@ -1,5 +1,6 @@
 $(document).ready(function(){
     signup.onload();
+    edit_funct.onload();
 }
 );
 
@@ -34,4 +35,13 @@ var signup = {
     }
 };
 
+var edit_funct = {
+    'onload' : function(){
+        
+    },
+    
+    'on_cancel' : function(){
+        
+    }
+};
 

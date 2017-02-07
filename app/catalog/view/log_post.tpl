@@ -1,7 +1,7 @@
 <div>  
     <div class="log-title">
         
-        <div class="date-holder" id="<?=$id;?>">
+        <div class="date-holder">
             <div class="date-title"><?=$day_nom;?></div>
             <div class="date-title"><?=$month_nam;?></div>
             <div class="date-title"><?=$full_year;?></div>        
@@ -19,7 +19,7 @@
     <div>
         <p class="log-content"><?=$post_content;?></p>
     </div>
-    
+        
     <div style="clear: both; padding-left: 10px;">
         <?=$subposts;?>
     </div>   

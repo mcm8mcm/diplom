@@ -15,5 +15,8 @@ $_['device_type'] = 'Device type:';
 $_['device_brand'] = 'Device brand:';
 $_['device_model'] = 'Device model:';
 $_['device_serial'] = 'Device serial:';
-
+$_['edit_save_caption'] = 'Save';
+$_['edit_cancel_caption'] = 'Cancel';
+$_['edit_title_caption'] = 'Title';
+$_['edit_content_caption'] = 'Content';
 

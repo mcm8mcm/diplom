@@ -293,3 +293,30 @@ div.btn-group.langmenu{
     text-decoration: none;
     cursor: pointer;
 }
+
+form.edit-post{
+   border: 1px solid #3c763d;
+   padding: 10px;
+   margin-top: 5px;
+   margin-bottom: 5px;
+}
+
+form.edit-post label{
+    font-size: 12pt;
+    font-weight: bolder;
+}
+
+form.edit-post div>textarea{
+    max-width: 100%;
+    min-width: 100%;
+    max-height: 100px;
+    min-height: 50px;
+}
+
+.mcm-hidden{
+    display: none;
+}
+
+.mcm-shown{
+    display: block;
+}

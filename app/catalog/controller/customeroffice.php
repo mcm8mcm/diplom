@@ -139,7 +139,16 @@ class ControllerCustomeroffice extends Controller {
         }
         
         $content = $this->load->view('customerofficecontent',$tmp_data);
-        $data['content'] = $content;
+        
+        $edit_form_data = array();
+        $edit_form_data['action'] = $tmp_data['inprogress_link'];
+        $edit_form_data['title'] = $this->language->get('edit_title_caption');
+        $edit_form_data['content'] = $this->language->get('edit_content_caption');
+        $edit_form_data['cancle_btn'] = $this->language->get('edit_cancel_caption');
+        $edit_form_data['save_btn'] = $this->language->get('edit_save_caption');
+        $edit_form = $this->load->view('post_edit_form', $edit_form_data);
+        
+        $data['content'] = $edit_form . PHP_EOL . $content;
                
         $body = $this->load->view('home', $data);
         
