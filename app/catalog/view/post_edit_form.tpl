@@ -9,7 +9,7 @@
         <textarea placeholder="<?=$content;?>" required="1" rows="5" wrap="soft" name="post_content" class="form-control" id="post_content"></textarea>
     </div>
 
-    <button type="button" class="btn btn-warning"><span class="fa fa-times" style="padding-right: 5px;"></span><?=$cancle_btn;?></button>        
+    <button onclick="edit_funct.remove_shown()" type="button" class="btn btn-warning"><span class="fa fa-times" style="padding-right: 5px;"></span><?=$cancle_btn;?></button>        
     <button form="post_edit_form" type="submit" class="btn btn-success"><span class="fa fa-floppy-o" style="padding-right: 5px;"></span><?=$save_btn;?></button>
     <input type="hidden" id="parent_post_id" name="parent_post_id" postid="0">
 </form>

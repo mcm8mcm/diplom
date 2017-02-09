@@ -41,7 +41,7 @@ var edit_funct = {
         posts = $("a[role='add-post']");
         posts.each(function(){
             var post = $(this);
-            post.on('click', edit_funct.on_add_btn);
+            post.on('click', {param: post.parent().attr('postid')}, edit_funct.on_add_btn);
         });
     },
     
@@ -49,8 +49,25 @@ var edit_funct = {
         
     },
     
-    'on_add_btn' : function(){
-        alert('PREVED')
+    'remove_shown' : function(){
+        var shown;
+        shown = $('form.mcm-shown');
+        if(shown.length){
+            shown.remove();
+        }        
+    },
+    
+    'on_add_btn' : function(event){
+        var edit_form;
+        var editform_holder;
+        var container;
+        edit_funct.remove_shown();
+        container = $(this).parent().parent().parent();
+        edit_form = $('#post_edit_form').clone();
+        editform_holder = container.find("p[postid='" + event.data.param + "']");
+        edit_form.find('input#parent_post_id').attr('postid', event.data.param);
+        editform_holder.append(edit_form);
+        edit_form.removeClass("mcm-hidden").addClass("mcm-shown");
     }
     
 };
