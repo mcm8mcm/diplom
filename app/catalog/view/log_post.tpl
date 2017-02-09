@@ -13,11 +13,11 @@
             <div><label class="log-title-label"><?=$caption_title;?></label><label class="log-caption-label"><?=$post_title;?></label></div>        
         </div>  
         
-        <div class="log-add"><a class="log-add-a">+</a></div>
+        <div postid="<?=$id;?>" class="log-add"><a role="add-post" class="log-add-a">+</a></div>
     </div>
     
     <div>
-        <p class="log-content"><?=$post_content;?></p>
+        <p role="post-content" class="log-content"><?=$post_content;?></p>
     </div>
         
     <div style="clear: both; padding-left: 10px;">

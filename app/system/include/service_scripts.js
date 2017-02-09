@@ -37,11 +37,21 @@ var signup = {
 
 var edit_funct = {
     'onload' : function(){
-        
+        var posts;
+        posts = $("a[role='add-post']");
+        posts.each(function(){
+            var post = $(this);
+            post.on('click', edit_funct.on_add_btn);
+        });
     },
     
     'on_cancel' : function(){
         
+    },
+    
+    'on_add_btn' : function(){
+        alert('PREVED')
     }
+    
 };
 
