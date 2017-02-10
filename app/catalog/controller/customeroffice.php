@@ -15,6 +15,9 @@ class ControllerCustomeroffice extends Controller {
             $data['full_year'] = date_format($curr_date, 'Y');
             $data['from'] = $curr_log['author'];
             $data['to'] = $curr_log['reciver'];
+            $data['from_id'] = $curr_log['author_id'];
+            $data['to_id'] = $curr_log['reciver_id'];
+            $data['order_id'] = $curr_log['order_id'];            
             $data['post_title'] = $curr_log['title'];
             $data['post_content'] = $curr_log['post'];
             $data['caption_from'] = $this->language->get('caption_from');
@@ -115,7 +118,7 @@ class ControllerCustomeroffice extends Controller {
         
         $this->load->model('userdata');
         $customer_data = $this->model_userdata->getUserData();
-        
+        //ddd($customer_data);
         $customer_data['counter'] = $this->counter($customer_data);
         
         $tmp_data = array();
@@ -175,6 +178,15 @@ class ControllerCustomeroffice extends Controller {
     
     public function inprogress() {
         $this->curr_action = 'inprogress';
+        if(isset($this->request->post['post_date'])){
+            $this->load->model('userdata');
+            $data = array();
+            foreach ($this->request->post as $key => $value) {
+                $data[$key] = $value;
+            }
+            
+            $this->model_userdata->addPost($data);
+        }
         $this->index();
     }
 

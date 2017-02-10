@@ -13,7 +13,7 @@
             <div><label class="log-title-label"><?=$caption_title;?></label><label class="log-caption-label"><?=$post_title;?></label></div>        
         </div>  
         
-        <div role="edit-form-holder" postid="<?=$id;?>" class="log-add"><a role="add-post" class="log-add-a">+</a></div>
+        <div role="edit-form-holder" postid="<?=$id;?>" class="log-add"><a orderid="<?=$order_id;?>" authid="<?=$from_id;?>" reciverid="<?=$to_id;?>" role="add-post" class="log-add-a">+</a></div>
     </div>
     
     <div>
