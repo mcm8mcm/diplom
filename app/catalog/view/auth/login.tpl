@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="text-right">
-                    <button type="submit" class="btn btn-primary"><i class="fa fa-key"></i><?=$submit_title;?></button>
+                    <button type="submit" class="btn btn-primary"><i class="fa fa-key"></i><span class="gliph-margin"></span><?=$submit_title;?></button>
                 </div> 
                 <input type="hidden" name="redirect" value="<?=$redirect?>">
             </form>

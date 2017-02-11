@@ -14,4 +14,5 @@
     <input type="hidden" id="parent_post_id" name="parent_post_id" value="0">
     <input type="hidden" id="order_id" name="order_id" value="0">
     <input type="hidden" id="recipient_id" name="recipient_id" value="0">
+    <input type="hidden" id="author_id" name="author_id" value="0">    
 </form>

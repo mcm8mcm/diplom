@@ -1,5 +1,36 @@
 <?php
 class ModelUserdata extends Model {
+    
+    private function openLog($task) {
+            $curr_log = array();
+            $curr_log['id'] = $task['id']; 
+            $curr_log['order_id'] = $task['order_id'];
+            $curr_log['date'] = $task['post_stamp'];
+            $curr_log['author_id'] = $task['auth_id'];
+            $curr_log['reciver_id'] = $task['reciv_id'];
+            $curr_log['author'] = $task['auth_first_name'].' '.$task['auth_last_name'];
+            $curr_log['reciver'] = $task['reciv_first_name'].' '.$task['reciv_last_name'];
+            $curr_log['parent_id'] = $task['parent_post'];  
+            $curr_log['title'] = $task['post_title'];
+            $curr_log['post'] = $task['post_content'];
+            $curr_log['subposts'] = array();  
+            return $curr_log;
+    }
+    
+    private function addNode($parent_id, $data) {
+        $to_ret = array();
+        foreach ($data as $key => $value) {   
+            if($value['parent_id'] === $parent_id){
+                if($value['id'] !== '0'){
+                    $value['subposts'] = $this->addNode($value['id'], $data);
+                }
+                $to_ret[] = $value;
+            }
+            
+        }
+        return $to_ret;
+    }
+    
     private function getLog($task_id) {
         $sql = 'SELECT ' 
                 .'`log`.*, '
@@ -13,7 +44,7 @@ class ModelUserdata extends Model {
                 .'LEFT JOIN `'.DB_PREFIX.'users` as `auth` ON `log`.`post_author` = `auth`.`id` '
                 .'LEFT JOIN `'.DB_PREFIX.'users` as `reciv` ON `log`.`post_reciver` = `reciv`.`id` '
                 .'WHERE `log`.`order_id` = '.$task_id
-                .' ORDER BY `log`.`id`, `log`.`parent_post`, `log`.`post_stamp`';
+                .' ORDER BY `log`.`post_stamp`, `log`.`parent_post`,`log`.`id` ';
         $res = $this->db->sql($sql);
         if(!$res['rows_count']){
             return NULL;
@@ -21,28 +52,28 @@ class ModelUserdata extends Model {
         
         $logs = array();
         foreach ($res['rows'] as $task) {
-            $curr_log = array();
-            $curr_log['id'] = $task['id']; 
-            $curr_log['order_id'] = $task['order_id'];
-            $curr_log['date'] = $task['post_stamp'];
-            $curr_log['author_id'] = $task['auth_id'];
-            $curr_log['reciver_id'] = $task['reciv_id'];
-            $curr_log['author'] = $task['auth_first_name'].' '.$task['auth_last_name'];
-            $curr_log['reciver'] = $task['reciv_first_name'].' '.$task['reciv_last_name'];
-            $curr_log['parent_id'] = $task['parent_post'];  
-            $curr_log['title'] = $task['post_title'];
-            $curr_log['post'] = $task['post_content'];
-            $curr_log['subposts'] = array();
+            $logs[$task['id']] = $this->openLog($task);
+        /*    
             if($curr_log['parent_id'] === '0'){
                 //Post by it's own
                 $logs[$curr_log['id']] = $curr_log;
             }else{
                 $logs[$curr_log['parent_id']]['subposts'][] = $curr_log;
             }
-            
+        */    
             
         }
-        return $logs;
+        
+        $tree_log = array();
+        
+        foreach ($logs as $key => $value) {
+            if($value['parent_id'] === '0'){
+                $value['subposts'] = $this->addNode($value['id'], $logs);
+                $tree_log[] = $value;  
+            }
+        }
+        
+        return $tree_log;
     }
     
     private function getCustomerData() {
@@ -111,6 +142,21 @@ class ModelUserdata extends Model {
     }
     
     public function addPost($data) {
-        $sql = "INSERT INTO `".DB_PREFIX."order_log` (`order`) VALUES()";
+        
+        $recipient = $data['recipient_id'] === $this->user->getID() ? $data['author_id'] : $data['recipient_id'];
+        //ddd($data);
+        $post_title = $this->db->escape($data['post_title']);
+        $post_content = $this->db->escape($data['post_content']);
+        
+        $sql = "INSERT INTO `".DB_PREFIX."order_log` "
+                ."(`order_id`,`post_stamp`,`post_author`,`post_reciver`,`post_title`,`post_content`,`parent_post`) "
+                ."VALUES(". $data['order_id'] .", '"
+                . $data['post_date'] ."', " 
+                . $this->user->getID() . ", " 
+                . $recipient . ", '" 
+                . $post_title . "','"
+                . $post_content . "',"
+                . $data['parent_post_id'] .")";
+        $this->db->sql($sql);
     }
 }

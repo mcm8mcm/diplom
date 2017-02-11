@@ -75,9 +75,10 @@ body{
 }
 
 .container-hi{
-    min-height: 768px;
+    min-height: auto;
     margin-bottom: 20px;
     margin-top: 20px;
+    overflow: auto;
 }
 
 .def-margin{

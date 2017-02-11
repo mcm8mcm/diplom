@@ -178,6 +178,7 @@ class ControllerCustomeroffice extends Controller {
     
     public function inprogress() {
         $this->curr_action = 'inprogress';
+        //ddd($this->request->post);
         if(isset($this->request->post['post_date'])){
             $this->load->model('userdata');
             $data = array();

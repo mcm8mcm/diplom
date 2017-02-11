@@ -66,6 +66,9 @@ var edit_funct = {
         edit_form = $('#post_edit_form').clone();
         editform_holder = container.find("p[postid='" + event.data.param + "']");
         edit_form.find('input#parent_post_id').attr('value', event.data.param);
+        edit_form.find('input#order_id').attr('value', $(this).attr('orderid'));
+        edit_form.find('input#recipient_id').attr('value', $(this).attr('reciverid'));
+        edit_form.find('input#author_id').attr('value', $(this).attr('authid'));
         editform_holder.append(edit_form);
         edit_form.removeClass("mcm-hidden").addClass("mcm-shown");
     },

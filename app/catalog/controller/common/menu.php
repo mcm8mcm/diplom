@@ -20,7 +20,8 @@ class ControllerCommonMenu extends Controller {
         'link'=> $this->response->url('customeroffice'),
         'active'=> strstr($link, 'CUSTOMEROFFICE') === FALSE ? 0 : 1);
         $menu[] = $item;       
-
+        
+        /*
         $item = array('caption'=> $this->language->get('masters'),
         'link'=> $this->response->url('masteroffice'),
         'active'=> strstr($link, 'MASTEROFFICE') === FALSE ? 0 : 1);
@@ -30,7 +31,7 @@ class ControllerCommonMenu extends Controller {
         'link'=> $this->response->url('support'),
         'active'=> strstr($link, 'SUPPORT') === FALSE ? 0 : 1);
         $menu[] = $item;               
-        
+        */
         $data['menu'] = $menu;
         
         return $this->load->view('common/menu', $data);
