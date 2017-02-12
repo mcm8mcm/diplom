@@ -39,6 +39,12 @@ foreach ($languages as $language) {
 }
 
 $user = new User($register);
+if($user->isLoggedIn()){
+    if(!$user->isAdmin()){
+        $user->logout();
+    }
+}
+
 $register->set('user', $user);
 
 /*
@@ -77,7 +83,7 @@ $language = new Language(DIR_LANG.$lang);
 $register->set('language', $language);
 
 if($request->server['REQUEST_URI'] === '/'){
-    $request->server['REQUEST_URI'] = $request->server['REQUEST_URI'] . 'home';
+    $request->server['REQUEST_URI'] = $request->server['REQUEST_URI'] . 'controlpanel';
 }
 
 $session->data['link'] = explode('?', $request->server['REQUEST_URI'])[0];
@@ -86,6 +92,13 @@ foreach ($session->data['languages'] as $value) {
     if($value['active'] === '1'){
         $session->data['language'] = $value['name'];
     }
+}
+
+$request->server['REQUEST_URI'] = str_replace('/admin', '', $request->server['REQUEST_URI']);
+
+if(!$user->isLoggedIn()){
+    $request->server['REQUEST_URI'] .= '404';
+    //ddd($request->server['REQUEST_URI']);
 }
 
 $loader->controller($request->server['REQUEST_URI']);

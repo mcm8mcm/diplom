@@ -1,12 +1,12 @@
 <?php
-define('APP_PATH', __DIR__);
-define('SITE_URL', 'http://127.0.0.5:8080/');
+define('APP_PATH', __DIR__.'/..');
+define('SITE_URL', 'http://127.0.0.5:8080/admin');
 define('CATALOG', 'catalog');
 define('ADMIN', 'admin');
 define('DS', DIRECTORY_SEPARATOR);
 define('PS', PATH_SEPARATOR);
 define('DIR_VENDOR', APP_PATH.DS.'..'.DS.'vendor'.DS);
-define('DIR_APPLICATION', APP_PATH.DS.'catalog'.DS);
+define('DIR_APPLICATION', APP_PATH.DS.'admin'.DS);
 define('SYSTEM_PATH', APP_PATH.DS.'system'.DS);
 define('DIR_LIB', SYSTEM_PATH.'lib'.DS);
 define('DIR_LANG', DIR_APPLICATION.'language'.DS);

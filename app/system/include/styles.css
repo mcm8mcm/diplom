@@ -321,3 +321,11 @@ form.edit-post div>textarea{
 .mcm-shown{
     display: block;
 }
+
+/* ADMIN */
+.admin-container{
+    width: 100%;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
