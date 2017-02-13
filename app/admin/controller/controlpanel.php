@@ -13,6 +13,11 @@
  */
 class ControllerControlpanel extends Controller{
     public function index() {
+        
+        if(!$this->user-isLoggedIn()){
+            $this->response->redirect($this->response->url('login'));
+        }
+        
         $this->load->language('controlpanel');
         
         $header = $this->load->controller('common/header');

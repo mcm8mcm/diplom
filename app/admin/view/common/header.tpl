@@ -8,7 +8,7 @@
                 <?=$langmenu;?>
             </div>
             
-            <?=$menu;?>
+            <?=$logout;?>
         </div>       
     </div>   
 </nav>
