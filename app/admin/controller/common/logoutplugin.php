@@ -1,5 +1,5 @@
 <?php
-class ControllerLogoutplugin extends Controller{
+class ControllerCommonLogoutplugin extends Controller{
     public function index() {
         if(!$this->user->isLoggedIn()){
             return '';
@@ -12,5 +12,6 @@ class ControllerLogoutplugin extends Controller{
         $data['name'] = $this->user->getName(); 
         $data['link'] = $this->response->url('login/logout');
         $logout_plugin = $this->load->view('common/logoutplugin', $data);
+        return $logout_plugin;
     }
 }

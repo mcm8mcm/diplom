@@ -32,6 +32,7 @@ class Loader {
 		$action = '';
 		$args = array (); // Will replace $data if exists
 		$path_elem = explode ( '/', str_replace ( '\\', '/', $route ) );
+                
 		while ( $path_elem ) {
 			$curr_elem = current ( $path_elem );
 			array_shift ( $path_elem );
@@ -47,7 +48,7 @@ class Loader {
 				$class .= $this->upperUnderscore ( $curr_elem );
 			}
 		}
-		
+
 		if ($path_elem) {
 			// Here are more elements - frist is action
 			$action = current ( $path_elem );
@@ -60,18 +61,18 @@ class Loader {
 			// Arguments
 			$data = $path_elem;
 		}
-		
+
 		$result = '';
 		if (is_callable ( array (
 				$controller,
 				$action 
 		) )) {
-			$result = call_user_func ( array (
+                        $result = call_user_func ( array (
 					$controller,
 					$action 
 			), $data );
 		} else {
-                    return $this->controller('home/error404', array());
+                    return $this->controller('error404', array());
                 }
 		
 		return $result;

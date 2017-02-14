@@ -1,6 +1,7 @@
 <?php
 define('APP_PATH', __DIR__);
 define('SITE_URL', 'http://127.0.0.5:8080/');
+define('BASE_URL', 'http://127.0.0.5:8080/');
 define('CATALOG', 'catalog');
 define('ADMIN', 'admin');
 define('DS', DIRECTORY_SEPARATOR);

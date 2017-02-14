@@ -97,7 +97,7 @@ foreach ($session->data['languages'] as $value) {
 $request->server['REQUEST_URI'] = str_replace('/admin', '', $request->server['REQUEST_URI']);
 
 if(!$user->isLoggedIn()){ 
-    $request->server['REQUEST_URI'] .= 'login';
+    $request->server['REQUEST_URI'] = 'login';
 }
 
 $loader->controller($request->server['REQUEST_URI']);

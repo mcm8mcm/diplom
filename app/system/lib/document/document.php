@@ -24,7 +24,7 @@ class Document {
         ob_end_clean();
         
         //include by default
-        $this->metas[] = '<base href="' . SITE_URL . '" />';
+        $this->metas[] = '<base href="' . BASE_URL . '" />';
         $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/bootstrap-3.3.5/css/bootstrap.min.css">';
         $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/bootstrap-3.3.5/css/bootstrap-theme.min.css">';
         $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/font-awesome-4.7.0/css/font-awesome.min.css">'; 
