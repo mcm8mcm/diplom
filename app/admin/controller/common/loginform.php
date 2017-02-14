@@ -4,6 +4,7 @@ class ControllerCommonLoginform extends Controller{
         $this->load->language('auth/customer_login');
         $data = array();
         $data['warning'] = '';
+        $data['redirect'] = '';
         $data['form_title'] = $this->language->get('form_title');
         $data['login_title'] = $this->language->get('login_title');
         $data['password_title'] = $this->language->get('password_title');    
