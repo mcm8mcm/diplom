@@ -13,7 +13,6 @@ class Loader {
 		foreach ( $elems as $element ) {
 			$toret .= ucfirst ( $element );
 		}
-		
 		return $toret;
 	}
 	
@@ -72,7 +71,7 @@ class Loader {
 					$action 
 			), $data );
 		} else {
-                    return $this->controller('error404', array());
+                    return $this->controller('common/404', array());
                 }
 		
 		return $result;

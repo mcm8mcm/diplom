@@ -17,12 +17,22 @@ class ControllerLogin  extends Controller{
         $this->response->flush();                
     }
     
-    public function login($login, $password){
-        $type = $this->request->post['user_type'];
+    public function login(){
         $redirect_addr = $this->request->post['redirect'];
         $login = $this->request->post['username'];
         $password = $this->request->post['password'];
         $this->user->login($login,$password);  
-        return;
+      
+        if(!$this->user->isLoggedIn()){
+            $this->index();
+            return;
+        }
+        
+        if(!$this->user->isAdmin()){
+            $this->user->logout();
+            $this->session->data['login_fail'] = 1;
+            $this->index();
+            return;
+        }
     }
 }
