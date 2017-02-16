@@ -330,3 +330,35 @@ form.edit-post div>textarea{
     margin-right: auto;
     padding-top: 20px;
 }
+
+.admin-sbmenu-lmarg{
+    margin-left: 50px;
+}
+
+.admin-sbmenu-href-bpadd{
+    margin-bottom: 10px;
+}
+
+.admin-sbmenu-container{
+    margin-bottom: 0px;
+}
+
+.admin-row-correct{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+
+.admin-header-plugin-display{
+    display: inline;
+}
+
+.admin-header-plugin-container{
+    margin-top: 15px;
+}
+
+.admin-header-plugin-font{
+    color: var(--corp-color);
+    font-weight: bold;
+}
+

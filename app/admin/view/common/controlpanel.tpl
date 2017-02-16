@@ -1,6 +1,6 @@
 <?=$header;?>
 <div class="admin-container">
-    <div class="row">
+    <div class="row admin-sbmenu-lmarg admin-row-correct">
         <div class="col-lg-3">
             <?=$sidebar;?>
         </div>

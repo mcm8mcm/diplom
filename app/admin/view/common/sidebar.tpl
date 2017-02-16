@@ -1,10 +1,7 @@
 <div class="firm-border container-hi">
-    <?php if(count($news)) { ?>
-        <?php foreach($news as $article) { ?>
-            <div class="panel panel-default article">
-                <div class="panel-heading bg-color-corp-soft color-corp"><?=$article['date'].'<br>'.$article['title']?></div>
-                <div class="panel-body"><?=$article['content']?></div>
-            </div>
+    <div class="list-group admin-sbmenu-container">
+        <?php foreach($items as $item) { ?>
+        <a href="<?=$item['href'];?>" class="list-group-item admin-sbmenu-href-bpadd <?=$item['active'] ? 'active' : '';?>"><?=$item['title']?></a>
         <?php } ?>
-    <?php } ?>
+    </div>
 </div>

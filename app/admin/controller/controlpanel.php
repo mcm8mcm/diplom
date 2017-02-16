@@ -13,8 +13,8 @@
  */
 class ControllerControlpanel extends Controller{
     public function index() {
-        
-        if(!$this->user-isLoggedIn()){
+
+        if(!$this->user->isLoggedIn()){
             $this->response->redirect($this->response->url('login'));
         }
         
@@ -30,6 +30,5 @@ class ControllerControlpanel extends Controller{
         
         $this->response->setOutput($this->document->render());
         $this->response->flush();          
-
     }
 }

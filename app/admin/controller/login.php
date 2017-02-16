@@ -22,7 +22,7 @@ class ControllerLogin  extends Controller{
         $login = $this->request->post['username'];
         $password = $this->request->post['password'];
         $this->user->login($login,$password);  
-      
+        
         if(!$this->user->isLoggedIn()){
             $this->index();
             return;
@@ -34,5 +34,7 @@ class ControllerLogin  extends Controller{
             $this->index();
             return;
         }
+        
+        $this->response->redirect($this->response->url('controlpanel'));
     }
 }
