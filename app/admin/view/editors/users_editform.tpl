@@ -5,9 +5,9 @@
     
     <div class="panel-body">
         <?php foreach($users_data['user'] as $user) { ?>
-        <form id="data_form_<?=$user['id'];?>">
-            <div id="control_part" class="row">
-                Preved
+        <form id="data_form_<?=$user['id'];?>" class="user-ctl-descr-form">
+            <div id="control_part" class="row user-ctl-btn-block">
+                <div class="col-lg-12">Preved</div>          
             </div>
 
             <div id="data_part" class="row">
@@ -28,7 +28,7 @@
                     </div>                    
                 </div>
                 
-                <div class="col-lg-4">
+                <div class="col-lg-4 user-ctl-descr-block">
                     <div class="form-group">
                         <label for="login"><?=$ulogim_field_title;?>:</label>
                         <input type="text" class="form-control" id="login" name="login" value="<?=$user['login'];?>">
@@ -51,17 +51,20 @@
                 
                 </div>
                 
-                <div class="col-lg-4">
+                <div class="col-lg-4 user-ctl-descr-block">
                     <div class="form-group">
                         <label for="user_group"><?=$ugroup_field_title;?>:</label>
                         <input type="text" class="form-control" id="user_group" name="user_group" value="<?=$user['group_name'];?>">
                     </div>
-                    
+                 
                     <div class="form-group">
                         <label for="isactive"><?=$uactive_field_title;?>:</label>
-                        <input type="text" class="form-control" id="isactive" name="isactive" value="<?=$user['active'];?>">                        
+                        <select class="form-control" id="isactive" name="isactive">
+                            <option <?=$user['active'] === '1' ? 'selected' : '';?>><?=$yes;?></option>
+                            <option <?=$user['active'] === '1' ? '' : 'selected';?>><?=$no;?></option>
+                        </select>            
                     </div>
-
+                    
                     <div class="form-group">
                         <label for="user_lang"><?=$ulanguage_field_title;?>:</label>
                         <input type="text" class="form-control" id="user_lang" name="user_lang" value="<?=$user['language'];?>">                        
@@ -70,7 +73,8 @@
                     <div class="form-group">
                         <label for="cur_sess_id"><?=$usessionid_field_title;?>:</label>
                         <input type="text" class="form-control" id="cur_sess_id" name="cur_sess_id" value="<?=$user['session_id'];?>">                        
-                    </div>   
+                    </div>
+                                        
                 </div>                
             </div>            
         </form>

@@ -390,6 +390,24 @@ form.edit-post div>textarea{
     background: #dff0d8;
 }
 
+.user-ctl-descr-form{
+    border: 1px solid #3c763d;  
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.user-ctl-descr-block{
+    border-left: 1px solid #3c763d;  
+}
+
+.user-ctl-btn-block{
+    border-bottom: 1px solid #3c763d; 
+    margin-left: 20px;
+    margin-right: 20px;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
 /*
 
 .price-table>tbody>tr>td.price{

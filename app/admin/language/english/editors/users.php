@@ -4,6 +4,9 @@ $_['users_tab_title'] = 'Users';
 $_['groups_tab_title'] = 'Groups';
 $_['gid_field_title'] = 'ID';
 $_['gname_field_title'] = 'Description';
+$_['lang_not_selected'] = 'Not selected';
+$_['yes'] = 'Yes';
+$_['no'] = 'No';
 //=======================================
 $_['uid_field_title'] = 'ID';
 $_['ufirstname_field_title'] = 'First name';
