@@ -362,3 +362,47 @@ form.edit-post div>textarea{
     font-weight: bold;
 }
 
+.std-col-margin{
+    margin-top: 20px;
+}
+
+.centred{
+    text-align: center;
+}
+
+.user-ctl-table{
+    width: 100%;
+}
+
+.user-ctl-table>thead>tr>th{
+    border: 1px solid #d6e9c6;
+    font-weight: bolder;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.user-ctl-table>tbody>tr>td{
+    border: 1px solid #d6e9c6;
+    padding: 5px;
+}
+
+.user-ctl-table>tbody>tr:nth-child(even){
+    background: #dff0d8;
+}
+
+/*
+
+.price-table>tbody>tr>td.price{
+    text-align: right;
+}
+
+
+.price-table>thead>tr>th{
+    border: 1px solid #d6e9c6;
+    font-weight: bold;
+    text-align: center;
+    padding: 5px;
+    background: #dff0d8;
+    color: #3c763d;
+}
+*/
