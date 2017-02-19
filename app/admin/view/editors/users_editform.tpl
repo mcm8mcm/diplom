@@ -67,7 +67,12 @@
                     
                     <div class="form-group">
                         <label for="user_lang"><?=$ulanguage_field_title;?>:</label>
-                        <input type="text" class="form-control" id="user_lang" name="user_lang" value="<?=$user['language'];?>">                        
+                        <select class="form-control" id="user_lang" name="user_lang">
+                            <option><?=$not_selected;?></option>
+                            <?php foreach($users_data['lang'] as $curr_lang) { ?>
+                                <option <?=$curr_lang['name'] !== '' && $curr_lang['name'] === $user['language'] ? 'selected' : '';?>><?=$curr_lang['name'];?></option>
+                            <? } ?>
+                        </select> 
                     </div>                                       
                                                            
                     <div class="form-group">

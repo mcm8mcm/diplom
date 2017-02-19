@@ -21,14 +21,14 @@ class ModelEditors extends Model {
     }
 
     public function getFooterData() {
-        $sql = 'SELECT * FROM `'.DB_PREFIX.'languages`';
-        $this->db->sql($sql);
-        return($this->db->rows);
+        return(array());
+
     }
 
     public function getLanguages() {
-        
-        return(array());
+        $sql = 'SELECT * FROM `'.DB_PREFIX.'languages`';
+        $res = $this->db->sql($sql);
+        return($res['rows']);        
     }
 
     public function getTasks() {

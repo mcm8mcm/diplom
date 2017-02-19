@@ -7,6 +7,7 @@ $_['gname_field_title'] = 'Description';
 $_['lang_not_selected'] = 'Not selected';
 $_['yes'] = 'Yes';
 $_['no'] = 'No';
+$_['not_selected'] = 'Not selected';
 //=======================================
 $_['uid_field_title'] = 'ID';
 $_['ufirstname_field_title'] = 'First name';

@@ -14,6 +14,7 @@ class ControllerEditorsEdusers extends Controller {
         $data['lang_not_selected'] = $this->language->get('lang_not_selected');
         $data['yes'] = $this->language->get('yes');
         $data['no'] = $this->language->get('no');
+        $data['not_selected'] = $this->language->get('not_selected');
         //=======================================
         $data['uid_field_title'] = $this->language->get('uid_field_title');
         $data['ufirstname_field_title'] = $this->language->get('ufirstname_field_title');
