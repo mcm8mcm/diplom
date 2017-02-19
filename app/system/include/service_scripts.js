@@ -85,3 +85,31 @@ var edit_funct = {
     }
 };
 
+var edit_users = {
+    'start_edit' : function(form_id){
+        var this_form = $('form#'+form_id);
+        this_form.attr('editing', 1);
+        this_form.find('input#first_name').prop('disabled',false);
+        this_form.find('input#patronymic').prop('disabled',false);
+        this_form.find('input#lastname').prop('disabled',false);
+        this_form.find('input#login').prop('disabled',false);
+        this_form.find('input#pwd').prop('disabled',false);
+        this_form.find('input#email').prop('disabled',false);
+        this_form.find('input#reg_expired').prop('disabled',false);
+        this_form.find('input#user_group').prop('disabled',false);
+        this_form.find('input#cur_sess_id').prop('disabled',false);
+        this_form.find('select#isactive').prop('disabled',false);
+        this_form.find('select#user_lang').prop('disabled',false); 
+        this_form.find('button#btn_save').prop('disabled',false);
+        this_form.find('button#btn_edit').prop('disabled',false);
+        this_form.find('button#btn_cancel').prop('disabled',false);
+    },
+    
+    'save_form' : function(){
+        
+    },
+    
+    'cancel_edit' : function(){
+        
+    }
+};

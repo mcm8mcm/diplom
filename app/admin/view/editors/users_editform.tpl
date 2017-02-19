@@ -5,9 +5,22 @@
     
     <div class="panel-body">
         <?php foreach($users_data['user'] as $user) { ?>
-        <form id="data_form_<?=$user['id'];?>" class="user-ctl-descr-form">
+        <form id="data_form_<?=$user['id'];?>" class="user-ctl-descr-form" method="post" enctype="multipart/form-data">
+            
             <div id="control_part" class="row user-ctl-btn-block">
-                <div class="col-lg-12">Preved</div>          
+                <div class="col-lg-12">
+                    <div class="pull-right">
+                        <button disabled="" form_id="data_form_<?=$user['id'];?>" id="btn_cancel" class="btn btn-warning flag-marging"><span class="fa fa-times-circle"/></button>
+                    </div>                                        
+                    
+                    <div class="pull-right">
+                        <button disabled="" form_id="data_form_<?=$user['id'];?>" id="btn_save" class="btn btn-default flag-marging"><span class="fa fa-save"/></button>
+                    </div>
+                    
+                    <div class="pull-right">
+                        <button type="button" onclick="edit_users.start_edit(<?='\''. 'data_form_'.$user['id'] . '\'';?>)" id="btn_edit" form_id="data_form_<?=$user['id'];?>" class="btn btn-primary flag-marging"><span class="fa fa-edit"/></button>
+                    </div>
+                </div>          
             </div>
 
             <div id="data_part" class="row">
@@ -41,7 +54,7 @@
                     
                     <div class="form-group">
                         <label for="email"><?=$uemail_field_title;?>:</label>
-                        <input disabled="" type="text" class="form-control" id="email" name="email" value="<?=$user['email'];?>">                        
+                        <input disabled="" type="email" class="form-control" id="email" name="email" value="<?=$user['email'];?>">                        
                     </div>                    
   
                     <div class="form-group">
@@ -86,4 +99,6 @@
         </form>
         <?php } ?>
     </div>
+
+
 </div>
