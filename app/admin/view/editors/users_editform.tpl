@@ -59,7 +59,12 @@
   
                     <div class="form-group">
                         <label for="reg_expired"><?=$uregexpired_field_title;?>:</label>
-                        <input disabled="" type="text" class="form-control" id="reg_expired" name="reg_expired" value="<?=$user['reg_expired'];?>">                        
+                        <div class="input-group date" id="reg_expired">
+                            <input disabled="" type="text" class="form-control" size="16" id="reg_expired_input" name="reg_expired" value="<?=$user['reg_expired'];?>">                        
+                            <span class="input-group-addon">
+                                <span class="glyphicon glyphicon-calendar"></span>
+                            </span>
+                        </div>
                     </div>                    
                 
                 </div>

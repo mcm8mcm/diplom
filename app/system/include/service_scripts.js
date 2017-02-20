@@ -1,6 +1,7 @@
 $(document).ready(function(){
     signup.onload();
     edit_funct.onload();
+    edit_users.onload();
 }
 );
 
@@ -95,7 +96,7 @@ var edit_users = {
         this_form.find('input#login').prop('disabled',false);
         this_form.find('input#pwd').prop('disabled',false);
         this_form.find('input#email').prop('disabled',false);
-        this_form.find('input#reg_expired').prop('disabled',false);
+        this_form.find('input#reg_expired_input').prop('disabled',false);
         this_form.find('input#user_group').prop('disabled',false);
         this_form.find('input#cur_sess_id').prop('disabled',false);
         this_form.find('select#isactive').prop('disabled',false);
@@ -111,5 +112,13 @@ var edit_users = {
     
     'cancel_edit' : function(){
         
+    },
+    
+    'onload' : function(){
+        var dt_pikers = $("#reg_expired");
+        dt_pikers.each(function(){
+            var elem = $(this);
+            elem.datetimepicker({autoclose: true,language:'ru',format:'dd.mm.yyyy hh:ii:ss'});
+        })
     }
 };
