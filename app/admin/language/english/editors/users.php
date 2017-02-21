@@ -8,6 +8,7 @@ $_['lang_not_selected'] = 'Not selected';
 $_['yes'] = 'Yes';
 $_['no'] = 'No';
 $_['not_selected'] = 'Not selected';
+$_['success_msg'] = 'Element successfully saved';
 //=======================================
 $_['uid_field_title'] = 'ID';
 $_['ufirstname_field_title'] = 'First name';

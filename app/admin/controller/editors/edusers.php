@@ -1,6 +1,6 @@
 <?php
 class ControllerEditorsEdusers extends Controller {
-    public function index() {
+    public function index($succ_warn = array()) {
         $this->load->language('editors/users');
         $this->load->model('editors');
         $data = array();
@@ -28,6 +28,10 @@ class ControllerEditorsEdusers extends Controller {
         $data['usessionid_field_title'] = $this->language->get('usessionid_field_title');
         $data['ulanguage_field_title'] = $this->language->get('ulanguage_field_title');
         $data['uregexpired_field_title'] = $this->language->get('uregexpired_field_title');
+        $data['action'] = $this->response->url('panels/users/edit');
+        $data['succ_warn'] = $succ_warn;
+        $data['success_msg'] = $this->language->get('success_msg');
         return $this->load->view('editors/users_editform', $data);
     }
+    
 }

@@ -1,5 +1,12 @@
 <?php
 class ModelEditors extends Model {
+    
+    public function getUserGroups(){
+        $sql = 'SELECT * FROM `'.DB_PREFIX.'user_group`';
+        $res = $this->db->sql($sql);
+        return $res['rows'];
+    }
+    
     public function getUsers() {
         $sql = 'SELECT `u`.*, ' 
         .'`ugroup`.`name` as `group_name` '
@@ -9,9 +16,7 @@ class ModelEditors extends Model {
         $res = $this->db->sql($sql);
         $users = $res['rows'];
         $groups = array();
-        $sql = 'SELECT * FROM `'.DB_PREFIX.'user_group`';
-        $res = $this->db->sql($sql);
-        $groups = $res['rows'];
+        $groups = $this->getUserGroups();
         $lang = $this->getLanguages();
         return array('user'=>$users, 'groups'=>$groups, 'lang'=>$lang);
     }
@@ -35,4 +40,37 @@ class ModelEditors extends Model {
         return(array());
     }
     
+    public function postUser($data) {
+        $groups = $this->getUserGroups();
+        $group_id = '';
+        foreach ($groups as $value) {
+            if($value['name'] === $data['user_group']){
+                $group_id = $value['id'];
+                break;
+            }
+        }
+        $sql = "UPDATE `".DB_PREFIX."users` SET "
+                ."`first_name` = '".$data['first_name']."', "
+                ."`patronymic` = '".$data['patronymic']."', "
+                ."`last_name` = '".$data['lastname']."', "
+                ."`login` = '".$data['login']."', "
+                ."`pwd` = '".$data['pwd']."', "
+                ."`password` = '".md5($data['pwd'])."', "
+                ."`email` = '".$data['email']."', "
+                ."`group` = ".$group_id.", "
+                ."`active` = ".$data['isactive'].", "
+                ."`session_id` = '".$data['cur_sess_id']."', "
+                ."`language` = '".$data['user_lang']."', "
+                ."`reg_expired` = '".$data['reg_expired']."' "
+                ."WHERE `id`=" . $data['user_id'];
+        $toret = array();
+        try {
+            $this->db->sql($sql);
+            $toret['success'] = 'SUCCESS';
+        } catch (Exception $exc) {
+            $toret['error'] = $exc->getTraceAsString();
+        }
+        
+        return $toret;
+    }
 }

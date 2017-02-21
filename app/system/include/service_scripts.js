@@ -88,6 +88,7 @@ var edit_funct = {
 
 var edit_users = {
     'start_edit' : function(form_id){
+        this.cancel_edit();
         var this_form = $('form#'+form_id);
         this_form.attr('editing', 1);
         this_form.find('input#first_name').prop('disabled',false);
@@ -97,13 +98,21 @@ var edit_users = {
         this_form.find('input#pwd').prop('disabled',false);
         this_form.find('input#email').prop('disabled',false);
         this_form.find('input#reg_expired_input').prop('disabled',false);
-        this_form.find('input#user_group').prop('disabled',false);
+        this_form.find('select#user_group').prop('disabled',false);
         this_form.find('input#cur_sess_id').prop('disabled',false);
         this_form.find('select#isactive').prop('disabled',false);
         this_form.find('select#user_lang').prop('disabled',false); 
         this_form.find('button#btn_save').prop('disabled',false);
-        this_form.find('button#btn_edit').prop('disabled',false);
+        //this_form.find('button#btn_edit').prop('disabled',false);
         this_form.find('button#btn_cancel').prop('disabled',false);
+        this_form.find('div#reg_expired').datetimepicker({
+                autoclose: true,
+                language:'ru',
+                format:'yyyy-mm-dd hh:ii:ss',
+                enabledHours: true,
+                todayHighlight: true,
+                minuteStep: 1
+            });
     },
     
     'save_form' : function(){
@@ -111,14 +120,33 @@ var edit_users = {
     },
     
     'cancel_edit' : function(){
+        var this_form = $('form[editing=1]');
+        this_form.attr('editing', 0);
+        this_form.find('input#first_name').prop('disabled',true);
+        this_form.find('input#patronymic').prop('disabled',true);
+        this_form.find('input#lastname').prop('disabled',true);
+        this_form.find('input#login').prop('disabled',true);
+        this_form.find('input#pwd').prop('disabled',true);
+        this_form.find('input#email').prop('disabled',true);
+        this_form.find('input#reg_expired_input').prop('disabled',true);
+        this_form.find('select#user_group').prop('disabled',true);
+        this_form.find('input#cur_sess_id').prop('disabled',true);
+        this_form.find('select#isactive').prop('disabled',true);
+        this_form.find('select#user_lang').prop('disabled',true); 
+        this_form.find('button#btn_save').prop('disabled',true);
+        //this_form.find('button#btn_edit').prop('disabled',true);
+        this_form.find('button#btn_cancel').prop('disabled',true);
+        this_form.find('div#reg_expired').datetimepicker('remove');
         
     },
     
     'onload' : function(){
-        var dt_pikers = $("#reg_expired");
+        /*
+        var dt_pikers = $("div#reg_expired");
         dt_pikers.each(function(){
             var elem = $(this);
-            elem.datetimepicker({autoclose: true,language:'ru',format:'dd.mm.yyyy hh:ii:ss'});
+            elem.
         })
+        dt_pikers.find('#') */
     }
 };
