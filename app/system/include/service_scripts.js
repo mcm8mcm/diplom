@@ -46,10 +46,10 @@ var edit_funct = {
         });
     },
     
-    'on_cancel' : function(){
+    'on_cancel' : function(new_user=0){
         edit_funct.remove_shown();
     },
-    
+   
     'remove_shown' : function(){
         var shown;
         shown = $('form.mcm-shown');
@@ -83,7 +83,8 @@ var edit_funct = {
         new_elem.attr('value', post_date.toISOString().substring(0, 19).replace('T', ' '));
         form.append(new_elem);
         form.submit();
-    }
+    },
+    
 };
 
 var edit_users = {
@@ -137,6 +138,14 @@ var edit_users = {
         //this_form.find('button#btn_edit').prop('disabled',true);
         this_form.find('button#btn_cancel').prop('disabled',true);
         this_form.find('div#reg_expired').datetimepicker('remove');
+        
+    },
+
+    'new_user' : function(){
+        
+    },
+    
+    'cancel_new_user' : function() {
         
     },
     
