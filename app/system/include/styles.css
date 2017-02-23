@@ -348,6 +348,10 @@ form.edit-post div>textarea{
     margin-right: 0px;
 }
 
+.admin-row-correct-vert{
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
 
 .admin-header-plugin-display{
     display: inline;
@@ -412,6 +416,26 @@ form.edit-post div>textarea{
     margin-right: 20px;
     padding-bottom: 10px;
     margin-bottom: 5px;
+}
+
+.user-add-form-holder{
+    clear: both;
+    margin-top: 5px;
+}
+
+.user-add-form{
+    margin-left: 15px;
+    margin-right: 15px;
+}
+
+.usr-add-title-holder{
+    text-align: center;
+}
+
+.usr-add-title{
+    font-weight: 500;
+    text-align: center;
+    color: #ff0000;
 }
 
 /*

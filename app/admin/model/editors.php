@@ -73,4 +73,48 @@ class ModelEditors extends Model {
         
         return $toret;
     }
+    
+    public function addUser($data) {
+        $groups = $this->getUserGroups();
+        $group_id = '';
+        foreach ($groups as $value) {
+            if($value['name'] === $data['user_group']){
+                $group_id = $value['id'];
+                break;
+            }
+        }
+
+        $sql = "INSERT INTO `".DB_PREFIX."users`(`first_name`,"
+                . "`patronymic`,"
+                . "`last_name`,"
+                . "`login`,"
+                . "`pwd`,"
+                . "`password`,"
+                . "`email`,"
+                . "`group`,"
+                . "`active`,"
+                . "`session_id`,"
+                . "`language`,"
+                . "`reg_expired`) VALUES('".$data['first_name']."',"
+                . "'".$data['patronymic']."',"
+                . "'".$data['lastname']."',"
+                . "'".$data['login']."',"
+                . "'".$data['pwd']."',"
+                . "'".md5($data['pwd'])."',"
+                . "'".$data['email']."',"
+                .$group_id.","
+                .$data['isactive'].","
+                . "'".$data['cur_sess_id']."',"
+                . "'".$data['user_lang']."',"
+                . "'".$data['reg_expired']."')";
+
+        try {
+            $this->db->sql($sql);
+            $toret['success'] = 'SUCCESS';
+        } catch (Exception $exc) {
+            $toret['error'] = $sql.PHP_EOL.$exc->getTraceAsString();
+        }
+        
+        return $toret;       
+    }
 }

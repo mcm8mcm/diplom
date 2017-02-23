@@ -28,6 +28,7 @@ class ControllerEditorsEdusers extends Controller {
         $data['usessionid_field_title'] = $this->language->get('usessionid_field_title');
         $data['ulanguage_field_title'] = $this->language->get('ulanguage_field_title');
         $data['uregexpired_field_title'] = $this->language->get('uregexpired_field_title');
+        $data['new_user_title'] = $this->language->get('new_user_title');        
         $data['action'] = $this->response->url('panels/users/edit');
         $data['add_action'] = $this->response->url('panels/users/add_user');
         $data['succ_warn'] = $succ_warn;

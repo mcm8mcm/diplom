@@ -142,11 +142,26 @@ var edit_users = {
     },
 
     'new_user' : function(){
-        
+        this.cancel_new_user();
+        this.cancel_edit();
+        var holder = $('#add_form_holder');
+        var edit_form = $('#add_user_form').clone();
+        edit_form.removeClass('mcm-hidden');
+        edit_form.addClass('mcm-shown');
+        edit_form.find('div#reg_expired').datetimepicker({
+                autoclose: true,
+                language:'ru',
+                format:'yyyy-mm-dd hh:ii:ss',
+                enabledHours: true,
+                todayHighlight: true,
+                minuteStep: 1
+            });
+        edit_form.attr('visible_edit_fotm', '1');    
+        holder.append(edit_form);
     },
     
     'cancel_new_user' : function() {
-        
+        $('form[visible_edit_fotm="1"]').remove();
     },
     
     'onload' : function(){
