@@ -165,12 +165,11 @@ var edit_users = {
     },
     
     'onload' : function(){
-        /*
-        var dt_pikers = $("div#reg_expired");
-        dt_pikers.each(function(){
-            var elem = $(this);
-            elem.
-        })
-        dt_pikers.find('#') */
+    }
+};
+
+var edit_languages = {
+    'new_language': function () {
+        
     }
 };

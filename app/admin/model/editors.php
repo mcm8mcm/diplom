@@ -36,6 +36,19 @@ class ModelEditors extends Model {
         return($res['rows']);        
     }
 
+    public function getFlags() {
+        $toret = array();
+        $path = ICLUDE_URL.DS.'img'.DS.'flags';
+        $files = scandir(APP_PATH.DS.$path);
+        
+        foreach ($files as $value) {
+            if($value === '.' || $value === '..') continue;
+            $toret[] = $path.DS.$value;
+        }
+        
+        return $toret;
+    }
+    
     public function getTasks() {
         return(array());
     }
