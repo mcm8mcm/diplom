@@ -374,23 +374,31 @@ form.edit-post div>textarea{
     text-align: center;
 }
 
-.user-ctl-table{
+.common-ctl-table{
     width: 100%;
 }
 
-.user-ctl-table>thead>tr>th{
+.common-ctl-table>thead>tr>th{
     border: 1px solid #d6e9c6;
     font-weight: bolder;
     text-align: center;
     vertical-align: middle;
+    padding: 5px 0px 5px 0px;
 }
 
-.user-ctl-table>tbody>tr>td{
+.common-ctl-table>tbody>tr>td{
+    border: 1px solid #d6e9c6;
+    padding: 5px 5px 5px 10px;
+}
+
+.common-ctl-table>tbody>tr>td.centered{
     border: 1px solid #d6e9c6;
     padding: 5px;
+    text-align: center;
 }
 
-.user-ctl-table>tbody>tr:nth-child(even){
+
+.common-ctl-table>tbody>tr:nth-child(even){
     background: #dff0d8;
 }
 

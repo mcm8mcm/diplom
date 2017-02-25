@@ -11,17 +11,18 @@ class ControllerEditorsEdlanguages extends Controller {
         $data['yes'] = $this->language->get('yes');
         $data['no'] = $this->language->get('no');
         //=======================================
-        $data['lname'] = $this->language->get('uid_field_title');
-        $data['lshort_name'] = $this->language->get('ufirstname_field_title');
-        $data['currency_name'] = $this->language->get('upatronymic_field_title');
-        $data['lflag'] = $this->language->get('ulastname_field_title');
-        $data['lactive'] = $this->language->get('ulogim_field_title');
-        $data['ldesc'] = $this->language->get('upwd_field_title');
-        $data['new_lang_title'] = $this->language->get('new_user_title');        
+        $data['lname'] = $this->language->get('lname');
+        $data['lshort_name'] = $this->language->get('lshort_name');
+        $data['currency_name'] = $this->language->get('currency_name');
+        $data['lflag'] = $this->language->get('lflag');
+        $data['lactive'] = $this->language->get('lactive');
+        $data['ldesc'] = $this->language->get('ldesc');
+        $data['new_lang_title'] = $this->language->get('new_lang_title');        
         $data['action'] = $this->response->url('panels/languages/edit');
         $data['add_action'] = $this->response->url('panels/languages/add_language');
         $data['succ_warn'] = $succ_warn;
         $data['success_msg'] = $this->language->get('success_msg');
+        //ddd($data);
         return $this->load->view('editors/language_editform', $data);
     }   
 }

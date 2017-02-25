@@ -26,7 +26,31 @@
             </div>
         </div>
 
-        <?php foreach($lang_data['user'] as $user) { ?>
-        <?php } ?>
+        <table class="common-ctl-table">
+            <thead>
+                <tr>
+                    <th><?=$lname;?></th>
+                    <th><?=$lshort_name;?></th>
+                    <th><?=$currency_name;?></th>
+                    <th><?=$lflag;?></th>
+                    <th><?=$lactive;?></th>
+                    <th><?=$ldesc;?></th>                    
+                </tr>
+            </thead>
+            
+            <tbody>
+                <?php foreach($lang_data as $lang) { ?>
+                <tr>
+                    <td><?=$lang['name'];?></td>
+                    <td><?=$lang['short_name'];?></td>
+                    <td class='centered'><?=$lang['currency'];?></td>
+                    <td class='centered'><img src="<?=$lang['flag'];?>"></img></td>
+                    <td class='centered'><?=$lang['active'] === '1' ? $yes : $no;?></td>
+                    <td><?=$lang['lang_word'];?></td>
+                </tr>
+                <?php } ?>                
+            </tbody>
+        </table>
+        
     </div>
 </div>
