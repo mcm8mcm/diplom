@@ -46,7 +46,14 @@
                     <td class='centered'><?=$lang['currency'];?></td>
                     <td class='centered'><img src="<?=$lang['flag'];?>"></img></td>
                     <td class='centered'><?=$lang['active'] === '1' ? $yes : $no;?></td>
-                    <td><?=$lang['lang_word'];?></td>
+                    <td>
+                        <div class="pull-left edit-btn-container"><?=$lang['lang_word'];?></div>
+                        <div disabled="" class="pull-right" id="CUD_toolbar">
+                            <button type="button" onclick="edit_languages.new_language()" id="btn_new_language" class="btn btn-primary flag-marging"><span class="fa fa-pencil"></span></button>
+                            <button type="button" onclick="edit_languages.new_language()" id="btn_new_language" class="btn btn-default flag-marging"><span class="fa fa-save"></span></button>
+                            <button type="button" onclick="edit_languages.new_language()" id="btn_new_language" class="btn btn-warning flag-marging"><span class="fa fa-times"></span></button>                            
+                        </div>
+                    </td>
                 </tr>
                 <?php } ?>                
             </tbody>

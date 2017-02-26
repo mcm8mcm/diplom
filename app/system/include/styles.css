@@ -446,6 +446,10 @@ form.edit-post div>textarea{
     color: #ff0000;
 }
 
+.edit-btn-container{
+    padding-top: 5px;
+}
+
 /*
 
 .price-table>tbody>tr>td.price{
