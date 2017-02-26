@@ -169,7 +169,37 @@ var edit_users = {
 };
 
 var edit_languages = {
-    'new_language': function () {
+    'del_language': function (lang_id) {
+        alert("DELETE " + lang_id);
+    },
+    
+    'cancel_edit_language' : function() {
+        var forms = $('form[curr_edit_form="1"]');
+        var control_container = $('div#control_container');
         
-    }
+        forms.each(function () {
+            var cur_form = $(this);
+            cur_form.removeClass('mcm-shown');
+            cur_form.addClass('mcm-hidden');
+            cur_form.attr('curr_edit_form', '0');
+            control_container.append(cur_form);
+        })
+    },
+    
+    'new_language': function () {
+        this.cancel_edit_language();
+        var edit_form = $("form#edit_form");//.clone();
+        var holder = $("div#add_form_holder");
+        edit_form.attr('curr_edit_form', '1');
+        edit_form.attr('action', edit_form.attr('add_action'));
+        holder.append(edit_form);
+        edit_form.removeClass('mcm-hidden');
+        edit_form.addClass('mcm-shown');
+    },
+    
+    'start_edit' : function (lang_id) {
+        var row_holder = $('tr[langid="' + lang_id + '"]');
+        
+    } 
+    
 };

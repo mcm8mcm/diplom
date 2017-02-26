@@ -370,6 +370,10 @@ form.edit-post div>textarea{
     margin-top: 20px;
 }
 
+.unmargin-top{
+    margin-top: 0px;
+}
+
 .centred{
     text-align: center;
 }
@@ -450,19 +454,17 @@ form.edit-post div>textarea{
     padding-top: 5px;
 }
 
-/*
-
-.price-table>tbody>tr>td.price{
-    text-align: right;
+.flag_name{
+    display: inline;
+    margin-left: 10px;
+    font-weight: 500;
 }
 
-
-.price-table>thead>tr>th{
-    border: 1px solid #d6e9c6;
-    font-weight: bold;
-    text-align: center;
-    padding: 5px;
-    background: #dff0d8;
-    color: #3c763d;
+.bootstrap-select.btn-group{
+    margin-top: 0px;
 }
-*/
+
+select#is_active{
+    display: block;
+}
+

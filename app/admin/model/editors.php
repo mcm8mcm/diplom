@@ -36,6 +36,25 @@ class ModelEditors extends Model {
         return($res['rows']);        
     }
 
+    public function addLanguage($data) {
+        $sql = "INSERT INTO `".DB_PREFIX."languages` VALUES('".$data['lang_name']."',"
+                . "'".$data['short_name']."',"
+                . "'".$data['currency']."',"
+                . "'".$data['flag']."',"
+                .$data['is_active'].","
+                . "'".$data['description']."')";
+        
+        $toret = array();
+        try {
+            $this->db->sql($sql);
+            $toret['success'] = 'SUCCESS';
+        } catch (Exception $exc) {
+            $toret['error'] = $exc->getTraceAsString();
+        }
+        
+        return $toret;        
+    }
+    
     public function getFlags() {
         $toret = array();
         $path = ICLUDE_URL.DS.'img'.DS.'flags';
@@ -43,7 +62,8 @@ class ModelEditors extends Model {
         
         foreach ($files as $value) {
             if($value === '.' || $value === '..') continue;
-            $toret[] = $path.DS.$value;
+            $flag_name = strtoupper(explode('.', $value)[0]);
+            $toret[] = array('path'=>$path.DS.$value, 'name'=>$flag_name);
         }
         
         return $toret;
