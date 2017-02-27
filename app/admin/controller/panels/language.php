@@ -68,4 +68,23 @@ class ControllerPanelsLanguage extends Controller {
         $this->session->data['sacc_err'] = $res;
         $this->response->redirect($this->response->url('panels/language'));    
     }
+    
+    public function del_language() {
+        
+        if(!$this->user->isLoggedIn()){
+            $this->response->redirect($this->response->url('login'));
+        }
+
+        if(!isset($this->request->post) || !isset($this->request->post['elem_id'])){
+            $this->index();
+        }
+        
+        $this->load->model('editors'); 
+        $flags = $this->model_editors->getFlags();
+        $res = $this->model_editors->delLanguage($this->request->post['elem_id']);
+        $this->session->data['sacc_err'] = $res;
+        $this->session->data['sacc_err']['del'] = TRUE;
+        $this->response->redirect($this->response->url('panels/language'));    
+    }
+    
 }

@@ -6,7 +6,7 @@
     <?php if(isset($succ_warn['success'])) { ?>
     <div class="alert alert-success alert-dismissable">
         <a href="" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-        <?=$success_msg;?>
+        <?= isset($succ_warn['del']) ? $success_del_msg : $success_msg;?>
     </div>
     <?php } ?>
 
@@ -50,14 +50,18 @@
                         <div class="pull-left edit-btn-container"><?=$lang['lang_word'];?></div>
                         <div disabled="" class="pull-right" id="CUD_toolbar">
                             <button type="button" title="<?=$edit_lang_title?>" onclick="edit_languages.start_edit(<?='\''.$lang['name'].'\'';?>)" id="btn_edit_language" class="btn btn-primary flag-marging"><span class="fa fa-pencil"></span></button>
-                            <button type="button" title="<?=$del_lang_title?>" onclick="edit_languages.del_language(<?='\''.$lang['name'].'\'';?>)" id="btn_del_language" class="btn btn-danger flag-marging"><span class="fa fa-times-circle"></span></button>                            
+                            <form class="correct_inline" id="del_form" method="post" action="<?=$del_action;?>">
+                                <input type="hidden" name="elem_id" value="<?=$lang['name'];?>">
+                                <input type="hidden" name="del_question" value="<?=$del_question;?>">
+                                <button form="del_form" type="button" title="<?=$del_lang_title?>" onclick="edit_languages.del_language(<?='\''.$lang['name'].'\'';?>)" id="btn_del_language" class="btn btn-danger flag-marging"><span class="fa fa-times-circle"></span></button>                            
+                            </form>
                         </div>
                     </td>
                 </tr>
                 <?php } ?>                
             </tbody>
         </table>
-
+        
     </div>
 </div>
 <form id="edit_form" add_action="<?=$add_action;?>" edit_action="<?=edit_action;?>" class=" user-ctl-descr-form mcm-hidden" method="post" enctype="multipart/form-data" action="<?=$add_action;?>">

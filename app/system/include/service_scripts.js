@@ -170,7 +170,13 @@ var edit_users = {
 
 var edit_languages = {
     'del_language': function (lang_id) {
-        alert("DELETE " + lang_id);
+        var curr_form = $("form#del_form>input[type='hidden'][value='"+lang_id+"']").parent();
+        var answ = confirm("DELETE " + lang_id + " ?");
+        if(answ === true){
+            curr_form.submit();
+        }else{
+            return;
+        }
     },
     
     'cancel_edit_language' : function() {

@@ -468,3 +468,6 @@ select#is_active{
     display: block;
 }
 
+.correct_inline{
+    display: inline;
+}

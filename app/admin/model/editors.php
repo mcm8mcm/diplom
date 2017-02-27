@@ -55,6 +55,22 @@ class ModelEditors extends Model {
         return $toret;        
     }
     
+    public function delLanguage($lang_id) {
+        $sql = "UPDATE `".DB_PREFIX."users` SET `language`='' WHERE `language`='".$lang_id."'";
+        $this->db->sql($sql);
+        $sql = "DELETE FROM `".DB_PREFIX."languages` WHERE `name`='".$lang_id."'";
+        $toret = array();
+        try {
+            $this->db->sql($sql);
+            $toret['success'] = 'SUCCESS';
+        } catch (Exception $exc) {
+            $toret['error'] = $exc->getTraceAsString();
+        }
+        
+        return $toret;        
+    }
+
+
     public function getFlags() {
         $toret = array();
         $path = ICLUDE_URL.DS.'img'.DS.'flags';
