@@ -205,7 +205,51 @@ var edit_languages = {
     
     'start_edit' : function (lang_id) {
         var row_holder = $('tr[langid="' + lang_id + '"]');
+        var edit_form = $("form#edit_form");
+        var currValue = "";
         
+        currValue = row_holder.find("td#td_name").attr('value');
+        row_holder.find("td#td_name").addClass("mcm-hidden");
+        edit_form.find("input#lang_name").attr('value', currValue);
+        
+        currValue = row_holder.find("td#td_short_name").attr('value');
+        row_holder.find("td#td_short_name").addClass("mcm-hidden");
+        edit_form.find("input#short_name").attr('value', currValue);
+        
+        currValue = row_holder.find("td#td_currency").attr('value');
+        row_holder.find("td#td_currency").addClass("mcm-hidden");
+        edit_form.find("input#currency").attr('value', currValue);
+        
+        currValue = row_holder.find("td#td_active").attr('value');
+        row_holder.find("td#td_active").addClass("mcm-hidden");
+        edit_form.find("select#is_active").attr('value', currValue);
+        
+        currValue = row_holder.find("td#td_flag").attr('value');
+        row_holder.find("td#td_flag").addClass("mcm-hidden");
+        edit_form.find("select#flag").attr('value', currValue);
+        
+        currValue = row_holder.find("td#td_descr").attr('value');
+        row_holder.find("td#td_descr").addClass("mcm-hidden");
+        edit_form.find("input#description").attr('value', currValue);
+
+        var col = $("<td></td>");
+        col.attr('col_form_holder', '1');
+        col.attr('colspan', '6');
+        col.append(edit_form);
+        row_holder.append(col);
+        edit_form.attr('action', edit_form.attr('edit_action'));
+        //col = $("<td></td>");
+        //row_holder.append(col);
+        //col = $("<td></td>");
+        //row_holder.append(col);
+        //col = $("<td></td>");
+        //row_holder.append(col);
+        //col = $("<td></td>");
+        //row_holder.append(col);
+        //col = $("<td></td>");
+        //row_holder.append(col);
+        edit_form.removeClass("mcm-hidden");
+        edit_form.addClass("mcm-shown");        
     } 
     
 };

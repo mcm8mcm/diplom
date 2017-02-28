@@ -33,6 +33,15 @@ class ModelEditors extends Model {
     public function getLanguages() {
         $sql = 'SELECT * FROM `'.DB_PREFIX.'languages`';
         $res = $this->db->sql($sql);
+        
+        foreach ($res['rows'] as $key => $value) {
+            
+            if (!empty($value['flag'])){
+                $tmp = explode(DS, $value['flag']);
+                $flag = strtoupper(explode(".", $tmp[count($tmp) - 1])[0]);
+                $res['rows'][$key]['flag_name'] = $flag;
+            }
+        }
         return($res['rows']);        
     }
 

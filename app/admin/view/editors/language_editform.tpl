@@ -41,12 +41,12 @@
             <tbody>
                 <?php foreach($lang_data as $lang) { ?>
                 <tr langid="<?=$lang['name'];?>">
-                    <td><?=$lang['name'];?></td>
-                    <td><?=$lang['short_name'];?></td>
-                    <td class='centered'><?=$lang['currency'];?></td>
-                    <td class='centered'><img src="<?=$lang['flag'];?>"></td>
-                    <td class='centered'><?=$lang['active'] === '1' ? $yes : $no;?></td>
-                    <td>
+                    <td id="td_name" value="<?=$lang['name'];?>"><?=$lang['name'];?></td>
+                    <td id="td_short_name" value="<?=$lang['short_name'];?>"><?=$lang['short_name'];?></td>
+                    <td id="td_currency" class='centered' value="<?=$lang['currency'];?>"><?=$lang['currency'];?></td>
+                    <td id="td_flag" value="<?=$lang['flag_name'];?>" class='centered'><img src="<?=$lang['flag'];?>"></td>
+                    <td id="td_active" value="<?=$lang['active'] === '1' ? $yes : $no;?>" class='centered'><?=$lang['active'] === '1' ? $yes : $no;?></td>
+                    <td id="td_descr" value="<?=$lang['lang_word'];?>">
                         <div class="pull-left edit-btn-container"><?=$lang['lang_word'];?></div>
                         <div disabled="" class="pull-right" id="CUD_toolbar">
                             <button type="button" title="<?=$edit_lang_title?>" onclick="edit_languages.start_edit(<?='\''.$lang['name'].'\'';?>)" id="btn_edit_language" class="btn btn-primary flag-marging"><span class="fa fa-pencil"></span></button>
@@ -64,7 +64,7 @@
         
     </div>
 </div>
-<form id="edit_form" add_action="<?=$add_action;?>" edit_action="<?=edit_action;?>" class=" user-ctl-descr-form mcm-hidden" method="post" enctype="multipart/form-data" action="<?=$add_action;?>">
+<form id="edit_form" add_action="<?=$add_action;?>" edit_action="<?=$edit_action;?>" class=" user-ctl-descr-form mcm-hidden" method="post" enctype="multipart/form-data" action="<?=$add_action;?>">
     <div class="row">
         <div class="col-lg-2">
             <div class="form-group">
