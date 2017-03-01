@@ -23,7 +23,7 @@ class ControllerEditorsEdlanguages extends Controller {
         $data['lactive'] = $this->language->get('lactive');
         $data['ldesc'] = $this->language->get('ldesc');
         $data['new_lang_title'] = $this->language->get('new_lang_title'); 
-        $data['edit_action'] = $this->response->url('panels/languages/edit');
+        $data['edit_action'] = $this->response->url('panels/language/edit');
         $data['add_action'] = $this->response->url('panels/language/add_language');
         $data['del_action'] = $this->response->url('panels/language/del_language');        
         $data['succ_warn'] = $succ_warn;

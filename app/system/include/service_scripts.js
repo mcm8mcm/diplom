@@ -182,13 +182,37 @@ var edit_languages = {
     'cancel_edit_language' : function() {
         var forms = $('form[curr_edit_form="1"]');
         var control_container = $('div#control_container');
+        var row_holder = '';
         
         forms.each(function () {
             var cur_form = $(this);
+            
+            
+            cur_form.find("input#lang_name").attr('value', '');
+            cur_form.find("input#short_name").attr('value', '');
+            cur_form.find("input#currency").attr('value', '');
+            cur_form.find("select#is_active").attr('value', '');
+            cur_form.find("select#flag").attr('value', '');
+            cur_form.find("input#description").attr('value', '');
+            cur_form.attr('curr_edit_form', '0');
+
             cur_form.removeClass('mcm-shown');
             cur_form.addClass('mcm-hidden');
-            cur_form.attr('curr_edit_form', '0');
             control_container.append(cur_form);
+            
+            row_holder = $("tr[act_row='1']");
+            row_holder.each(function () {
+                var curr_td = $(this).find("td[col_form_holder='1']");
+                curr_td.remove();
+                row_holder.attr('act_row', '0');
+                row_holder.find("td#td_name").removeClass("mcm-hidden");
+                row_holder.find("td#td_short_name").removeClass("mcm-hidden");
+                row_holder.find("td#td_currency").removeClass("mcm-hidden");
+                row_holder.find("td#td_active").removeClass("mcm-hidden");
+                row_holder.find("td#td_flag").removeClass("mcm-hidden");
+                row_holder.find("td#td_descr").removeClass("mcm-hidden");
+            })
+            
         })
     },
     
@@ -204,6 +228,7 @@ var edit_languages = {
     },
     
     'start_edit' : function (lang_id) {
+        this.cancel_edit_language();
         var row_holder = $('tr[langid="' + lang_id + '"]');
         var edit_form = $("form#edit_form");
         var currValue = "";
@@ -227,6 +252,23 @@ var edit_languages = {
         currValue = row_holder.find("td#td_flag").attr('value');
         row_holder.find("td#td_flag").addClass("mcm-hidden");
         edit_form.find("select#flag").attr('value', currValue);
+        var items = edit_form.find("select#flag>option");
+        var index = 0;
+        items.each(function (key, item) {
+            if(item.innerText == currValue){
+                index = key;
+                return false;
+            }
+  
+        });
+        
+        $("ul.dropdown-menu,inner").find("li.selected").removeClass('selected');
+        $("ul.dropdown-menu,inner").find("li[data-original-index='"+index+"']").addClass('selected');
+        edit_form.find("select#flag").val(currValue).change();
+        
+        var flag_select = edit_form.find("select#flag");
+        var sibl = flag_select.next().find("span.filter-option.pull-left");
+        sibl.text(currValue);
         
         currValue = row_holder.find("td#td_descr").attr('value');
         row_holder.find("td#td_descr").addClass("mcm-hidden");
@@ -237,17 +279,9 @@ var edit_languages = {
         col.attr('colspan', '6');
         col.append(edit_form);
         row_holder.append(col);
+        row_holder.attr('act_row', '1');
         edit_form.attr('action', edit_form.attr('edit_action'));
-        //col = $("<td></td>");
-        //row_holder.append(col);
-        //col = $("<td></td>");
-        //row_holder.append(col);
-        //col = $("<td></td>");
-        //row_holder.append(col);
-        //col = $("<td></td>");
-        //row_holder.append(col);
-        //col = $("<td></td>");
-        //row_holder.append(col);
+        edit_form.attr('curr_edit_form', '1');
         edit_form.removeClass("mcm-hidden");
         edit_form.addClass("mcm-shown");        
     } 
