@@ -1,5 +1,5 @@
 <?php
-class ControllerPanelsLanguage extends Controller {
+class ControllerPanelsNews extends Controller{
     public function index() {
 
         if(!$this->user->isLoggedIn()){
@@ -16,7 +16,7 @@ class ControllerPanelsLanguage extends Controller {
         
         $header = $this->load->controller('common/header');
         $sidebar = $this->load->controller('common/sidebar');        
-        $content = $this->load->controller('editors/edlanguages', $sacc_err);
+        $content = $this->load->controller('editors/ednews', $sacc_err);
         $body = $this->load->view('common/controlpanel', array('header' => $header, 'sidebar' => $sidebar, 'admincontent' => $content));
           
         $this->document->setTitle($this->language->get('title'));
@@ -27,7 +27,7 @@ class ControllerPanelsLanguage extends Controller {
     }   
     
     public function edit() {
-
+        ddd($this->request->post);
         if(!$this->user->isLoggedIn()){
             $this->response->redirect($this->response->url('login'));
         }
@@ -48,6 +48,7 @@ class ControllerPanelsLanguage extends Controller {
     }
     
     public function add_language() {
+        ddd($this->request->post);
         if(!$this->user->isLoggedIn()){
             $this->response->redirect($this->response->url('login'));
         }
@@ -71,7 +72,7 @@ class ControllerPanelsLanguage extends Controller {
     }
     
     public function del_language() {
-        
+        ddd($this->request->post);
         if(!$this->user->isLoggedIn()){
             $this->response->redirect($this->response->url('login'));
         }
@@ -86,6 +87,5 @@ class ControllerPanelsLanguage extends Controller {
         $this->session->data['sacc_err'] = $res;
         $this->session->data['sacc_err']['del'] = TRUE;
         $this->response->redirect($this->response->url('panels/language'));    
-    }
-    
+    }    
 }

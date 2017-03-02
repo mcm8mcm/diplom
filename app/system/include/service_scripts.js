@@ -2,6 +2,7 @@ $(document).ready(function(){
     signup.onload();
     edit_funct.onload();
     edit_users.onload();
+    edit_news.onload();
 }
 );
 
@@ -195,6 +196,7 @@ var edit_languages = {
             cur_form.find("select#flag").attr('value', '');
             cur_form.find("input#description").attr('value', '');
             cur_form.attr('curr_edit_form', '0');
+            cur_form.attr('input#old_name').attr('value', '');
 
             cur_form.removeClass('mcm-shown');
             cur_form.addClass('mcm-hidden');
@@ -236,6 +238,7 @@ var edit_languages = {
         currValue = row_holder.find("td#td_name").attr('value');
         row_holder.find("td#td_name").addClass("mcm-hidden");
         edit_form.find("input#lang_name").attr('value', currValue);
+        edit_form.find("input#old_name").attr('value', currValue);
         
         currValue = row_holder.find("td#td_short_name").attr('value');
         row_holder.find("td#td_short_name").addClass("mcm-hidden");
@@ -286,4 +289,17 @@ var edit_languages = {
         edit_form.addClass("mcm-shown");        
     } 
     
+};
+
+var edit_news = {
+    'onload': function() {
+        $('div#creation_date').datetimepicker({
+                autoclose: true,
+                language:'ru',
+                format:'yyyy-mm-dd hh:ii:ss',
+                enabledHours: true,
+                todayHighlight: true,
+                minuteStep: 1
+        });
+    }
 };

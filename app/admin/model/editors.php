@@ -22,7 +22,9 @@ class ModelEditors extends Model {
     }
     
     public function getNews() {
-        return(array());
+        $sql = 'SELECT * FROM `'.DB_PREFIX.'news`';
+        $res = $this->db->sql($sql);
+        return $res['rows'];
     }
 
     public function getFooterData() {
@@ -79,7 +81,29 @@ class ModelEditors extends Model {
         return $toret;        
     }
 
+    public function editLanguage($data) {
+        $old_name = $data['old_name'];
+        $sql = "UPDATE `".DB_PREFIX."languages` SET "
+                . "`name` = '".$data['lang_name']."', "
+                . "`short_name` = '".$data['short_name']."', "
+                . "`currency` = '".$data['currency']."', "
+                . "`active` = ".$data['is_active'].", "
+                . "`flag` = '".$data['flag']."', "
+                . "`lang_word` = '".$data['description']."' "
+                . "WHERE `name` = '".$old_name."'";
 
+        $toret = array();
+        try {
+            $this->db->sql($sql);
+            $toret['success'] = 'SUCCESS';
+        } catch (Exception $exc) {
+            $toret['error'] = $exc->getTraceAsString().PHP_EOL.$sql;
+        }
+        
+        return $toret;        
+        
+    }
+    
     public function getFlags() {
         $toret = array();
         $path = ICLUDE_URL.DS.'img'.DS.'flags';

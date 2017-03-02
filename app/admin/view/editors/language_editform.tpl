@@ -121,4 +121,5 @@
             <button type="button" onclick="edit_languages.cancel_edit_language()" class="btn btn-warning pull-left" value="<?=$btn_cancel;?>"><span class="fa fa-times-circle flag-marging"></span><?=$btn_cancel;?></button>    
         </div>
     </div>
+    <input type="hidden" name="old_name" id="old_name" value="">
 </form>

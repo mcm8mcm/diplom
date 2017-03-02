@@ -468,6 +468,16 @@ select#is_active{
     display: block;
 }
 
+select#is_archive{
+    display: block;
+}
+
 .correct_inline{
     display: inline;
+}
+
+.news_content{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 100px;
 }
