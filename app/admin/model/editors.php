@@ -10,8 +10,9 @@ class ModelEditors extends Model {
     public function getUsers() {
         $sql = 'SELECT `u`.*, ' 
         .'`ugroup`.`name` as `group_name` '
-        .'FROM '. DB_PREFIX .'`users` AS `u` LEFT JOIN '
-        .DB_PREFIX.'`user_group`  AS `ugroup` ON `u`.`group` = `ugroup`.`id`';
+        .'FROM `'. DB_PREFIX .'users` AS `u` LEFT JOIN `'
+        .DB_PREFIX.'user_group`  AS `ugroup` ON `u`.`group` = `ugroup`.`id`';
+
         $users = array();
         $res = $this->db->sql($sql);
         $users = $res['rows'];
@@ -39,7 +40,7 @@ class ModelEditors extends Model {
         foreach ($res['rows'] as $key => $value) {
             
             if (!empty($value['flag'])){
-                $tmp = explode(DS, $value['flag']);
+                $tmp = explode('/', $value['flag']);
                 $flag = strtoupper(explode(".", $tmp[count($tmp) - 1])[0]);
                 $res['rows'][$key]['flag_name'] = $flag;
             }

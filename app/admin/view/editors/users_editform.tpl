@@ -116,7 +116,7 @@
 
                             <?php foreach($users_data['lang'] as $curr_lang) { ?>
                             <option <?=$curr_lang['name'] !== '' && $curr_lang['name'] === $user['language'] ? 'selected' : '';?>><?=$curr_lang['name'];?></option>
-                            <? } ?>
+                            <?php } ?>
                         </select> 
                     </div>                                       
 
@@ -134,7 +134,7 @@
     <form id="add_user_form" action="<?=$add_action;?>" class="user-ctl-descr-form mcm-hidden user-add-form"  method="post" enctype="multipart/form-data">
         <input type="hidden" name="user_id" value="0">
         <div id="control_part" class="row user-ctl-btn-block">
-            <div class="col-lg-12" class="usr-add-title-holder">
+            <div class="col-lg-12 usr-add-title-holder">
                     
                 <div class="pull-right">
                     <button type="button" onclick="edit_users.cancel_new_user()" form_id="data_form_<?=$user['id'];?>" id="btn_cancel" class="btn btn-warning flag-marging"><span class="fa fa-times-circle"></span></button>
@@ -220,7 +220,7 @@
 
                         <?php foreach($users_data['lang'] as $curr_lang) { ?>
                         <option><?=$curr_lang['name'];?></option>
-                        <? } ?>
+                        <?php } ?>
                     </select> 
                 </div>                                       
 
@@ -232,6 +232,4 @@
             </div>                
         </div>            
     </form>
-
-
 </div>

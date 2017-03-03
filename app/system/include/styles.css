@@ -481,3 +481,7 @@ select#is_archive{
     max-width: 100%;
     min-height: 100px;
 }
+
+.hihglite{
+    border: 1px solid red;
+}

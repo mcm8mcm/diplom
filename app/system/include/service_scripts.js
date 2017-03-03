@@ -90,6 +90,7 @@ var edit_funct = {
 
 var edit_users = {
     'start_edit' : function(form_id){
+        this.cancel_new_user();
         this.cancel_edit();
         var this_form = $('form#'+form_id);
         this_form.attr('editing', 1);
@@ -105,7 +106,7 @@ var edit_users = {
         this_form.find('select#isactive').prop('disabled',false);
         this_form.find('select#user_lang').prop('disabled',false); 
         this_form.find('button#btn_save').prop('disabled',false);
-        //this_form.find('button#btn_edit').prop('disabled',false);
+        this_form.find('button#btn_edit').prop('disabled',true);
         this_form.find('button#btn_cancel').prop('disabled',false);
         this_form.find('div#reg_expired').datetimepicker({
                 autoclose: true,
@@ -136,7 +137,7 @@ var edit_users = {
         this_form.find('select#isactive').prop('disabled',true);
         this_form.find('select#user_lang').prop('disabled',true); 
         this_form.find('button#btn_save').prop('disabled',true);
-        //this_form.find('button#btn_edit').prop('disabled',true);
+        this_form.find('button#btn_edit').prop('disabled',false);
         this_form.find('button#btn_cancel').prop('disabled',true);
         this_form.find('div#reg_expired').datetimepicker('remove');
         
@@ -196,7 +197,7 @@ var edit_languages = {
             cur_form.find("select#flag").attr('value', '');
             cur_form.find("input#description").attr('value', '');
             cur_form.attr('curr_edit_form', '0');
-            cur_form.attr('input#old_name').attr('value', '');
+            cur_form.find('input#old_name').attr('value', '');
 
             cur_form.removeClass('mcm-shown');
             cur_form.addClass('mcm-hidden');
@@ -301,5 +302,61 @@ var edit_news = {
                 todayHighlight: true,
                 minuteStep: 1
         });
+    },
+    
+    'dispatch' : function (action, form_id) {
+        var curr_form = $("form#art_form_" + form_id);
+        curr_form.find("input#curr_action").attr("value", action);
+        if(action === 'delete'){
+        var answ = confirm("ARE YOU CONFIRM \nDELETITION OF THIS ARICLE ?");
+            if (answ === false) {
+                return;
+            }         
+        }else{
+            if(!curr_form.get(0).checkValidity()){
+                var wrning = $('<div></div>');
+                var close_btn = $('<a></a>');
+                var warn_text = $('<p></p>');
+                var holder = curr_form.find("div#alert_holder");
+                close_btn.attr("href", "");
+                close_btn.attr("data-dismiss", "alert");
+                close_btn.attr("aria-label", "close");
+                close_btn.addClass("close");
+                close_btn.text('&times;');
+                wrning.addClass("alert alert-warning alert-dismissable");
+                wrning.append(close_btn);
+                warn_text.text("Some of the required fileds are stay unfilled. <br>Please, fill all the fields, thet marked with *");
+                wrning.append(warn_text);
+                holder.append(wrning);
+                return;
+            }
+        }
+        curr_form.submit();
+    },
+    
+    'cancel_add' : function () {
+        var form = $("form[curr_add_form='1']");
+        if(form !== undefined){
+            form.remove();
+        }
+    },
+    
+    'new_atricle' : function () {
+        this.cancel_add();
+        var form = $("form#art_form_new").clone();
+        form.attr("curr_add_form", "1");
+        form.removeClass("mcm-hidden");
+        form.addClass("mcm-showen");
+        form.find("div#creation_date").datetimepicker({
+                autoclose: true,
+                language:'ru',
+                format:'yyyy-mm-dd hh:ii:ss',
+                enabledHours: true,
+                todayHighlight: true,
+                minuteStep: 1
+        });
+        form.attr("id", "art_form_curr_new");
+        var holder = $("div#add_form_holder");
+        holder.append(form);
     }
 };

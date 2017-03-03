@@ -87,5 +87,9 @@ class ControllerPanelsNews extends Controller{
         $this->session->data['sacc_err'] = $res;
         $this->session->data['sacc_err']['del'] = TRUE;
         $this->response->redirect($this->response->url('panels/language'));    
-    }    
+    }
+
+    public function act_dispatch() {
+        ddd($this->request);
+    }
 }
