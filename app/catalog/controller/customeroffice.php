@@ -165,14 +165,15 @@ class ControllerCustomeroffice extends Controller {
     private function counter($tasks) {
         $ret = array('active'=>0,'closed'=>0);
         
-        foreach ($tasks as $task) {
-            if($task['finish'] === NULL){
-                $ret['active'] += 1;
-            } else {
-                $ret['closed'] += 1;
+        if ($tasks) {
+            foreach ($tasks as $task) {
+                if ($task['finish'] === NULL) {
+                    $ret['active'] += 1;
+                } else {
+                    $ret['closed'] += 1;
+                }
             }
         }
-        
         return $ret;
     }
     

@@ -126,7 +126,7 @@
         <div class="col-lg-4">
             <div class="form-group">
                 <label class="required" for="is_archive"><?=$fld_archive;?>:</label>
-                <select class="form-control" id="is_archive" name="is_archive" required>
+                <select class="form-control" id="is_archive" name="is_archive" value="<?=$no;?>">
                     <option><?=$yes;?></option>
                     <option selected=""><?=$no;?></option>        
                 </select>

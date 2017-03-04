@@ -1,7 +1,7 @@
 <?php
 class ModelNews extends Model{
     public function getNews() {
-        $sql = "SELECT * FROM `".DB_PREFIX."news` WHERE `added` <= ADDTIME(`added`, '72:00:00')";
+        $sql = "SELECT * FROM `".DB_PREFIX."news` WHERE NOW() <= ADDTIME(`added`, '480:00:00') AND `archive` = 0";
         $res = $this->db->sql($sql);
         
         $toRet = array();

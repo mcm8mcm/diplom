@@ -1,4 +1,4 @@
-<div class="firm-border container-hi">
+<div class="firm-border news-container">
     <?php if(count($news)) { ?>
         <?php foreach($news as $article) { ?>
             <div class="panel panel-success article">

@@ -75,11 +75,19 @@ body{
 }
 
 .container-hi{
+    min-height: 768px;
+    margin-bottom: 20px;
+    margin-top: 20px;
+    overflow: auto;
+}
+
+.container-control-menu{
     min-height: auto;
     margin-bottom: 20px;
     margin-top: 20px;
     overflow: auto;
 }
+
 
 .def-margin{
     margin-top: 20px;
@@ -484,4 +492,10 @@ select#is_archive{
 
 .hihglite{
     border: 1px solid red;
+}
+
+.news-container{
+    min-height: 400px;
+    margin-bottom: 20px;
+    margin-top: 20px;
 }

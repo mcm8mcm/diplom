@@ -28,6 +28,57 @@ class ModelEditors extends Model {
         return $res['rows'];
     }
 
+    public function addArticle($data) {
+        $sql = "INSERT INTO `".DB_PREFIX."news`(`title`,`article`,`added`,`archive`) "
+                . "VALUES('".$data['article_title']."',"
+                . "'".$data['article_content']."',"
+                . "'".$data['creation_date']."',"
+                .$data['is_archive'].")";
+        
+        $toret = array();
+        try {
+            $this->db->sql($sql);
+            $toret['success'] = 'SUCCESS';
+        } catch (Exception $exc) {
+            $toret['error'] = $exc->getTraceAsString().PHP_EOL.$sql;
+        }
+        
+        return $toret;        
+    }
+
+    public function editArticle($data) {
+        $sql = "UPDATE `".DB_PREFIX."news` SET "
+                . "`title` = '".$data['article_title']."', "
+                . "`article` = '".$data['article_content']."', "
+                . "`added` = '".$data['creation_date']."', "
+                . "`archive` = ".$data['is_archive']." "
+                . "WHERE `id` = ".$data['art_id'];
+
+        $toret = array();
+        try {
+            $this->db->sql($sql);
+            $toret['success'] = 'SUCCESS';
+        } catch (Exception $exc) {
+            $toret['error'] = $exc->getTraceAsString().PHP_EOL.$sql;
+        }
+        
+        return $toret;                
+    }
+
+    public function deleteArticle($data) {
+        $sql = "DELETE FROM `".DB_PREFIX."news` WHERE `id`=".$data['art_id'];
+        $toret = array();
+        try {
+            $this->db->sql($sql);
+            $toret['success'] = 'SUCCESS';
+        } catch (Exception $exc) {
+            $toret['error'] = $exc->getTraceAsString();
+        }
+        
+        return $toret;                
+    }
+    
+    
     public function getFooterData() {
         return(array());
 
@@ -101,8 +152,7 @@ class ModelEditors extends Model {
             $toret['error'] = $exc->getTraceAsString().PHP_EOL.$sql;
         }
         
-        return $toret;        
-        
+        return $toret;                
     }
     
     public function getFlags() {

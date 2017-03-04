@@ -1,6 +1,12 @@
 <?php
 class ControllerHome extends Controller{
     public function index() {
+        
+        if($this->user->isLoggedIn()){
+            $this->response->redirect($this->response->url('customeroffice'));
+            return;
+        };
+        
         $this->load->language('home');
         
         $sidebar = $this->load->controller('common/sidebar');
