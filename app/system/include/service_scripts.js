@@ -360,3 +360,17 @@ var edit_news = {
         holder.append(form);
     }
 };
+
+var edit_footer = {
+    /*<b class="required">Preved</b>
+<ul>
+<li>First</li>
+<li>Second</li>
+<li>Third</li>
+</ul>*/
+    'preview' : function (area_id) {
+        var edit_content = $("textarea#" + area_id).val();
+        var area_nom = area_id.split("_")[0];
+        $("div#" + area_nom + "_preview").html(edit_content);
+    }
+};

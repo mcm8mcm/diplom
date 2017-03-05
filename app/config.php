@@ -7,7 +7,7 @@ define('ADMIN', 'admin');
 define('DS', DIRECTORY_SEPARATOR);
 define('PS', PATH_SEPARATOR);
 define('DIR_VENDOR', APP_PATH.DS.'..'.DS.'vendor'.DS);
-define('DIR_APPLICATION', APP_PATH.DS.'catalog'.DS);
+define('DIR_APPLICATION', APP_PATH.DS.CATALOG.DS);
 define('SYSTEM_PATH', APP_PATH.DS.'system'.DS);
 define('DIR_LIB', SYSTEM_PATH.'lib'.DS);
 define('DIR_LANG', DIR_APPLICATION.'language'.DS);

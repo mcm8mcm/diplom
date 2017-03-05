@@ -26,33 +26,21 @@ class ControllerPanelsFooter extends Controller {
         $this->response->flush();          
     }   
     
-    public function act_dispatch() {
+    public function save() {
         //ddd($this->request->post);
         if(!$this->user->isLoggedIn()){
             $this->response->redirect($this->response->url('login'));
         }
 
-        if(!isset($this->request->post) || !isset($this->request->post['curr_action'])){
+        if(!isset($this->request->post) || !isset($this->request->post['zone'])){
             $this->index();
         }
-              
-        $allowed_tags = "<p><h1><h2><h3><h4><h5><b><i><u>";
         
+        $this->request->post['content'] = html_entity_decode($this->request->post['content']);
         $this->load->model('editors'); 
-        $this->request->post['is_archive'] = $this->request->post['is_archive'] === $this->language->get('yes') ? '1' : '0';
-        $this->request->post['article_content'] = $this->db->escape(strip_tags(html_entity_decode($this->request->post['article_content']), $allowed_tags));
-        $this->request->post['article_title'] = $this->db->escape(strip_tags(html_entity_decode($this->request->post['article_title']), $allowed_tags));
-                
-        if($this->request->post['curr_action'] === 'add_new'){
-            $res = $this->model_editors->addArticle($this->request->post);
-        }elseif ($this->request->post['curr_action'] === 'edit') {
-            $res = $this->model_editors->editArticle($this->request->post);
-        }else{
-           $res = $this->model_editors->delArticle($this->request->post); 
-           $this->session->data['sacc_err']['del'] = TRUE;
-        }
-       
+        $res = $this->model_editors->saveFooterData($this->request->post);
         $this->session->data['sacc_err'] = $res;
-        $this->response->redirect($this->response->url('panels/news'));                    
+        $this->session->data['curr_footer_edit_tab'] = $this->request->post['zone'];
+        $this->response->redirect($this->response->url('panels/footer'));                    
     }        
 }

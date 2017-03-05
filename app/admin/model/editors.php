@@ -79,11 +79,35 @@ class ModelEditors extends Model {
     }
     
     
-    public function getFooterData() {
-        return(array());
-
+    public function getFooterData($data) {
+        $filename = DIR_DOWNLOAD.'footers'.DS.$data.'_footer_template.html';
+        
+        if(!is_file($filename)){
+            return '';
+        }
+        $content = file_get_contents($filename);
+        return $content ? $content : '';
     }
 
+    public function saveFooterData($data) {
+        $filename = DIR_DOWNLOAD.'footers'.DS.$data['zone'].'_footer_template.html';
+        
+        $toret = array();
+        try {
+            $res = file_put_contents($filename, $data['content']);
+            $toret['success'] = 'SUCCESS';
+        } catch (Exception $exc) {
+            $toret['error'] = $exc->getTraceAsString();
+        }
+        
+        if(!$ret){
+           $toret['error'] = $ret;
+        }
+        
+        return $toret;                
+    }
+    
+    
     public function getLanguages() {
         $sql = 'SELECT * FROM `'.DB_PREFIX.'languages`';
         $res = $this->db->sql($sql);

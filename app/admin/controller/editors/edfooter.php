@@ -4,7 +4,11 @@ class ControllerEditorsEdfooter extends Controller {
         $this->load->language('editors/footer');
         $this->load->model('editors');
         $data = array();
-        $data['news_data'] = $this->model_editors->getNews();
+        $this->load->model('editors'); 
+        $data['first_content'] = $this->model_editors->getFooterData('first');
+        $data['second_content'] = $this->model_editors->getFooterData('second');
+        $data['third_content'] = $this->model_editors->getFooterData('third');
+        //$data['news_data'] = $this->model_editors->getNews();
         //=======================================
         $data['control_title'] = $this->language->get('control_title');
         $data['first_tab_title'] = $this->language->get('first_tab_title');
@@ -13,7 +17,8 @@ class ControllerEditorsEdfooter extends Controller {
         $data['editor_title'] = $this->language->get('editor_title');  
         $data['preview_title'] = $this->language->get('preview_title'); 
         $data['btn_save'] = $this->language->get('btn_save');
-        $data['action'] = $this->response->url('panels/news/save');
+        $data['btn_preview'] = $this->language->get('btn_preview');
+        $data['action'] = $this->response->url('panels/footer/save');
         $data['succ_warn'] = $succ_warn;
         $data['success_msg'] = $this->language->get('success_msg');
         $data['curr_tab'] = 'first';

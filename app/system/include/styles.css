@@ -490,6 +490,12 @@ select#is_archive{
     min-height: 100px;
 }
 
+.footer_content{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 250px;
+}
+
 .hihglite{
     border: 1px solid red;
 }
@@ -498,4 +504,16 @@ select#is_archive{
     min-height: 400px;
     margin-bottom: 20px;
     margin-top: 20px;
+}
+
+.footer-form{
+    margin-top: 15px;
+}
+
+.footer_preview{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 250px;
+    overflow: auto;
+    margin-right: 20px;
 }
