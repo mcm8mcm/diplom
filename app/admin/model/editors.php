@@ -77,8 +77,7 @@ class ModelEditors extends Model {
         
         return $toret;                
     }
-    
-    
+       
     public function getFooterData($data) {
         $filename = DIR_DOWNLOAD.'footers'.DS.$data.'_footer_template.html';
         
@@ -106,8 +105,7 @@ class ModelEditors extends Model {
         
         return $toret;                
     }
-    
-    
+       
     public function getLanguages() {
         $sql = 'SELECT * FROM `'.DB_PREFIX.'languages`';
         $res = $this->db->sql($sql);
@@ -274,4 +272,5 @@ class ModelEditors extends Model {
         
         return $toret;       
     }
+        
 }
