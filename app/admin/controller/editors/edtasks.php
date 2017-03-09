@@ -1,7 +1,7 @@
 <?php
 class ControllerEditorsEdtasks extends Controller {
     public function index($succ_warn = array()) {
-        $this->load->language('editors/footer');
+        $this->load->language('editors/tasks');
         $this->load->model('editors');
         $data = array();
         $this->load->model('editors'); 
@@ -17,7 +17,7 @@ class ControllerEditorsEdtasks extends Controller {
         $data['preview_title'] = $this->language->get('preview_title'); 
         $data['btn_save'] = $this->language->get('btn_save');
         $data['btn_preview'] = $this->language->get('btn_preview');
-        $data['action'] = $this->response->url('panels/footer/save');
+        $data['action'] = $this->response->url('panels/tasks/save');
         $data['succ_warn'] = $succ_warn;
         $data['success_msg'] = $this->language->get('success_msg');
         $data['curr_tab'] = 'first';
@@ -26,6 +26,6 @@ class ControllerEditorsEdtasks extends Controller {
             unset($this->session->data['curr_footer_edit_tab']);
         }
         
-        return $this->load->view('editors/footer_editform', $data);        
+        return $this->load->view('editors/tasks_editform', $data);        
     }
 }

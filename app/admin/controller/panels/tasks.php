@@ -43,7 +43,7 @@ class ControllerPanelsTasks extends Controller {
         $res = $this->model_editors->saveFooterData($this->request->post);
         $this->session->data['sacc_err'] = $res;
         $this->session->data['curr_footer_edit_tab'] = $this->request->post['zone'];
-        $this->response->redirect($this->response->url('panels/footer'));
+        $this->response->redirect($this->response->url('panels/tasks'));
     }
 
 }

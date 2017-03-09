@@ -1,5 +1,5 @@
 <?php
-$_['control_title'] = 'FOOTER CONTROL';
+$_['control_title'] = 'TASKS CONTROL';
 $_['tasks_title'] = 'TASKS';
 $_['users_title'] = 'USERS';
 

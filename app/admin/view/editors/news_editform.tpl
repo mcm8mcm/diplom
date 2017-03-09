@@ -1,4 +1,4 @@
-<div id="control_container" class="panel panel-success std-col-margin">
+<div id="control_container" class="panel panel-success std-col-margin" style="min-height: 100%">
     <div class="panel-heading centred">
         <h5><?=$control_title;?></h5>
     </div>

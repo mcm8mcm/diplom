@@ -19,11 +19,11 @@
 
     <div class="panel-body">
         <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-8 task-container">
                 
             </div>
             
-            <div class="col-lg-2">
+            <div class="col-lg-4 task-container task-users-container">
                 
             </div>
         </div>
