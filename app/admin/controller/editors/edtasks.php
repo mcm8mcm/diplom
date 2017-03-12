@@ -26,6 +26,9 @@ class ControllerEditorsEdtasks extends Controller {
             unset($this->session->data['curr_footer_edit_tab']);
         }
         
+        $data['user_list'] = $this->load->controller("editors/user_list");
+        $data['task_list'] = $this->load->controller("editors/task_list");
+        
         return $this->load->view('editors/tasks_editform', $data);        
     }
 }

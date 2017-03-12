@@ -24,6 +24,7 @@
             </div>  
             
             <div id="add_form_holder" class="user-add-form-holder">
+                
             </div>
         </div>
 

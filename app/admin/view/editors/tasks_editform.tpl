@@ -49,7 +49,7 @@
             </div>
 
             <div class="col-lg-4 task-container task-users-container">
-
+                <?=$user_list;?>
             </div>
         </div>
     </div>
