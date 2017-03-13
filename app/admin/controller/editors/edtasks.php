@@ -27,7 +27,7 @@ class ControllerEditorsEdtasks extends Controller {
         }
         
         $data['user_list'] = $this->load->controller("editors/user_list");
-        $data['task_list'] = $this->load->controller("editors/task_list");
+        //$data['task_list'] = $this->load->controller("editors/task_list");
         
         return $this->load->view('editors/tasks_editform', $data);        
     }

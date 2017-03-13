@@ -20,8 +20,10 @@
     <div class="panel-body">
         <div class="row">
             <div class="col-lg-8 task-container">
-                <div class="row" id="tb_add_task">
-
+                <div class="row admin-row-correct" id="tb_add_task">
+                    <div class="pull-right user-ctl-btn-add">
+                        <button title=""  type="button" onclick="edit_languages.new_language()" id="btn_new_language" class="btn btn-warning flag-marging"><span class="fa fa-plus-circle"></span></button>                
+                    </div>
                 </div>
 
                 <div class="row" style="width: 100%;margin-left: 2px;margin-right: 2px;" id="content">
@@ -34,6 +36,7 @@
                                         Collapsible Group 1</a>
                                 </h4>
                             </div>
+                            
                             <div id="collapse1" class="panel-collapse collapse in">
                                 <div class="panel-body">Lorem ipsum dolor sit amet, consectetur adipisicing elit,
                                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
