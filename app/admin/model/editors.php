@@ -202,8 +202,8 @@ class ModelEditors extends Model {
         $curr_log['date'] = $task['post_stamp'];
         $curr_log['author_id'] = $task['auth_id'];
         $curr_log['reciver_id'] = $task['reciv_id'];
-        $curr_log['author'] = $task['auth_first_name'] . ' ' . $task['auth_last_name'];
-        $curr_log['reciver'] = $task['reciv_first_name'] . ' ' . $task['reciv_last_name'];
+        $curr_log['author'] = $task['auth_name'];
+        $curr_log['reciver'] = $task['reciv_name'];
         $curr_log['parent_id'] = $task['parent_post'];
         $curr_log['title'] = $task['post_title'];
         $curr_log['post'] = $task['post_content'];
@@ -229,10 +229,8 @@ class ModelEditors extends Model {
                 . '`log`.*, '
                 . '`auth`.`id` as `auth_id`, '
                 . '`reciv`.`id` as `reciv_id`, '
-                . '`auth`.`first_name` as `auth_first_name`, '
-                . '`auth`.`last_name` as `auth_last_name`, '
-                . '`reciv`.`first_name` as `reciv_first_name`, '
-                . '`reciv`.`last_name` as `reciv_last_name` '
+                . "CONCAT_WS(' ',`auth`.`first_name`, `auth`.`last_name`) as `auth_name`, "
+                . "CONCAT_WS(' ', `reciv`.`first_name`, `reciv`.`last_name`) as `reciv_name` "
                 . 'FROM `' . DB_PREFIX . 'order_log` as `log` '
                 . 'LEFT JOIN `' . DB_PREFIX . 'users` as `auth` ON `log`.`post_author` = `auth`.`id` '
                 . 'LEFT JOIN `' . DB_PREFIX . 'users` as `reciv` ON `log`.`post_reciver` = `reciv`.`id` '
@@ -271,14 +269,18 @@ class ModelEditors extends Model {
     private function getCustomerData($user_id) {
         //User data consist of tasks
         $tasks = array();
-HERE
-        $sql = 'SELECT `tsk`.*, `dev`.* ,`usr.id` AS `usr_id`, `usr_id` '
-                . 'FROM `' . DB_PREFIX . 'task` AS tsk '
-                . 'LEFT JOIN `' . DB_PREFIX . 'device` AS dev '
-                . 'ON tsk.device_id = dev.id '
-                . 'WHERE tsk.customer_id = ' . $user_id . ' OR tsk.master_id = ' . $user_id;
-        $res = $this->db->sql($sql);
+        $sql = "SELECT `tsk`.*, `dev`.*, "
+        ."`customers`.`id` AS `cust_id`, "
+        ."CONCAT_WS(' ', `customers`.`first_name`, `customers`.`patronymic`, `customers`.`last_name`) AS `cust_name`, "
+        ."`tab_master`.`id` AS `master_id`, "
+        ."CONCAT_WS(' ', `tab_master`.`first_name`, `tab_master`.`patronymic`, `tab_master`.`last_name`) AS `master_name` "
+        ."FROM `".DB_PREFIX."task` AS `tsk` " 
+        ."LEFT JOIN `".DB_PREFIX."device` AS `dev` ON `tsk`.`device_id` = `dev`.`id` "
+        ."LEFT JOIN `".DB_PREFIX."users` AS `customers` ON `tsk`.`customer_id` = `customers`.`id` "
+        ."LEFT JOIN `".DB_PREFIX."users` AS `tab_master` ON `tsk`.`master_id` = `tab_master`.`id` "
+        ."WHERE `customers`.`id` = ".$user_id." OR `tab_master`.`id` = ".$user_id;
 
+        $res = $this->db->sql($sql);
         if ($res['rows_count'] == 0) {
             //it's very strange
             return NULL;
@@ -287,17 +289,27 @@ HERE
         foreach ($res['rows'] as $curr_row) {
             $task = array();
             $device = array();
+            $customer = array();
+            $master = array();
 
             $device['id'] = $curr_row['device_id'];
             $device['serial'] = $curr_row['serial'];
             $device['type'] = $curr_row['devicetype'];
             $device['brand'] = $curr_row['brand'];
             $device['model'] = $curr_row['model'];
-
+            
+            $customer['id'] = $curr_row['cust_id'];
+            $customer['full_name'] = $curr_row['cust_name'];
+            
+            $master['id'] = $curr_row['master_id'];
+            $master['full_name'] = $curr_row['master_name'];
+            
             $task['id'] = $curr_row['idorder'];
             $task['start'] = $curr_row['start_date'];
             $task['finish'] = $curr_row['close_date'];
             $task['device'] = $device;
+            $task['customer'] = $customer;
+            $task['master'] = $master;            
             $task['cond'] = $curr_row['device_condition'];
             $task['complaint'] = $curr_row['complaint'];
             $task['complect'] = $curr_row['completeness'];
@@ -305,12 +317,13 @@ HERE
 
             $tasks[] = $task;
         }
-
+        
         foreach ($tasks as $index => $task) {
             $log = $this->getLog($task['id']);
             $tasks[$index]['log'] = $log;
         }
-
+        
+        ddd($tasks);
         return $tasks;
     }
 

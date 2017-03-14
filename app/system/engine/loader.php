@@ -17,6 +17,7 @@ class Loader {
 	}
 	
 	public function controller($route, $data = array()) {
+            $tmp = $route;    
             //echo $route.'<br>';
 		$class_path = DIR_APPLICATION . 'controller';
                 $route = trim( explode('?', $route)[0] );
@@ -33,7 +34,7 @@ class Loader {
 		$path_elem = explode ( '/', str_replace ( '\\', '/', $route ) );
                 
 		while ( $path_elem ) {
-			$curr_elem = current ( $path_elem );
+                        $curr_elem = current ( $path_elem );
 			array_shift ( $path_elem );
 			$class_path .= '/' . $curr_elem;
 			$file = $class_path . '.php';
