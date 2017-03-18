@@ -323,7 +323,6 @@ class ModelEditors extends Model {
             $tasks[$index]['log'] = $log;
         }
         
-        ddd($tasks);
         return $tasks;
     }
 

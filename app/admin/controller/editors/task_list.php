@@ -4,6 +4,7 @@ class ControllerEditorsTaskList extends Controller {
         $data = array();
         $this->load->model("editors");
         $data['user_tasks'] = $this->model_editors->getTasks($this->request->get['user_id']); 
+
         foreach ($data['user_tasks'] as $key => $task) {
             $data['user_tasks'][$key]['view'] = $this->load->controller('taskrender/the_task', $task);
         }
