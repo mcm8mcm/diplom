@@ -12,5 +12,4 @@ class ControllerTaskrenderDeviceRenderer extends Controller {
         $data['device'] = $device;
         return $this->load-view('taskrender', $data);
     }
-
 }
