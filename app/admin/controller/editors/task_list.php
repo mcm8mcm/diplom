@@ -8,6 +8,7 @@ class ControllerEditorsTaskList extends Controller {
         foreach ($data['user_tasks'] as $key => $task) {
             $data['user_tasks'][$key]['view'] = $this->load->controller('taskrender/the_task', $task);
         }
-        return $this->load->view("editors/tasks_list", $data);
+        
+        return $this->load->view("editors/tasks_list", $data['user_tasks']);
     }
 }

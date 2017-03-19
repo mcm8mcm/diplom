@@ -558,3 +558,74 @@ select#is_archive{
     -o-transform:      rotate(90deg);
     transform:         rotate(90deg);
 }
+
+.btn-tgl{
+    float: right;
+    height: 96%;
+    width: 30px;
+    margin-right: 3px;
+    cursor: pointer;
+}
+
+.btn-tgl:after
+{
+    font-family: 'Glyphicons Halflings';
+    content: "\e072"; /* "play" icon */
+    float: right;
+    color: #b0c5d8;
+    font-size: 18px;
+    line-height: 22px;
+
+    /* rotate "play" icon from > (right arrow) to down arrow */
+    -webkit-transform: rotate(-90deg);
+    -moz-transform:    rotate(-90deg);
+    -ms-transform:     rotate(-90deg);
+    -o-transform:      rotate(-90deg);
+    transform:         rotate(-90deg);
+}
+
+.btn-tgl.collapsed:after
+{
+    /* rotate "play" icon from > (right arrow) to ^ (up arrow) */
+    -webkit-transform: rotate(90deg);
+    -moz-transform:    rotate(90deg);
+    -ms-transform:     rotate(90deg);
+    -o-transform:      rotate(90deg);
+    transform:         rotate(90deg);
+}
+
+table#device_descr{
+    width: 100%;
+    margin-bottom: 5px;
+    border: 1px solid #d6e9c6;
+    border-collapse: separate;
+    border-spacing: 2px;
+}
+
+table#device_descr>thead>tr>th{
+    border: 1px solid #d6e9c6;
+    font-weight: bolder;
+    text-align: center;
+    vertical-align: middle;
+    padding: 5px 0px 5px 0px;
+}
+
+table#device_descr>tbody>tr>td.field-label{
+    border: 1px solid #d6e9c6;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: bold;
+}
+
+table#device_descr>tbody>tr>td.value{
+    border: 1px solid #d6e9c6;
+    padding-left: 5px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: left;
+    vertical-align: middle;
+    font-weight: normal;
+}
