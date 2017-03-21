@@ -9,9 +9,9 @@ class ControllerTaskrenderTheTask extends Controller {
         
         $device = $this->load->controller('taskrender/device_renderer', $device_data); 
         $task['device_view'] = $device;
-        $order = $this->load->controller('taskrender/order_renderer', $task);
-        return $order;
         $log = $this->load->controller('taskrender/log_renderer', $task['log']); 
-        
+        $task['log_view'] = $log;
+        $order = $this->load->controller('taskrender/order_renderer', $task);   
+        return $order;
     }
 }

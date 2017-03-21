@@ -629,3 +629,30 @@ table#device_descr>tbody>tr>td.value,table#order_descr>tbody>tr>td.value{
     vertical-align: middle;
     font-weight: normal;
 }
+
+.split-container{
+    height: 50px;
+    width: 85px;
+    border: 1px solid #d6e9c6;
+    margin: 0px;
+    padding: 0px;    
+    text-align: center;
+    vertical-align: middle;
+}
+
+.split-small-element{
+    padding-top: 2px;
+    height: 25px;
+    width: 85px;
+    font-weight: 600;
+    vertical-align: middle;
+}
+
+.split-delimiter{
+    border-top: 1px solid #d6e9c6;
+}
+
+p.split{
+    margin: 0px;
+    padding: 0px;
+}

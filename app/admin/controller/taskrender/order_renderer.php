@@ -27,6 +27,7 @@ class ControllerTaskrenderOrderRenderer extends Controller {
         $order_data['master_id'] = $data['master']['id'];
         $order_data['master_name'] = $data['master']['full_name'];
         $order_data['device_view'] = $data['device_view'];
+        $order_data['log_view'] = $data['log_view'];
         return $this->load->view('taskrender/order', $order_data);
     }
 }

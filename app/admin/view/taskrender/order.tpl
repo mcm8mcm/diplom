@@ -41,6 +41,7 @@
             </table>   
             
             <?=$device_view;?>
+            <?=$log_view;?>
         </div>
     </div>
 </div>
