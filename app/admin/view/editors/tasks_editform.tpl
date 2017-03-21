@@ -27,23 +27,9 @@
                 </div>
 
                 <div class="row" style="width: 100%;margin-left: 2px;margin-right: 2px;" id="content">
-
                     <div class="panel-group" id="accordion">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h4 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">
-                                        Collapsible Group 1</a>
-                                </h4>
-                            </div>
-                            
-                            <div id="collapse1" class="panel-collapse collapse in">
-                                <div class="panel-body"><?=$task_list;?>
-                                </div>
-                            </div>
-                        </div>
+                        <?=$task_list;?>
                     </div>   
-
                 </div>
 
             </div>
