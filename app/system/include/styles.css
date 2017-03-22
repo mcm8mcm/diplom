@@ -638,6 +638,7 @@ table#device_descr>tbody>tr>td.value,table#order_descr>tbody>tr>td.value{
     padding: 0px;    
     text-align: center;
     vertical-align: middle;
+    float: left;
 }
 
 .split-small-element{
@@ -655,4 +656,49 @@ table#device_descr>tbody>tr>td.value,table#order_descr>tbody>tr>td.value{
 p.split{
     margin: 0px;
     padding: 0px;
+}
+
+.long-container{
+    height: 50px;
+    border: 1px solid #d6e9c6;
+    border-left: none;
+    border-right: none;
+    width: calc(100% - 172px);
+    float: left;
+}
+
+.long-container-element{
+    height: 25px;
+    width: 100%;
+    text-align: left;
+    padding-left: 5px;
+    padding-top: 2px;
+}
+
+label.caption{
+    font-weight: bold;
+    width: 50px;
+}
+
+p.caption{
+    display: inline-block;
+}
+
+.clear-row{
+    margin-left: 0px;
+    margin-right: 0px;
+}
+
+.log-topic-margin{
+    margin-bottom: 5px;
+}
+
+.tight-pbody{
+    padding: 2px;
+}
+
+.tight-pheader{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    text-align: center;
 }

@@ -22,7 +22,8 @@ class ControllerTaskrenderLogRenderer extends Controller {
             $data = array_merge($data, $this->getDateView($curr_log['date'])); 
             $data['author_id'] = $curr_log['author_id'];
             $data['author'] = $curr_log['author'];
-            $data['reciver_id'] = $curr_log['reciver'];
+            $data['reciver_id'] = $curr_log['reciver_id'];
+            $data['reciver'] = $curr_log['reciver'];
             $data['parent_id'] = $curr_log['parent_id'];
             $data['title'] = $curr_log['title'];
             $data['post_content'] = $curr_log['post'];
@@ -39,8 +40,11 @@ class ControllerTaskrenderLogRenderer extends Controller {
         $this->load->language('taskrender/log_renderer');
         $log_list = $this->getLogView($log);
         $data = array();
+        $log = (array)$log;
+        $log_list = (array)$log_list;
         $data['log_list'] = $log_list;
         $data['log_title'] = $this->language->get('log_title');
+        $data['order_id'] = count($log) ? $log[0]['order_id'] : '';
         return $this->load->view('taskrender/logs', $data);
     }
 }
