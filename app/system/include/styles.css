@@ -633,7 +633,7 @@ table#device_descr>tbody>tr>td.value,table#order_descr>tbody>tr>td.value{
 .split-container{
     height: 50px;
     width: 85px;
-    border: 1px solid #d6e9c6;
+    border: 1px solid #39b354;
     margin: 0px;
     padding: 0px;    
     text-align: center;
@@ -649,8 +649,20 @@ table#device_descr>tbody>tr>td.value,table#order_descr>tbody>tr>td.value{
     vertical-align: middle;
 }
 
+.topic-pointer:after{
+    content: "";
+    display: inline-block;
+    height: 16px;
+    width: 16px;
+    border-right: 1px solid #39b354;
+    border-bottom: 1px solid #39b354;
+    position: relative;
+    top: -7px;
+    transform: rotate(45deg);    
+}
+
 .split-delimiter{
-    border-top: 1px solid #d6e9c6;
+    border-top: 1px solid #39b354;
 }
 
 p.split{
@@ -660,10 +672,10 @@ p.split{
 
 .long-container{
     height: 50px;
-    border: 1px solid #d6e9c6;
+    border: 1px solid #39b354;
     border-left: none;
     border-right: none;
-    width: calc(100% - 172px);
+    width: calc(100% - 110px);
     float: left;
 }
 
@@ -673,6 +685,26 @@ p.split{
     text-align: left;
     padding-left: 5px;
     padding-top: 2px;
+}
+
+.btn-container{
+    width: 25px;
+}
+
+.btn-small-container{
+    padding-right: 2px;
+    padding-top: 1px;    
+}
+
+.btn-small-container-bottom{
+    padding-right: 2px;
+    padding-top: 0px;    
+}
+
+.fa-btn-fit{
+    width: 21px;
+    height: 20px;
+    padding: 2px;
 }
 
 label.caption{
@@ -693,6 +725,10 @@ p.caption{
     margin-bottom: 5px;
 }
 
+.log-topic-padding{
+    padding: 3px;
+}
+
 .tight-pbody{
     padding: 2px;
 }
@@ -702,3 +738,32 @@ p.caption{
     padding-bottom: 5px;
     text-align: center;
 }
+
+.topic-title{
+    margin-left: 20px;
+    font-size: small;
+    font-weight: bolder;
+    padding-left: 5px;
+    padding-right: 5px;
+    width: auto;
+    border: 1px solid #39b354;
+    height: 20px;
+    position: relative;
+    top: 10px;
+}
+
+.topic-content{
+    border: 1px solid #39b354;
+    width: 100%;
+    margin: 0px;
+    padding-left: 3px;
+    padding-right: 3px;    
+    padding-top: 0px;
+}
+
+.topic-limit{
+    border-bottom: 4px solid blue;
+    padding-bottom: 4px;
+    margin-bottom: 0px;
+}
+
