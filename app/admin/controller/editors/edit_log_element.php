@@ -4,3 +4,4 @@ class ControllerEditorsEditLogElement extends Controller {
         
     }
 }
+

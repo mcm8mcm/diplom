@@ -6,6 +6,9 @@ class ControllerTaskrenderLogRenderer extends Controller {
     } 
     
     private function getLogView($log) {
+        $add = $log[1];
+        $log = $log[0];
+        
         $log_posts = array();
         if(!count($log)){;
             return '';
@@ -28,7 +31,9 @@ class ControllerTaskrenderLogRenderer extends Controller {
             $data['title'] = $curr_log['title'];
             $data['post_content'] = $curr_log['post'];
             $data['subposts'] = array();
-            $data['subposts'] = $this->getLogView($curr_log['subposts']);
+            $data['edit_link'] = $this->response->url('editors/edit_log_element');         
+            $data['user_id'] = $add['user_id'];            
+            $data['subposts'] = $this->getLogView(array($curr_log['subposts'], $add));
             $log_posts[] = $this->load->view('taskrender/log', $data);
         }
         return $log_posts;
@@ -44,7 +49,7 @@ class ControllerTaskrenderLogRenderer extends Controller {
         $log_list = (array)$log_list;
         $data['log_list'] = $log_list;
         $data['log_title'] = $this->language->get('log_title');
-        $data['order_id'] = count($log) ? $log[0]['order_id'] : '';
+        $data['order_id'] = count($log[0]) ? $log[0][0]['order_id'] : '';
         return $this->load->view('taskrender/logs', $data);
     }
 }
