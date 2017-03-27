@@ -6,6 +6,7 @@ class ControllerTaskrenderTheTask extends Controller {
         $device_data['condition'] = $task[0]['cond'];
         $device_data['complaint'] = $task[0]['complaint'];
         $device_data['complect'] = $task[0]['complect'];
+        $device_data['back_link'] = $task[1]['back_link'];
         
         $device = $this->load->controller('taskrender/device_renderer', $device_data); 
         $task[0]['device_view'] = $device;

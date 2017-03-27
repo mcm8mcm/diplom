@@ -15,7 +15,6 @@ class ControllerPanelsTasks extends Controller {
         }
 
         $this->load->language('controlpanel');
-
         $header = $this->load->controller('common/header');
         $sidebar = $this->load->controller('common/sidebar');
         $content = $this->load->controller('editors/edtasks', $sacc_err);
@@ -29,7 +28,6 @@ class ControllerPanelsTasks extends Controller {
     }
 
     public function save() {
-        //ddd($this->request->post);
         if (!$this->user->isLoggedIn()) {
             $this->response->redirect($this->response->url('login'));
         }

@@ -1,5 +1,8 @@
 <?php
 $_['control_title'] = 'TASKS CONTROL';
+$_['editor_title'] = 'Edit content';
+$_['success_msg'] = 'Area successfully saved';
+/*
 $_['tasks_title'] = 'TASKS';
 $_['users_title'] = 'USERS';
 
@@ -27,10 +30,9 @@ $_['edit_content_caption'] = 'Content';
 $_['user_name_caption'] = 'Name';
 $_['user_contact_caption'] = 'Contacts';
 
-$_['success_msg'] = 'Area successfully saved';
-$_['editor_title'] = 'Edit content';
 $_['preview_title'] = 'Preview content';
 $_['btn_add'] = 'Add';
 $_['btn_edit'] = 'Edit';
 $_['btn_save'] = 'Save';
 $_['btn_cancel'] = 'Cancel';
+*/

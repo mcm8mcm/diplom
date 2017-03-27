@@ -31,7 +31,7 @@ class ControllerTaskrenderLogRenderer extends Controller {
             $data['title'] = $curr_log['title'];
             $data['post_content'] = $curr_log['post'];
             $data['subposts'] = array();
-            $data['edit_link'] = $this->response->url('editors/edit_log_element');         
+            $data['edit_link'] = $this->response->url('panels/tasks');         
             $data['user_id'] = $add['user_id'];            
             $data['subposts'] = $this->getLogView(array($curr_log['subposts'], $add));
             $log_posts[] = $this->load->view('taskrender/log', $data);
