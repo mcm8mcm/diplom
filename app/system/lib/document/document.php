@@ -28,15 +28,24 @@ class Document {
         $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/bootstrap-3.3.5/css/bootstrap.min.css">';
         $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/bootstrap-3.3.5/css/bootstrap-theme.min.css">';
         $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/font-awesome-4.7.0/css/font-awesome.min.css">'; 
-        $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/dtpicker/bootstrap-datetimepicker.css">';     
+        //$this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/dtpicker/bootstrap-datetimepicker.css">';     
         $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/bootstrap-3.3.5/css/bootstrap-select.css">';               
         $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/styles.css">';    
         
         $this->scripts[] = '<script src="'.ICLUDE_URL.'/jquery-3.1.1.min.js"></script>';
         $this->scripts[] = '<script src="'.ICLUDE_URL.'/bootstrap-3.3.5/js/bootstrap.min.js"></script>';
+        
+        /*
         $this->scripts[] = '<script src="'.ICLUDE_URL.'/dtpicker/moment-with-locales.js"></script>'; 
         $this->scripts[] = '<script src="'.ICLUDE_URL.'/dtpicker/bootstrap-datetimepicker.js"></script>';
         $this->scripts[] = '<script src="'.ICLUDE_URL.'/dtpicker/locales/bootstrap-datetimepicker.ru.js"></script>';        
+        */
+        
+        $this->scripts[] = '<script src="'.ICLUDE_URL.'/ocdtpicker/moment.js"></script>'; 
+        $this->scripts[] = '<script src="'.ICLUDE_URL.'/ocdtpicker/locale/ru.js"></script>'; 
+        $this->scripts[] = '<script src="'.ICLUDE_URL.'/ocdtpicker/bootstrap-datetimepicker.min.js"></script>';
+        $this->styles[] = '<link rel="stylesheet" href="'.ICLUDE_URL.'/ocdtpicker/bootstrap-datetimepicker.min.css">';        
+    
         $this->scripts[] = '<script src="'.ICLUDE_URL.'/bootstrap-3.3.5/js/bootstrap-select.js"></script>';
         
         $this->scripts[] = '<script src="'.ICLUDE_URL.'/service_scripts.js"></script>';

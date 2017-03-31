@@ -20,7 +20,7 @@ class ControllerEditorsEdtasks extends Controller {
         //$data['action'] = $this->response->url('panels/tasks/save');
         $data['succ_warn'] = $succ_warn;
         $data['success_msg'] = $this->language->get('success_msg');
-        $data['curr_tab'] = 'first';
+        //$data['curr_tab'] = 'first';
         if(isset($this->session->data['curr_footer_edit_tab'])){
             $data['curr_tab'] = $this->session->data['curr_footer_edit_tab'];
             unset($this->session->data['curr_footer_edit_tab']);

@@ -766,3 +766,19 @@ p.caption{
     padding-bottom: 4px;
     margin-bottom: 0px;
 }
+
+div.required .control-label:not(span)::before, td.required::before {
+    content: "* ";
+    color: #F00;
+    font-weight: bold;
+}
+
+.form-group + .form-group {
+    border-top: 1px solid #EDEDED;
+    padding-top: 15px;
+}
+
+.form-horizontal.clear-margin .form-group {
+    margin-right: 10px;
+    margin-left: 10px;
+}

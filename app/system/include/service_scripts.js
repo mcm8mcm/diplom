@@ -3,6 +3,7 @@ $(document).ready(function(){
     edit_funct.onload();
     edit_users.onload();
     edit_news.onload();
+    topic_edit_form.onload();
 }
 );
 
@@ -372,5 +373,11 @@ var edit_footer = {
         var edit_content = $("textarea#" + area_id).val();
         var area_nom = area_id.split("_")[0];
         $("div#" + area_nom + "_preview").html(edit_content);
+    }
+};
+
+var topic_edit_form = {
+    'onload' : function (){
+        $('[data-provide=datepicker]').datetimepicker({useSeconds:true, widgetParent:true}); 
     }
 };

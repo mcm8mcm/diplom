@@ -13,6 +13,14 @@ class ControllerEditorsTopicEditForm extends Controller {
         $data['topic_date_title'] = $this->language->get('topic_date_title');
         $data['topic_subject_title'] = $this->language->get('topic_subject_title');
         $data['topic_content_title'] = $this->language->get('topic_content_title');
+        $this->load->model('editors');
+        //ddd();
+        $d = $this->model_editors->getTopicToEdit($this->request->post['topic_id']);
+        ddd($d);
+        $data['parent_topic'] = 'Parent topic not selected';
+        $data['topic_date'] = '30.03.2017 12:10:22';
+        $data['topic_from'] = '';
+        
+        return $this->load->view('editors/topic_edit_form', $data);
     }
-
 }

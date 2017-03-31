@@ -1,7 +1,11 @@
 <?php
 
 class ModelEditors extends Model {
-
+    private function getDateView($curr_date) {
+        $tmp_date = date_create_from_format('Y-m-d H:i:s', $curr_date);    
+        return array('date' => $tmp_date->format('d.m.Y'), 'time' => $tmp_date->format('h:i:s'));
+    } 
+    
     public function getUserGroups() {
         $sql = 'SELECT * FROM `' . DB_PREFIX . 'user_group`';
         $res = $this->db->sql($sql);
@@ -194,7 +198,48 @@ class ModelEditors extends Model {
     }
 
     /////////////////// TASKS //////////////////////////////
-
+    public function getTopicToEdit($topic_id, $is_parent=FALSE) {
+        $sql = 'SELECT '
+                . '`log`.*, '
+                . '`auth`.`id` as `auth_id`, '
+                . '`reciv`.`id` as `reciv_id`, '
+                . "CONCAT_WS(' ',`auth`.`first_name`, `auth`.`last_name`) as `auth_name`, "
+                . "CONCAT_WS(' ', `reciv`.`first_name`, `reciv`.`last_name`) as `reciv_name` "
+                . 'FROM `' . DB_PREFIX . 'order_log` as `log` '
+                . 'LEFT JOIN `' . DB_PREFIX . 'users` as `auth` ON `log`.`post_author` = `auth`.`id` '
+                . 'LEFT JOIN `' . DB_PREFIX . 'users` as `reciv` ON `log`.`post_reciver` = `reciv`.`id` '
+                . 'WHERE `log`.`id` = ' . $topic_id
+                . ' ORDER BY `log`.`post_stamp`, `log`.`parent_post`,`log`.`id` ';
+        $res = $this->db->sql($sql);
+        if (!$res['rows_count']) {
+            $data = array();
+            $data['id'] = '';
+            $data['post_stamp'] = '';
+            $data['post_author'] = array('id' => '', 'name' => '');
+            $data['post_reciver'] = array('id' => '', 'name' => '');
+            $data['post_title'] = '';
+            $data['post_content'] = '';
+            if (!$is_parent) {
+                $data['paret_post'] = array();
+            }
+            
+            return $data;
+        }
+        
+        $data = array();
+        $data['id'] = $res['row']['id'];
+        $data['post_stamp'] = $this->getDateView($res['row']['post_stamp']);
+        $data['post_author'] = array('id'=>$res['row']['post_author'], 'name'=>$res['row']['auth_name']);
+        $data['post_reciver'] = array('id'=>$res['row']['post_reciver'], 'name'=>$res['row']['reciv_name']);
+        $data['post_title'] = $res['row']['post_title'];
+        $data['post_content'] = $res['row']['post_content'];
+        if(!$is_parent){
+            $data['paret_post'] = $this->getTopicToEdit($res['row']['parent_post'], TRUE); 
+        }        
+        
+        return $data;
+    }
+    
     private function openLog($task) {
         $curr_log = array();
         $curr_log['id'] = $task['id'];

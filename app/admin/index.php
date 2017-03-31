@@ -81,6 +81,21 @@ if (isset($_GET['set_lang'])) {
 
 $language = new Language(DIR_LANG.$lang);
 $register->set('language', $language);
+/*
+$tmp = explode('/', $request->server['REQUEST_URI']);
+$tmp_clean = array();
+foreach($tmp as $elem){
+    if($elem === '') continue;
+    $tmp_clean[] = $elem;
+}
+
+
+$request->server['REQUEST_URI'] = implode('/', $tmp_clean);
+*/ 
+
+$request->server['REQUEST_URI'] = str_replace('/admin', '', $request->server['REQUEST_URI']);
+
+if(empty($request->server['REQUEST_URI'])) $request->server['REQUEST_URI'] = '/';
 
 if($request->server['REQUEST_URI'] === '/'){
     $request->server['REQUEST_URI'] = $request->server['REQUEST_URI'] . 'controlpanel';
@@ -94,7 +109,7 @@ foreach ($session->data['languages'] as $value) {
     }
 }
 
-$request->server['REQUEST_URI'] = str_replace('/admin', '', $request->server['REQUEST_URI']);
+
 
 if(!$user->isLoggedIn()){ 
     if(!isset($request->post) || !isset($request->post['username'])){

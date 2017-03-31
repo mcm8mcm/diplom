@@ -13,7 +13,7 @@ class ControllerPanelsTasks extends Controller {
             $sacc_err = $this->session->data['sacc_err'];
             unset($this->session->data['sacc_err']);
         }
-
+        
         $this->load->language('controlpanel');
         $header = $this->load->controller('common/header');
         $sidebar = $this->load->controller('common/sidebar');
