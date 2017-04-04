@@ -239,13 +239,14 @@ class ModelEditors extends Model {
         $data['post_content'] = $res['row']['post_content'];
         if(!$is_parent){
             $data['paret_post'] = $this->getTopicToEdit($res['row']['parent_post'], TRUE); 
+        }else{
+            $data['users'] = array();
+            $users = $this->getUsers(TRUE);
+            foreach ($users as $user){
+                $data['users'][] = array('id'=>$user['id'], 'name'=>$user['first_name'].' '.$user['patronymic'].' '.$user['last_name']);
+            }            
         } 
         
-        $data['users'] = array();
-        $users = $this->getUsers(TRUE);
-        foreach ($users as $user){
-            $data['users'][] = array('id'=>$user['id'], 'name'=>$user['first_name'].' '.$user['patronymic'].' '.$user['last_name']);
-        }
         return $data;
     }
     
