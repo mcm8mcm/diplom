@@ -12,7 +12,7 @@ class ModelEditors extends Model {
         return $res['rows'];
     }
 
-    public function getUsers() {
+    public function getUsers($users_only=FALSE) {
         $sql = 'SELECT `u`.*, '
                 . '`ugroup`.`name` as `group_name` '
                 . 'FROM `' . DB_PREFIX . 'users` AS `u` LEFT JOIN `'
@@ -21,6 +21,10 @@ class ModelEditors extends Model {
         $users = array();
         $res = $this->db->sql($sql);
         $users = $res['rows'];
+        if($users_only){
+            return $users;
+        }
+        
         $groups = array();
         $groups = $this->getUserGroups();
         $lang = $this->getLanguages();
@@ -235,8 +239,13 @@ class ModelEditors extends Model {
         $data['post_content'] = $res['row']['post_content'];
         if(!$is_parent){
             $data['paret_post'] = $this->getTopicToEdit($res['row']['parent_post'], TRUE); 
-        }        
+        } 
         
+        $data['users'] = array();
+        $users = $this->getUsers(TRUE);
+        foreach ($users as $user){
+            $data['users'][] = array('id'=>$user['id'], 'name'=>$user['first_name'].' '.$user['patronymic'].' '.$user['last_name']);
+        }
         return $data;
     }
     

@@ -26,12 +26,19 @@
         </div> 
 
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="topic-from"><?=$title_from;?>:</label>
-            <div class="col-sm-10">
-                <label class="col-sm-2 control-label" id="topic-from"><?=$topic_from;?>:</label>
+            <input type="hidden" name="topic_from_id" value="<?=topic_from_id;?>"/>            
+            <label class="col-sm-3 control-label" for="topic-from"><?=$title_from;?>:</label>
+            <div class="col-sm-9">
+                <input type="text" class="col-sm-10 form-control" id="topic-from-name" placeholder="<?=$title_from;?>" value="<?=$topic_from_name;?>" />
             </div>
         </div> 
 
+        <div class="form-group required">
+            <label class="col-sm-2 control-label" for="topic-from"><?=$title_to;?>:</label>
+            <div class="col-sm-10">
+                <label class="col-sm-2 control-label" id="topic-from"><?=$topic_to;?>:</label>
+            </div>
+        </div> 
 
 
     </fieldset>
