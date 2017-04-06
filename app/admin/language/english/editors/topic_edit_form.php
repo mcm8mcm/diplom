@@ -7,5 +7,5 @@ $_['title_to'] = 'To';
 $_['topic_date_title'] = 'Date';
 $_['topic_subject'] = 'Subject';
 $_['topic_content'] = 'Content';
-
+$_['item_not_selected'] = 'Select one';
 

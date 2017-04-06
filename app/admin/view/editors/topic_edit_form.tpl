@@ -26,17 +26,28 @@
         </div> 
 
         <div class="form-group required">
-            <input type="hidden" name="topic_from_id" value="<?=topic_from_id;?>"/>            
+            <input type="hidden" name="topic_from_id" value="<?=$topic_from_id;?>"/>            
             <label class="col-sm-3 control-label" for="topic-from"><?=$title_from;?>:</label>
             <div class="col-sm-9">
-                <input type="text" class="col-sm-10 form-control" id="topic-from-name" placeholder="<?=$title_from;?>" value="<?=$topic_from_name;?>" />
+                <select class="col-sm-10 form-control" name="topic_from" id="topic-from" value="<?=$topic_from_id;?>">
+                    <option value="NONE" <?=!isset($topic_from_id) ? '' : 'selected';?> ><?=$item_not_selected;?></option>
+                    <?php foreach($users as $user) { ?>
+                    <option value="<?$user['id'];?>" <?=$topic_from_id === $user['id'] ? 'selected' : '';?> ><?=$user['name'];?></option>
+                    <?php } ?>
+                </select>
             </div>
         </div> 
 
         <div class="form-group required">
-            <label class="col-sm-2 control-label" for="topic-from"><?=$title_to;?>:</label>
-            <div class="col-sm-10">
-                <label class="col-sm-2 control-label" id="topic-from"><?=$topic_to;?>:</label>
+            <input type="hidden" name="topic_to_id" value="<?=$topic_to_id;?>"/>            
+            <label class="col-sm-3 control-label" for="topic-to"><?=$title_to;?>:</label>
+            <div class="col-sm-9">
+                <select class="col-sm-10 form-control" name="topic_to" id="topic-to" value="<?=$topic_to_id;?>">
+                    <option value="NONE" <?=!isset($topic_to_id) ? '' : 'selected';?> ><?=$item_not_selected;?></option>
+                    <?php foreach($users as $user) { ?>
+                    <option value="<?$user['id'];?>" <?=$topic_to_id === $user['id'] ? 'selected' : '';?> ><?=$user['name'];?></option>
+                    <?php } ?>
+                </select>
             </div>
         </div> 
 
