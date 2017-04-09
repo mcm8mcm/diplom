@@ -782,3 +782,8 @@ div.required .control-label:not(span)::before, td.required::before {
     margin-right: 10px;
     margin-left: 10px;
 }
+
+.default-textarea{
+    min-width: 100%;
+    max-width: 100%;
+}

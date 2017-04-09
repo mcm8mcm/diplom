@@ -51,6 +51,26 @@
             </div>
         </div> 
 
+        <div class="form-group required">
+            <label class="col-sm-3 control-label" for="topic-subject"><?=$topic_subject_title;?>:</label>
+            <div class="col-sm-9">
+                <input type="text" class="col-sm-12 form-control" id="topic-subject" value="<?=$topic_title;?>"></input>
+            </div>
+        </div> 
+        
+        <div class="form-group required">
+            <label class="col-sm-3 control-label" for="topic-content"><?=$topic_content_title;?>:</label>
+            <div class="col-sm-9">
+                <textarea rows="5" class="col-sm-12 form-control default-textarea" id="topic-content"><?=$topic_content;?></textarea>
+            </div>
+        </div> 
 
+        <div class="form-group">
+            <div class="col-sm-8">
+                <button type="submit" class="btn btn-success"><span class="fa fa-save"/><span style="padding-left: 5px"><?=$save_title;?></span></button>
+                <a href="#" class="btn btn-warning"><span class="fa fa-times" /><span style="padding-left: 5px"><?=$cancel_title;?></span></a>
+            </div>
+        </div>
+        
     </fieldset>
 </form>
