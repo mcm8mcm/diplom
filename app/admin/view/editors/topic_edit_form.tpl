@@ -1,4 +1,4 @@
-<form method="post" enctype="multipart/form-data" id="form-topic-edit" class="form-horizontal clear-margin">
+<form method="post" enctype="multipart/form-data" id="form-topic-edit" class="form-horizontal clear-margin" action="<?=$save_action;?>">
     <fieldset>
         <legend>
             <?=$form_title;?>
@@ -32,7 +32,7 @@
                 <select class="col-sm-10 form-control" name="topic_from" id="topic-from" value="<?=$topic_from_id;?>">
                     <option value="NONE" <?=!isset($topic_from_id) ? '' : 'selected';?> ><?=$item_not_selected;?></option>
                     <?php foreach($users as $user) { ?>
-                    <option value="<?$user['id'];?>" <?=$topic_from_id === $user['id'] ? 'selected' : '';?> ><?=$user['name'];?></option>
+                    <option value="<?=$user['id'];?>" <?=$topic_from_id === $user['id'] ? 'selected' : '';?> ><?=$user['name'];?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -45,7 +45,7 @@
                 <select class="col-sm-10 form-control" name="topic_to" id="topic-to" value="<?=$topic_to_id;?>">
                     <option value="NONE" <?=!isset($topic_to_id) ? '' : 'selected';?> ><?=$item_not_selected;?></option>
                     <?php foreach($users as $user) { ?>
-                    <option value="<?$user['id'];?>" <?=$topic_to_id === $user['id'] ? 'selected' : '';?> ><?=$user['name'];?></option>
+                    <option value="<?=$user['id'];?>" <?=$topic_to_id === $user['id'] ? 'selected' : '';?> ><?=$user['name'];?></option>
                     <?php } ?>
                 </select>
             </div>
@@ -54,23 +54,23 @@
         <div class="form-group required">
             <label class="col-sm-3 control-label" for="topic-subject"><?=$topic_subject_title;?>:</label>
             <div class="col-sm-9">
-                <input type="text" class="col-sm-12 form-control" id="topic-subject" value="<?=$topic_title;?>"></input>
+                <input type="text" class="col-sm-12 form-control" id="topic-subject" name="topic_subject" value="<?=$topic_title;?>"></input>
             </div>
         </div> 
         
         <div class="form-group required">
             <label class="col-sm-3 control-label" for="topic-content"><?=$topic_content_title;?>:</label>
             <div class="col-sm-9">
-                <textarea rows="5" class="col-sm-12 form-control default-textarea" id="topic-content"><?=$topic_content;?></textarea>
+                <textarea rows="5" name="topic_content" class="col-sm-12 form-control default-textarea" id="topic-content"><?=$topic_content;?></textarea>
             </div>
         </div> 
 
         <div class="form-group">
             <div class="col-sm-8">
                 <button type="submit" class="btn btn-success"><span class="fa fa-save"/><span style="padding-left: 5px"><?=$save_title;?></span></button>
-                <a href="#" class="btn btn-warning"><span class="fa fa-times" /><span style="padding-left: 5px"><?=$cancel_title;?></span></a>
+                <a href="<?=$back_link;?>" class="btn btn-warning"><span class="fa fa-times" /><span style="padding-left: 5px"><?=$cancel_title;?></span></a>
             </div>
         </div>
-        
+        <input type="hidden" name="back_link" value="<?=$back_link;?>">
     </fieldset>
 </form>

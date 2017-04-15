@@ -27,7 +27,8 @@
             <form method="post" action="<?=$edit_link;?>">
                 <input type="hidden" name="topic_id" value="<?=$post_id;?>">
                 <input type="hidden" name="user_id" value="<?=$user_id;?>">
-                <input type="hidden" name="edit_action" value="edit_topic">                
+                <input type="hidden" name="back_link" value="<?=$back_link;?>">
+                <input type="hidden" name="edit_action" value="edit_topic">   
                 <button type="submit" class="fa fa-edit btn-success btn fa-btn-fit">
             </form>
             

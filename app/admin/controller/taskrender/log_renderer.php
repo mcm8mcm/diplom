@@ -5,7 +5,7 @@ class ControllerTaskrenderLogRenderer extends Controller {
         return array('date' => $tmp_date->format('d.m.Y'), 'time' => $tmp_date->format('h:i:s'));
     } 
     
-    private function getLogView($log) {
+    private function getLogView($log, $back_link) {
         $add = $log[1];
         $log = $log[0];
         
@@ -32,8 +32,9 @@ class ControllerTaskrenderLogRenderer extends Controller {
             $data['post_content'] = $curr_log['post'];
             $data['subposts'] = array();
             $data['edit_link'] = $this->response->url('panels/tasks');         
-            $data['user_id'] = $add['user_id'];            
-            $data['subposts'] = $this->getLogView(array($curr_log['subposts'], $add));
+            $data['user_id'] = $add['user_id'];  
+            $data['back_link'] = $back_link;
+            $data['subposts'] = $this->getLogView(array($curr_log['subposts'], $add), $back_link);
             $log_posts[] = $this->load->view('taskrender/log', $data);
         }
         return $log_posts;
@@ -43,7 +44,8 @@ class ControllerTaskrenderLogRenderer extends Controller {
         //Index is not stand alone in this context
         //$log is required
         $this->load->language('taskrender/log_renderer');
-        $log_list = $this->getLogView($log);
+        
+        $log_list = $this->getLogView($log, $log[1]['back_link']);
         $data = array();
         $log = (array)$log;
         $log_list = (array)$log_list;
